@@ -1,0 +1,4 @@
+repository "DiplomaGame@PblUAPb@cloud"
+  path "/"
+    br "/main"
+    co "/main"
