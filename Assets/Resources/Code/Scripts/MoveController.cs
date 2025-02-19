@@ -8,7 +8,7 @@ namespace Player
     public class MoveController : MonoBehaviour, IMoveSubscriber
     {
         [SerializeField] private float speed;
-        [SerializeField] private GameObject camera;
+        //[SerializeField] private GameObject camera;
 
         Animator animator;
         Rigidbody rb;
@@ -23,11 +23,13 @@ namespace Player
         InputAction moveActionXBack;
         InputAction moveActionZFront;
         InputAction moveActionZBack;
+        InputAction ladderMove;
 
         InputAction interact;
 
         SpriteRenderer sprite;
         bool isFliped;
+        bool isGrounded;
         void Start()
         {
             animator = GetComponent<Animator>();
@@ -37,6 +39,7 @@ namespace Player
             moveActionXBack = InputSystem.actions.FindAction("MoveXBack");
             moveActionZFront = InputSystem.actions.FindAction("MoveZFront");
             moveActionZBack = InputSystem.actions.FindAction("MoveZBack");
+            ladderMove = InputSystem.actions.FindAction("LadderMove");
 
             moveNow = moveActionXBack;
             interact = InputSystem.actions.FindAction("Interact");
@@ -56,9 +59,8 @@ namespace Player
 
         void Update()
         {
-            moveDirection = moveNow.ReadValue<Vector3>();
-            rb.MovePosition(rb.position + (speed * Time.fixedDeltaTime * moveDirection));
-            Debug.Log($"{moveNow.ReadValue<Vector3>()} for {cordinateSide}");
+            //Debug.Log($"{moveNow.ReadValue<Vector3>()} for {cordinateSide}");
+
             if ((moveNow.ReadValue<Vector3>() == new Vector3(0, 0, -1) && cordinateSide == CordinateSide.XBack)
                 | (moveNow.ReadValue<Vector3>() == new Vector3(0, 0, 1) && cordinateSide == CordinateSide.XFront)
                 | (moveNow.ReadValue<Vector3>() == new Vector3(1, 0, 0) && cordinateSide == CordinateSide.ZBack)
@@ -81,6 +83,9 @@ namespace Player
 
         private void FixedUpdate()
         {
+            moveDirection = moveNow.ReadValue<Vector3>();
+            rb.linearVelocity = speed * Time.fixedDeltaTime * moveDirection;
+            
         }
 
 
@@ -145,9 +150,10 @@ namespace Player
         {
             interactiveObject = newInteractive;
         }
-        public void Test()
+
+        public bool OnGround()
         {
-            Debug.Log("13214");
+            return true;
         }
     }
 }
