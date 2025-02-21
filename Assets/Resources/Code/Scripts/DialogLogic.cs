@@ -38,7 +38,7 @@ public class DialogLogic : MonoBehaviour, IDialog
         if(phraseCounter < phrases.Count)
         {
             var character = characters[phrases[phraseCounter].characterName];
-            dialogUI.PrepareDialogPanel(character.GetSprite(), phrases[phraseCounter]);
+            dialogUI.PrepareDialogPanel(character, phrases[phraseCounter]);
         }
         else
         {
@@ -75,5 +75,10 @@ public class DialogLogic : MonoBehaviour, IDialog
     {
         GetComponent<Collider>().enabled = false;
         IsContinuesDialog = false;
+    }
+
+    public void ChangeDialogData(DialogData newDialog)
+    {
+        dialog = newDialog;
     }
 }

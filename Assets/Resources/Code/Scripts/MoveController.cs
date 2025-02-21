@@ -39,7 +39,7 @@ namespace Player
             moveActionZBack = InputSystem.actions.FindAction("MoveZBack");
             ladderMove = InputSystem.actions.FindAction("LadderMove");
 
-            moveNow = moveActionXBack;
+            moveNow = moveActionZBack;
             interact = InputSystem.actions.FindAction("Interact");
         }
 

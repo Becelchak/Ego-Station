@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08e0dee45bfbd7a46bf1e01beeef7722, type: 3}
+  m_Name: MonkeySituationData
+  m_EditorClassIdentifier: 
+  allPhrases:
+  - {fileID: 11400000, guid: 26287f4ed27299d4197eadbf64068b55, type: 2}
+  - {fileID: 11400000, guid: 443072c09caf3eb4d880f08d74906ea9, type: 2}
+  - {fileID: 11400000, guid: 10f33f497cf3a664cb19e8dcfdb0d4f6, type: 2}
+  - {fileID: 11400000, guid: 46b694725b38d4240868e3743465f174, type: 2}

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03f0ab9076859704c913c4397bae30b6, type: 3}
-  m_Name: Monkey
+  m_Name: Feels
   m_EditorClassIdentifier: 
-  nameCharacter: "\u041E\u0431\u0435\u0437\u044C\u044F\u043D\u0430"
-  characterImage: {fileID: 2000352891576187052, guid: 622d9ce0bf93fe94b8c02a3883b70e39, type: 3}
+  nameCharacter: "\u0427\u0443\u0432\u0441\u0442\u0432\u0430"
+  characterImage: {fileID: -5517130990939976220, guid: f4fabf3e6983a1f40a17643363197d59, type: 3}
   speachSound: {fileID: 0}

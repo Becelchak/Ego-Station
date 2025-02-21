@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03f0ab9076859704c913c4397bae30b6, type: 3}
-  m_Name: Monkey
+  m_Script: {fileID: 11500000, guid: d41bd094ce61c384ebfbbd04d56c5cd1, type: 3}
+  m_Name: ph_2_0
   m_EditorClassIdentifier: 
-  nameCharacter: "\u041E\u0431\u0435\u0437\u044C\u044F\u043D\u0430"
-  characterImage: {fileID: 2000352891576187052, guid: 622d9ce0bf93fe94b8c02a3883b70e39, type: 3}
-  speachSound: {fileID: 0}
+  characterName: Astro-9
+  textPhrase: "\u0423\u0438\u0438\u0438\u0438\u0438, \u0438\u0445\u0440, \u0438\u0445\u0440,
+    \u0438\u0445\u0440"
+  isChoise: 0
+  choises: []

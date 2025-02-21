@@ -10,4 +10,9 @@ public class Character : ScriptableObject
     {
         return characterImage;
     }
+
+    public string GetName()
+    {
+        return nameCharacter;
+    }
 }

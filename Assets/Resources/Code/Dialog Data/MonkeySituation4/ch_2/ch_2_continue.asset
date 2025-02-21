@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03f0ab9076859704c913c4397bae30b6, type: 3}
-  m_Name: Monkey
+  m_Script: {fileID: 11500000, guid: 0b250cfa9b4d71f4a96d232400f853ce, type: 3}
+  m_Name: ch_2_continue
   m_EditorClassIdentifier: 
-  nameCharacter: "\u041E\u0431\u0435\u0437\u044C\u044F\u043D\u0430"
-  characterImage: {fileID: 2000352891576187052, guid: 622d9ce0bf93fe94b8c02a3883b70e39, type: 3}
-  speachSound: {fileID: 0}
+  nextDialog: {fileID: 11400000, guid: 21e5b140694683d46aa3c1acfab9e460, type: 2}

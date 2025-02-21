@@ -10,6 +10,7 @@ public class DialogManagerUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogTextWithChoices;
     [SerializeField] private GameObject choicesContainer;
     [SerializeField] private GameObject choiseCell;
+    [SerializeField] private TextMeshProUGUI characterName;
 
     private CanvasGroup dialogUICanvasGroup;
     void Start()
@@ -17,18 +18,21 @@ public class DialogManagerUI : MonoBehaviour
         dialogUICanvasGroup = GetComponent<CanvasGroup>();
     }
 
-    public void PrepareDialogPanel(Sprite charImage, Phrase dialogText)
+    public void PrepareDialogPanel(Character character, Phrase dialogText)
     {
         dialogUICanvasGroup.alpha = 1;
         dialogUICanvasGroup.interactable = true;
         dialogUICanvasGroup.blocksRaycasts = true;
 
 
-        characterImage.sprite = charImage;
-        if(dialogText.isChoise)
+        characterImage.sprite = character.GetSprite();
+        characterName.text = character.GetName();
+        characterName.gameObject.SetActive(true);
+
+        if (dialogText.isChoise)
         {
             var f = 0;
-            while(f < choicesContainer.transform.childCount)
+            while (f < choicesContainer.transform.childCount)
             {
                 Destroy(choicesContainer.transform.GetChild(f).gameObject);
                 f++;
@@ -68,5 +72,16 @@ public class DialogManagerUI : MonoBehaviour
         dialogUICanvasGroup.alpha = 0;
         dialogUICanvasGroup.interactable = false;
         dialogUICanvasGroup.blocksRaycasts = false;
+
+        dialogTextNoChoices.gameObject.SetActive(false);
+        dialogTextWithChoices.gameObject.SetActive(false);
+        characterName.gameObject.SetActive(false);
+
+        var f = 0;
+        while (f < choicesContainer.transform.childCount)
+        {
+            Destroy(choicesContainer.transform.GetChild(f).gameObject);
+            f++;
+        }
     }
 }
