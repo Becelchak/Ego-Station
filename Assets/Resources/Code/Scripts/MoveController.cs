@@ -5,11 +5,9 @@ using System;
 
 namespace Player
 {
-    public class MoveController : MonoBehaviour, IMoveSubscriber
+    public class MoveController : MonoBehaviour, IMoveControllerSubscriber
     {
         [SerializeField] private float speed;
-        //[SerializeField] private GameObject camera;
-
         Animator animator;
         Rigidbody rb;
         Vector3 moveDirection;
@@ -59,7 +57,6 @@ namespace Player
 
         void Update()
         {
-            //Debug.Log($"{moveNow.ReadValue<Vector3>()} for {cordinateSide}");
 
             if ((moveNow.ReadValue<Vector3>() == new Vector3(0, 0, -1) && cordinateSide == CordinateSide.XBack)
                 | (moveNow.ReadValue<Vector3>() == new Vector3(0, 0, 1) && cordinateSide == CordinateSide.XFront)
@@ -75,7 +72,7 @@ namespace Player
             {
                 ChangeLookDiraction(LookDirection.Left);
             }
-            if (interact.WasPressedThisFrame())
+            if (interact.WasPressedThisFrame() && interactiveObject != null)
             {
                 interactiveObject.Interact();
             }

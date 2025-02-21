@@ -1,10 +1,3 @@
-using EventBusInterface;
-using UnityEngine.Events;
-using Player;
-using System.Collections.Generic;
-using System;
-using UnityEngine;
-
 namespace EventBusSystem
 {
     using System;
@@ -31,7 +24,6 @@ namespace EventBusSystem
                         s_Subscribers[t] = new SubscribersList<IGlobalSubscriber>();
                     }
                     s_Subscribers[t].Add(subscriber);
-                    //Debug.Log($"{s_Subscribers.Count}");
                 }
             }
         }
@@ -64,7 +56,7 @@ namespace EventBusSystem
             }
 
             subscribers.Executing = true;
-            foreach (IGlobalSubscriber subscriber in subscribers.List.ToList()) //  опируем список дл€ безопасной итерации
+            foreach (IGlobalSubscriber subscriber in subscribers.List.ToList()) //  опирование списка дл€ безопасной итерации
             {
                 try
                 {

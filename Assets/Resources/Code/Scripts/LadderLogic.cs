@@ -21,8 +21,19 @@ public class LadderLogic : MonoBehaviour, ILadder
         if (other.gameObject.tag != "Player")
             return;
         print("Ladder trigger");
-        EventBus.RaiseEvent<IMoveSubscriber>(h => h.SetNewInteractiveObject(this));
+        EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(this));
         player = other.transform.gameObject;
+
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag != "Player")
+            return;
+        print("Exit ladder trigger");
+        EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(null));
+        upBoxCollider.enabled = true;
+        isUsing = false;
 
     }
     public void Interact()

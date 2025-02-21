@@ -23,15 +23,15 @@ public class DoorLogic : MonoBehaviour, IDoor
         if (other.gameObject.tag != "Player")
             return;
         print("Trigger");
-        EventBus.RaiseEvent<IMoveSubscriber>(h => h.SetNewInteractiveObject(this));
+        EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(this));
         playerCollider = other;
 
     }
 
     public void Interact()
     {
-        print("Rise");
+        print("Raise");
         playerCollider.transform.position = connetedDoor.gameObject.transform.position;
-        EventBus.RaiseEvent<IMoveSubscriber>(h => h.ChangePlayerSide(connetedDoor.side));
+        EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.ChangePlayerSide(connetedDoor.side));
     }
 }
