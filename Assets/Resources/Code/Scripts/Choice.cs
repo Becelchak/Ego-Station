@@ -6,18 +6,30 @@ using static PlayerManager;
 public class Choice : ScriptableObject
 {
     public string text;
+    public bool isCheckingChoice;
     public PlayerAttributes checkAttribute;
     public int difficultCheckAttribute;
-    [SerializeField] public DialogEvent dialogEvent;
+
+    private bool resultCheckAttribute;
+    [Header("Succses Check Attribute")]
+    [SerializeField] public DialogEvent dialogEventSuccses;
+    [Header("Failed Check Attribute")]
+    [SerializeField] public DialogEvent dialogEventFailed;
 
     public void ChoiceAttributeCheck()
     {
-        EventBus.RaiseEvent<IPlayerSubscriber>(h => Debug.Log($"Проверка{checkAttribute} выдала {h.CheckAttribute(checkAttribute, difficultCheckAttribute)}"));
+        EventBus.RaiseEvent<IPlayerSubscriber>(h =>
+        {
+            resultCheckAttribute = h.CheckAttribute(checkAttribute, difficultCheckAttribute);
+            Debug.Log($"Проверка{checkAttribute} выдала {resultCheckAttribute}");
+        });
     }
 
     public void RiseDialogEvent()
     {
-        if(dialogEvent != null)
-            dialogEvent.Raise();
+        if(dialogEventSuccses != null && resultCheckAttribute)
+            dialogEventSuccses.Raise();
+        else if(dialogEventFailed != null && !resultCheckAttribute)
+            dialogEventFailed.Raise();
     }
 }

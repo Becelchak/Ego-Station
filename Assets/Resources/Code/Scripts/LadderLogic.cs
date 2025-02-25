@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LadderLogic : MonoBehaviour, ILadder
 {
-    private BoxCollider upBoxCollider;
+    private BoxCollider2D upBoxCollider;
     private GameObject pointUpPosition;
     private GameObject pointDownPosition;
     private bool isUsing = false;
@@ -11,12 +11,12 @@ public class LadderLogic : MonoBehaviour, ILadder
 
     void Start()
     {
-        upBoxCollider = transform.GetChild(0).GetComponent<BoxCollider>();
+        upBoxCollider = transform.GetChild(0).GetComponent<BoxCollider2D>();
         pointUpPosition = transform.GetChild(1).gameObject;
         pointDownPosition = transform.GetChild(2).gameObject;
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag != "Player")
             return;
@@ -26,7 +26,7 @@ public class LadderLogic : MonoBehaviour, ILadder
 
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag != "Player")
             return;

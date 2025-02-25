@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -12,8 +13,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - NPC
+  - Player
   - 
   - 
   - 
@@ -39,8 +40,23 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Void
+    uniqueID: 1998110847
+    locked: 0
+  - name: Background
+    uniqueID: 2333296357
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Collision walls
+    uniqueID: 2658921579
+    locked: 0
+  - name: Props
+    uniqueID: 1459409899
+    locked: 0
+  - name: Entity
+    uniqueID: 3352552433
     locked: 0
   m_RenderingLayers:
   - Default

@@ -9,10 +9,10 @@ namespace Player
     {
         [SerializeField] private float speed;
         Animator animator;
-        Rigidbody rb;
+        Rigidbody2D rb;
         Vector3 moveDirection;
         LookDirection lookDirection = LookDirection.Right;
-        CordinateSide cordinateSide = CordinateSide.XBack;
+        //CordinateSide cordinateSide = CordinateSide.XBack;
         IInteractive interactiveObject;
 
 
@@ -31,7 +31,7 @@ namespace Player
         void Start()
         {
             animator = GetComponent<Animator>();
-            rb = GetComponent<Rigidbody>();
+            rb = GetComponent<Rigidbody2D>();
             sprite = GetComponent<SpriteRenderer>();
             moveActionXFront = InputSystem.actions.FindAction("MoveXFront");
             moveActionXBack = InputSystem.actions.FindAction("MoveXBack");
@@ -58,17 +58,25 @@ namespace Player
         void Update()
         {
 
-            if ((moveNow.ReadValue<Vector3>() == new Vector3(0, 0, -1) && cordinateSide == CordinateSide.XBack)
-                | (moveNow.ReadValue<Vector3>() == new Vector3(0, 0, 1) && cordinateSide == CordinateSide.XFront)
-                | (moveNow.ReadValue<Vector3>() == new Vector3(1, 0, 0) && cordinateSide == CordinateSide.ZBack)
-                | (moveNow.ReadValue<Vector3>() == new Vector3(-1, 0, 0) && cordinateSide == CordinateSide.ZFront) )
+            //if ((moveNow.ReadValue<Vector3>() == new Vector3(0, 0, -1) && cordinateSide == CordinateSide.XBack)
+            //    | (moveNow.ReadValue<Vector3>() == new Vector3(0, 0, 1) && cordinateSide == CordinateSide.XFront)
+            //    | (moveNow.ReadValue<Vector3>() == new Vector3(1, 0, 0) && cordinateSide == CordinateSide.ZBack)
+            //    | (moveNow.ReadValue<Vector3>() == new Vector3(-1, 0, 0) && cordinateSide == CordinateSide.ZFront) )
+            //{
+            //    ChangeLookDiraction(LookDirection.Right);
+            //}
+            //else if ((moveNow.ReadValue<Vector3>() == new Vector3(1, 0, 0) && cordinateSide == CordinateSide.ZFront)
+            //    | (moveNow.ReadValue<Vector3>() == new Vector3(0, 0, 1) && cordinateSide == CordinateSide.XBack)
+            //    | (moveNow.ReadValue<Vector3>() == new Vector3(0, 0, -1) && cordinateSide == CordinateSide.XFront)
+            //    | (moveNow.ReadValue<Vector3>() == new Vector3(-1, 0, 0) && cordinateSide == CordinateSide.ZBack))
+            //{
+            //    ChangeLookDiraction(LookDirection.Left);
+            //}
+            if (moveNow.ReadValue<Vector3>() == new Vector3(1, 0, 0) )
             {
                 ChangeLookDiraction(LookDirection.Right);
             }
-            else if ((moveNow.ReadValue<Vector3>() == new Vector3(1, 0, 0) && cordinateSide == CordinateSide.ZFront)
-                | (moveNow.ReadValue<Vector3>() == new Vector3(0, 0, 1) && cordinateSide == CordinateSide.XBack)
-                | (moveNow.ReadValue<Vector3>() == new Vector3(0, 0, -1) && cordinateSide == CordinateSide.XFront)
-                | (moveNow.ReadValue<Vector3>() == new Vector3(-1, 0, 0) && cordinateSide == CordinateSide.ZBack))
+            else if (moveNow.ReadValue<Vector3>() == new Vector3(-1, 0, 0))
             {
                 ChangeLookDiraction(LookDirection.Left);
             }
@@ -100,32 +108,32 @@ namespace Player
             Right,
         }
 
-        public void ChangePlayerSide(CordinateSide side)
-        {
-            cordinateSide = side;
+        //public void ChangePlayerSide(CordinateSide side)
+        //{
+        //    cordinateSide = side;
 
-            switch(cordinateSide)
-            {
-                case CordinateSide.XBack:
-                    moveNow = moveActionXBack;
-                    transform.eulerAngles = new Vector3(0, 90, 0);
-                    break;
-                case CordinateSide.ZBack:
-                    moveNow = moveActionZBack;
-                    transform.eulerAngles = new Vector3(0, 0, 0);
-                    break;
-                case CordinateSide.ZFront:
-                    moveNow = moveActionZFront;
-                    transform.eulerAngles = new Vector3(0, 180, 0);
-                    break;
-                case CordinateSide.XFront:
-                    moveNow = moveActionXFront;
-                    transform.eulerAngles = new Vector3(0, 270, 0);
-                    break;
-                default:
-                    break;
-            }
-        }
+        //    switch(cordinateSide)
+        //    {
+        //        case CordinateSide.XBack:
+        //            moveNow = moveActionXBack;
+        //            transform.eulerAngles = new Vector3(0, 90, 0);
+        //            break;
+        //        case CordinateSide.ZBack:
+        //            moveNow = moveActionZBack;
+        //            transform.eulerAngles = new Vector3(0, 0, 0);
+        //            break;
+        //        case CordinateSide.ZFront:
+        //            moveNow = moveActionZFront;
+        //            transform.eulerAngles = new Vector3(0, 180, 0);
+        //            break;
+        //        case CordinateSide.XFront:
+        //            moveNow = moveActionXFront;
+        //            transform.eulerAngles = new Vector3(0, 270, 0);
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
 
         public void ChangeLookDiraction(LookDirection direction)
         {

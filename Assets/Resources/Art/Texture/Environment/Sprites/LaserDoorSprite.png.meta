@@ -1,0 +1,1230 @@
+fileFormatVersion: 2
+guid: 9d591cf09d5b08c41bd435f9185e62fa
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2403974666552286957
+    second: LaserDoorSprite_0
+  - first:
+      213: -1418586986377231723
+    second: LaserDoorSprite_1
+  - first:
+      213: -6281640382913363693
+    second: LaserDoorSprite_2
+  - first:
+      213: 8261552604958906020
+    second: LaserDoorSprite_3
+  - first:
+      213: 7600346777609076580
+    second: LaserDoorSprite_4
+  - first:
+      213: -2434089908614914483
+    second: LaserDoorSprite_5
+  - first:
+      213: -8770253412004780609
+    second: LaserDoorSprite_6
+  - first:
+      213: -8737011015114253144
+    second: LaserDoorSprite_7
+  - first:
+      213: -4346950049806208208
+    second: LaserDoorSprite_8
+  - first:
+      213: -838073447469039024
+    second: LaserDoorSprite_9
+  - first:
+      213: -2537853222783120058
+    second: LaserDoorSprite_10
+  - first:
+      213: -8662697212021304252
+    second: LaserDoorSprite_11
+  - first:
+      213: 5545471068299962766
+    second: LaserDoorSprite_12
+  - first:
+      213: 5678481056910680821
+    second: LaserDoorSprite_13
+  - first:
+      213: 1729200650221937289
+    second: LaserDoorSprite_14
+  - first:
+      213: 4432889494243088412
+    second: LaserDoorSprite_15
+  - first:
+      213: 8626052980531995837
+    second: LaserDoorSprite_16
+  - first:
+      213: 8493658580515321613
+    second: LaserDoorSprite_17
+  - first:
+      213: -3358562215928064856
+    second: LaserDoorSprite_18
+  - first:
+      213: -2148695505507581763
+    second: LaserDoorSprite_19
+  - first:
+      213: 1455128931404014116
+    second: LaserDoorSprite_20
+  - first:
+      213: -342508015606562175
+    second: LaserDoorSprite_21
+  - first:
+      213: -1614227713178377353
+    second: LaserDoorSprite_22
+  - first:
+      213: 5581108696824861973
+    second: LaserDoorSprite_23
+  - first:
+      213: -5364814454822041122
+    second: LaserDoorSprite_24
+  - first:
+      213: -2444385482255326899
+    second: LaserDoorSprite_25
+  - first:
+      213: 4038297436802249953
+    second: LaserDoorSprite_26
+  - first:
+      213: -2750434608459227120
+    second: LaserDoorSprite_27
+  - first:
+      213: -9077229454587951630
+    second: LaserDoorSprite_28
+  - first:
+      213: 3627871899181019567
+    second: LaserDoorSprite_29
+  - first:
+      213: -2094851500716876639
+    second: LaserDoorSprite_30
+  - first:
+      213: -8825482671038233611
+    second: LaserDoorSprite_31
+  - first:
+      213: 3334411850512454941
+    second: LaserDoorSprite_32
+  - first:
+      213: 4044912137355527157
+    second: LaserDoorSprite_33
+  - first:
+      213: 6888405094163695223
+    second: LaserDoorSprite_34
+  - first:
+      213: -5241306999867377188
+    second: LaserDoorSprite_35
+  - first:
+      213: 148181178163581123
+    second: LaserDoorSprite_36
+  - first:
+      213: 3699456093687394753
+    second: LaserDoorSprite_37
+  - first:
+      213: -3877859302513471295
+    second: LaserDoorSprite_38
+  - first:
+      213: 8040778071773912538
+    second: LaserDoorSprite_39
+  - first:
+      213: 6933615182348426042
+    second: LaserDoorSprite_40
+  - first:
+      213: 5418249605932906888
+    second: LaserDoorSprite_41
+  - first:
+      213: -8551263370156461763
+    second: LaserDoorSprite_42
+  - first:
+      213: 7238027326173624406
+    second: LaserDoorSprite_43
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: LaserDoorSprite_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 577
+        width: 40
+        height: 477
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 311ec1f07cd53aed0800000000000000
+      internalID: -2403974666552286957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_1
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 577
+        width: 40
+        height: 477
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5924ef1e6aa205ce0800000000000000
+      internalID: -1418586986377231723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_2
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 577
+        width: 40
+        height: 477
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31143b17a5123d8a0800000000000000
+      internalID: -6281640382913363693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_3
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 577
+        width: 41
+        height: 477
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a657c7925ee6a270800000000000000
+      internalID: 8261552604958906020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_4
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 649
+        width: 41
+        height: 405
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46f7c29302bd97960800000000000000
+      internalID: 7600346777609076580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_5
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 649
+        width: 41
+        height: 405
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4e15addf10683ed0800000000000000
+      internalID: -2434089908614914483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_6
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 649
+        width: 41
+        height: 405
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb52c431dfcc94680800000000000000
+      internalID: -8770253412004780609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_7
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 649
+        width: 40
+        height: 405
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ac907db5c6efb680800000000000000
+      internalID: -8737011015114253144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_8
+      rect:
+        serializedVersion: 2
+        x: 933
+        y: 750
+        width: 40
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0333fe8f5f78ca3c0800000000000000
+      internalID: -4346950049806208208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_9
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 750
+        width: 40
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 052cbebc3a09e54f0800000000000000
+      internalID: -838073447469039024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_10
+      rect:
+        serializedVersion: 2
+        x: 1142
+        y: 750
+        width: 40
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64d8ee3a0fbb7ccd0800000000000000
+      internalID: -2537853222783120058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_11
+      rect:
+        serializedVersion: 2
+        x: 1234
+        y: 750
+        width: 40
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44414b858cae7c780800000000000000
+      internalID: -8662697212021304252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_12
+      rect:
+        serializedVersion: 2
+        x: 1399
+        y: 863
+        width: 41
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e89a9323e8875fc40800000000000000
+      internalID: 5545471068299962766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_13
+      rect:
+        serializedVersion: 2
+        x: 1505
+        y: 863
+        width: 40
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f222f47f640ece40800000000000000
+      internalID: 5678481056910680821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_14
+      rect:
+        serializedVersion: 2
+        x: 1608
+        y: 863
+        width: 41
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9826ad564da5ff710800000000000000
+      internalID: 1729200650221937289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_15
+      rect:
+        serializedVersion: 2
+        x: 1701
+        y: 863
+        width: 40
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c189be03289c48d30800000000000000
+      internalID: 4432889494243088412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_16
+      rect:
+        serializedVersion: 2
+        x: 1866
+        y: 973
+        width: 40
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db42f46ab75e5b770800000000000000
+      internalID: 8626052980531995837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_17
+      rect:
+        serializedVersion: 2
+        x: 1972
+        y: 973
+        width: 40
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0770174a798fd570800000000000000
+      internalID: 8493658580515321613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_18
+      rect:
+        serializedVersion: 2
+        x: 2075
+        y: 973
+        width: 40
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a41f83857df361d0800000000000000
+      internalID: -3358562215928064856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_19
+      rect:
+        serializedVersion: 2
+        x: 2167
+        y: 973
+        width: 40
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db00ebf62dc4e22e0800000000000000
+      internalID: -2148695505507581763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_20
+      rect:
+        serializedVersion: 2
+        x: 2332
+        y: 1014
+        width: 41
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 422eab2bd08a13410800000000000000
+      internalID: 1455128931404014116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_21
+      rect:
+        serializedVersion: 2
+        x: 2438
+        y: 1014
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1820c0546ca2f3bf0800000000000000
+      internalID: -342508015606562175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_22
+      rect:
+        serializedVersion: 2
+        x: 2541
+        y: 1014
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7736969827c1999e0800000000000000
+      internalID: -1614227713178377353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_23
+      rect:
+        serializedVersion: 2
+        x: 2633
+        y: 1014
+        width: 41
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 515d61f2ac4147d40800000000000000
+      internalID: 5581108696824861973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 396
+        width: 40
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed983766da95c85b0800000000000000
+      internalID: -5364814454822041122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_25
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 396
+        width: 40
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d41ac04da5cc31ed0800000000000000
+      internalID: -2444385482255326899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_26
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 396
+        width: 40
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e4f7f97f1aea0830800000000000000
+      internalID: 4038297436802249953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_27
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 396
+        width: 41
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 010e8d8cb4e74d9d0800000000000000
+      internalID: -2750434608459227120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_28
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 286
+        width: 40
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f5829e77e3370280800000000000000
+      internalID: -9077229454587951630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_29
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 286
+        width: 40
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa17e41654ac85230800000000000000
+      internalID: 3627871899181019567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_30
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 286
+        width: 40
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ac939ab8a79de2e0800000000000000
+      internalID: -2094851500716876639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_31
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 286
+        width: 41
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f386652546958580800000000000000
+      internalID: -8825482671038233611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_32
+      rect:
+        serializedVersion: 2
+        x: 933
+        y: 173
+        width: 40
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d15d5ac59e5364e20800000000000000
+      internalID: 3334411850512454941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_33
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 173
+        width: 40
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f30eb6782a622830800000000000000
+      internalID: 4044912137355527157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_34
+      rect:
+        serializedVersion: 2
+        x: 1142
+        y: 173
+        width: 40
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7764e92dfe7889f50800000000000000
+      internalID: 6888405094163695223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_35
+      rect:
+        serializedVersion: 2
+        x: 1234
+        y: 173
+        width: 40
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd9f222ad032347b0800000000000000
+      internalID: -5241306999867377188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_36
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 72
+        width: 40
+        height: 405
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c0d6d61ff17e0200800000000000000
+      internalID: 148181178163581123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_37
+      rect:
+        serializedVersion: 2
+        x: 1506
+        y: 72
+        width: 40
+        height: 405
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c1346677bb175330800000000000000
+      internalID: 3699456093687394753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_38
+      rect:
+        serializedVersion: 2
+        x: 1609
+        y: 72
+        width: 40
+        height: 405
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c09db892831f2ac0800000000000000
+      internalID: -3877859302513471295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_39
+      rect:
+        serializedVersion: 2
+        x: 1701
+        y: 72
+        width: 40
+        height: 405
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: add95dded05969f60800000000000000
+      internalID: 8040778071773912538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_40
+      rect:
+        serializedVersion: 2
+        x: 1867
+        y: 0
+        width: 40
+        height: 477
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3b1221c546293060800000000000000
+      internalID: 6933615182348426042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_41
+      rect:
+        serializedVersion: 2
+        x: 1973
+        y: 0
+        width: 40
+        height: 477
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 889f70a3f4d713b40800000000000000
+      internalID: 5418249605932906888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_42
+      rect:
+        serializedVersion: 2
+        x: 2076
+        y: 0
+        width: 40
+        height: 477
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d31b309754fc35980800000000000000
+      internalID: -8551263370156461763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LaserDoorSprite_43
+      rect:
+        serializedVersion: 2
+        x: 2168
+        y: 0
+        width: 40
+        height: 477
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65836232183a27460800000000000000
+      internalID: 7238027326173624406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

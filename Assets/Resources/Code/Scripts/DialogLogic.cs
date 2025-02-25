@@ -75,10 +75,14 @@ public class DialogLogic : MonoBehaviour, IDialog
     {
         GetComponent<Collider>().enabled = false;
         IsContinuesDialog = false;
+        phraseCounter = 0;
     }
 
     public void ChangeDialogData(DialogData newDialog)
     {
         dialog = newDialog;
+        phraseCounter = 0;
+        dialogUI.EndDialog();
+        ChangeDialogPhrase();
     }
 }
