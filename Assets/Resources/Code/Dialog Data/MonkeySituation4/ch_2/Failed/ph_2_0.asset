@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41bd094ce61c384ebfbbd04d56c5cd1, type: 3}
   m_Name: ph_2_0
   m_EditorClassIdentifier: 
-  characterName: Astro-9
-  textPhrase: "\u042D-\u044D-\u044D...\u0442\u044B \u0441\u043B\u0438\u0448\u043A\u043E\u043C
-    \u0443\u0437\u043A\u043E \u043C\u044B\u0441\u043B\u0438\u0448\u044C, \u0430 \u044D\u043C\u043E\u0446\u0438\u043E\u043D\u0430\u043B\u044C\u043D\u044B\u0439
+  _characterName: Feels
+  _textPhrase: "\u0422\u044B \u0441\u043B\u0438\u0448\u043A\u043E\u043C \u0443\u0437\u043A\u043E
+    \u043C\u044B\u0441\u043B\u0438\u0448\u044C, \u0430 \u044D\u043C\u043E\u0446\u0438\u043E\u043D\u0430\u043B\u044C\u043D\u044B\u0439
     \u0434\u0438\u0430\u043F\u0430\u0437\u043E\u043D \u0443 \u0442\u0435\u0431\u044F,
-    \u043A\u0430\u043A \u0443 \u0437\u0443\u0431\u043E\u0447\u0438\u0441\u0442\u043A\u0438! "
-  isChoise: 0
-  choises: []
+    \u043A\u0430\u043A \u0443 \u0437\u0443\u0431\u043E\u0447\u0438\u0441\u0442\u043A\u0438!"
+  _isChoise: 0
+  _choises: []
+  nextPhrase: {fileID: 11400000, guid: 511f8e7502b9eaf478b5e7437fce8f31, type: 2}

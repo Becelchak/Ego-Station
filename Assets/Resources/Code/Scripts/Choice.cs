@@ -5,17 +5,51 @@ using static PlayerManager;
 [CreateAssetMenu(menuName = "Dialog/ Choice")]
 public class Choice : ScriptableObject
 {
-    public string text;
-    public bool isCheckingChoice;
-    public PlayerAttributes checkAttribute;
-    public int difficultCheckAttribute;
+    [SerializeField] private string text;
+    public string Text => text;
 
+    
+    //public Phrase nextPhrase;
+
+    [Header("Events")]
+    [SerializeField] protected DialogEvent dialogEventDefault;
+    public DialogEvent DialogEventDefault => dialogEventDefault;
+    [SerializeField] protected DialogEvent dialogEventSuccess;
+    public DialogEvent DialogEventSuccess => dialogEventSuccess;
+    [SerializeField] protected DialogEvent dialogEventFailed;
+    public DialogEvent DialogEventFailed => dialogEventFailed;
+
+    [Header("Attributes")]
+    [SerializeField] private bool isCheckingChoice;
+    [SerializeField] private PlayerAttributes checkAttribute;
+    [SerializeField] private int difficultCheckAttribute;
     private bool resultCheckAttribute;
-    [Header("Succses Check Attribute")]
-    [SerializeField] public DialogEvent dialogEventSuccses;
-    [Header("Failed Check Attribute")]
-    [SerializeField] public DialogEvent dialogEventFailed;
 
+    [Header("Next Phrase")]
+    [SerializeField] private Phrase nextPhraseDefault;
+    [SerializeField] private Phrase nextPhraseSuccess;
+    [SerializeField] private Phrase nextPhraseFailed;
+
+    /// <summary>
+    /// Проверяет атрибут, если это необходимо, и возвращает следующую фразу.
+    /// </summary>
+    public Phrase GetNextPhrase()
+    {
+        if (isCheckingChoice)
+        {
+            ChoiceAttributeCheck();
+
+            if (resultCheckAttribute && nextPhraseSuccess != null)
+                return nextPhraseSuccess;
+            else if (!resultCheckAttribute && nextPhraseFailed != null)
+                return nextPhraseFailed;
+        }
+        return nextPhraseDefault;
+    }
+
+    /// <summary>
+    /// Осуществляет проверку атрибута, закрепленного за Choice и фиксирует результат в переменной resultCheckAttribute
+    /// </summary>
     public void ChoiceAttributeCheck()
     {
         EventBus.RaiseEvent<IPlayerSubscriber>(h =>
@@ -25,11 +59,19 @@ public class Choice : ScriptableObject
         });
     }
 
-    public void RiseDialogEvent()
+    public void RaiseDialogEvent()
     {
-        if(dialogEventSuccses != null && resultCheckAttribute)
-            dialogEventSuccses.Raise();
-        else if(dialogEventFailed != null && !resultCheckAttribute)
-            dialogEventFailed.Raise();
+        if (isCheckingChoice)
+        {
+            if (resultCheckAttribute && dialogEventSuccess != null)
+                dialogEventSuccess.Raise();
+            else if (!resultCheckAttribute && dialogEventFailed != null)
+                dialogEventFailed.Raise();
+        }
+
+
+        if (dialogEventDefault != null)
+            dialogEventDefault.Raise();
     }
+
 }

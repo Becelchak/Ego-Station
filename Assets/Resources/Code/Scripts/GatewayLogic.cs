@@ -22,7 +22,6 @@ public class GatewayLogic : MonoBehaviour, IGateway
     {
         if (other.gameObject.tag != "Player")
             return;
-        print("Gateway trigger enter");
         EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(this));
     }
 
@@ -30,7 +29,6 @@ public class GatewayLogic : MonoBehaviour, IGateway
     {
         if (other.gameObject.tag != "Player")
             return;
-        print("Gateway trigger exit");
         EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(null));
     }
 

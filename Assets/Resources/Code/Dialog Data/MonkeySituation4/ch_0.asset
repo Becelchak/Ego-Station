@@ -16,8 +16,12 @@ MonoBehaviour:
     \u0441 \u043E\u0431\u0435\u0437\u044C\u044F\u043D\u0430\u043C\u0438 \u0438 \u0437\u0430\u0445\u0432\u0430\u0442\u0438\u0442\u044C
     \u043A\u043E\u043D\u0442\u0440\u043E\u043B\u044C \u043D\u0430 \u043B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u0438\u0435\u0439
     (\u041F\u0440\u043E\u0432\u0435\u0440\u043A\u0430 \u0422\u0435\u043B\u0430)"
+  dialogEventDefault: {fileID: 0}
+  dialogEventSuccess: {fileID: 11400000, guid: f3e1009d4e471b64d9ff40955b5b55b6, type: 2}
+  dialogEventFailed: {fileID: 0}
   isCheckingChoice: 1
   checkAttribute: 0
   difficultCheckAttribute: 3
-  dialogEventSuccses: {fileID: 11400000, guid: f3e1009d4e471b64d9ff40955b5b55b6, type: 2}
-  dialogEventFailed: {fileID: 11400000, guid: d801263453c5cb54da3495a5e5b62b77, type: 2}
+  nextPhraseDefault: {fileID: 0}
+  nextPhraseSuccess: {fileID: 0}
+  nextPhraseFailed: {fileID: 11400000, guid: e8f80e93881680948b9de8af3fbe78f6, type: 2}

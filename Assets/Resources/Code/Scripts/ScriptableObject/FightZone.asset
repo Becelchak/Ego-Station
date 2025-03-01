@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3dc76d840e51f884e8305906c9492e33, type: 3}
-  m_Name: MonkeyFightZone
+  m_Name: FightZone
   m_EditorClassIdentifier: 
   playerPoint: {fileID: 0}
   enemyPoint: {fileID: 0}

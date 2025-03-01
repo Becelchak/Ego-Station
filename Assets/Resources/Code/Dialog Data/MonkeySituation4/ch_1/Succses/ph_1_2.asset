@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41bd094ce61c384ebfbbd04d56c5cd1, type: 3}
   m_Name: ph_1_2
   m_EditorClassIdentifier: 
-  characterName: Mind
-  textPhrase: "\u0410\u0431\u0441\u043E\u043B\u044E\u0442\u043D\u043E!"
-  isChoise: 0
-  choises: []
+  _characterName: Mind
+  _textPhrase: "\u0410\u0431\u0441\u043E\u043B\u044E\u0442\u043D\u043E!"
+  _isChoise: 0
+  _choises: []

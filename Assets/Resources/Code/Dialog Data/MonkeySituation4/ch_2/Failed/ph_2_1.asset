@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41bd094ce61c384ebfbbd04d56c5cd1, type: 3}
   m_Name: ph_2_1
   m_EditorClassIdentifier: 
-  characterName: Monkey
-  textPhrase: "\u0425\u0440-\u0440-\u0440-\u0440!"
-  isChoise: 0
-  choises: []
+  _characterName: Monkey
+  _textPhrase: "\u0413\u0440-\u0440-\u0445\u0440-\u0445\u0440!"
+  _isChoise: 0
+  _choises: []

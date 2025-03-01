@@ -11,35 +11,25 @@ namespace Player
         Animator animator;
         Rigidbody2D rb;
         Vector3 moveDirection;
-        LookDirection lookDirection = LookDirection.Right;
-        //CordinateSide cordinateSide = CordinateSide.XBack;
+        LookDirection lookDirection = LookDirection.Left;
         IInteractive interactiveObject;
 
 
         InputAction moveNow = new InputAction();
-        InputAction moveActionXFront;
-        InputAction moveActionXBack;
-        InputAction moveActionZFront;
-        InputAction moveActionZBack;
+        InputAction horizontalMove;
         InputAction ladderMove;
 
         InputAction interact;
-
-        SpriteRenderer sprite;
-        bool isFliped;
         bool isGrounded;
+        bool isFreezed;
         void Start()
         {
             animator = GetComponent<Animator>();
             rb = GetComponent<Rigidbody2D>();
-            sprite = GetComponent<SpriteRenderer>();
-            moveActionXFront = InputSystem.actions.FindAction("MoveXFront");
-            moveActionXBack = InputSystem.actions.FindAction("MoveXBack");
-            moveActionZFront = InputSystem.actions.FindAction("MoveZFront");
-            moveActionZBack = InputSystem.actions.FindAction("MoveZBack");
+            horizontalMove = InputSystem.actions.FindAction("MoveZBack");
             ladderMove = InputSystem.actions.FindAction("LadderMove");
 
-            moveNow = moveActionZBack;
+            moveNow = horizontalMove;
             interact = InputSystem.actions.FindAction("Interact");
         }
 
@@ -57,21 +47,9 @@ namespace Player
 
         void Update()
         {
+            if (isFreezed)
+                return;
 
-            //if ((moveNow.ReadValue<Vector3>() == new Vector3(0, 0, -1) && cordinateSide == CordinateSide.XBack)
-            //    | (moveNow.ReadValue<Vector3>() == new Vector3(0, 0, 1) && cordinateSide == CordinateSide.XFront)
-            //    | (moveNow.ReadValue<Vector3>() == new Vector3(1, 0, 0) && cordinateSide == CordinateSide.ZBack)
-            //    | (moveNow.ReadValue<Vector3>() == new Vector3(-1, 0, 0) && cordinateSide == CordinateSide.ZFront) )
-            //{
-            //    ChangeLookDiraction(LookDirection.Right);
-            //}
-            //else if ((moveNow.ReadValue<Vector3>() == new Vector3(1, 0, 0) && cordinateSide == CordinateSide.ZFront)
-            //    | (moveNow.ReadValue<Vector3>() == new Vector3(0, 0, 1) && cordinateSide == CordinateSide.XBack)
-            //    | (moveNow.ReadValue<Vector3>() == new Vector3(0, 0, -1) && cordinateSide == CordinateSide.XFront)
-            //    | (moveNow.ReadValue<Vector3>() == new Vector3(-1, 0, 0) && cordinateSide == CordinateSide.ZBack))
-            //{
-            //    ChangeLookDiraction(LookDirection.Left);
-            //}
             if (moveNow.ReadValue<Vector3>() == new Vector3(1, 0, 0) )
             {
                 ChangeLookDiraction(LookDirection.Right);
@@ -88,6 +66,8 @@ namespace Player
 
         private void FixedUpdate()
         {
+            if (isFreezed)
+                return;
             moveDirection = moveNow.ReadValue<Vector3>();
             rb.linearVelocity = speed * Time.fixedDeltaTime * moveDirection;
             
@@ -108,46 +88,19 @@ namespace Player
             Right,
         }
 
-        //public void ChangePlayerSide(CordinateSide side)
-        //{
-        //    cordinateSide = side;
-
-        //    switch(cordinateSide)
-        //    {
-        //        case CordinateSide.XBack:
-        //            moveNow = moveActionXBack;
-        //            transform.eulerAngles = new Vector3(0, 90, 0);
-        //            break;
-        //        case CordinateSide.ZBack:
-        //            moveNow = moveActionZBack;
-        //            transform.eulerAngles = new Vector3(0, 0, 0);
-        //            break;
-        //        case CordinateSide.ZFront:
-        //            moveNow = moveActionZFront;
-        //            transform.eulerAngles = new Vector3(0, 180, 0);
-        //            break;
-        //        case CordinateSide.XFront:
-        //            moveNow = moveActionXFront;
-        //            transform.eulerAngles = new Vector3(0, 270, 0);
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //}
-
         public void ChangeLookDiraction(LookDirection direction)
         {
             lookDirection = direction;
             if (lookDirection == LookDirection.Left)
             {
-                isFliped = false;
-                sprite.flipX = !isFliped;
+                transform.localScale = new Vector3(1,1,1);
+                //sprite.flipX = !isFliped;
 
             }
             else if (lookDirection == LookDirection.Right)
             {
-                isFliped = true;
-                sprite.flipX = !isFliped;
+                transform.localScale = new Vector3(-1, 1, 1);
+                //sprite.flipX = !isFliped;
             }
         }
 
@@ -159,6 +112,16 @@ namespace Player
         public bool OnGround()
         {
             return true;
+        }
+
+        public void Freeze()
+        {
+            isFreezed = true;
+        }
+
+        public void Unfreeze()
+        {
+            isFreezed = false;
         }
     }
 }

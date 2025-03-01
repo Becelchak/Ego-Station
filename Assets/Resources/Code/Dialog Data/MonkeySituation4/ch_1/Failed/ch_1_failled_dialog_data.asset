@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allPhrases:
   - {fileID: 11400000, guid: b9135f07c66f3014d9d21e3e874e2a89, type: 2}
+  startPhrase: {fileID: 11400000, guid: b9135f07c66f3014d9d21e3e874e2a89, type: 2}

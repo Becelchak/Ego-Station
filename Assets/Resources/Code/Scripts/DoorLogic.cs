@@ -48,7 +48,6 @@ public class DoorLogic : MonoBehaviour, IDoor
 
         yield return new WaitForSeconds(animationLength);
 
-        //animator.SetTrigger("Close");
         StartCoroutine(connetedDoor.OpenAfterTeleport());
         playerCollider.transform.position = connetedDoor.gameObject.transform.position;
 

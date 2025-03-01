@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41bd094ce61c384ebfbbd04d56c5cd1, type: 3}
   m_Name: ph_1_1
   m_EditorClassIdentifier: 
-  characterName: Astro-9
-  textPhrase: "\u0423\u0432\u0435\u0440\u0435\u043D?"
-  isChoise: 0
-  choises: []
+  _characterName: Astro-9
+  _textPhrase: "\u0423\u0432\u0435\u0440\u0435\u043D?"
+  _isChoise: 0
+  _choises: []
+  nextPhrase: {fileID: 11400000, guid: 771029d3d83333f4cb38d855c02d2d18, type: 2}

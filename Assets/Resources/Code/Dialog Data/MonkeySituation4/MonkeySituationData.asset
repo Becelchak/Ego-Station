@@ -17,3 +17,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 443072c09caf3eb4d880f08d74906ea9, type: 2}
   - {fileID: 11400000, guid: 10f33f497cf3a664cb19e8dcfdb0d4f6, type: 2}
   - {fileID: 11400000, guid: 46b694725b38d4240868e3743465f174, type: 2}
+  startPhrase: {fileID: 11400000, guid: 26287f4ed27299d4197eadbf64068b55, type: 2}

@@ -11,6 +11,7 @@ public class DialogData : ScriptableObject
     /// Список всех фраз, относящихся к данному диалогу.
     /// </summary>
     [SerializeField] private List<Phrase> allPhrases = new List<Phrase>();
+    public Phrase startPhrase;
 
     /// <summary>
     /// Возвращает список всех фраз, содержащихся в диалоге.

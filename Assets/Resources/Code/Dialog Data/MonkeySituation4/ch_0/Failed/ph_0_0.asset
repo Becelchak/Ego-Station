@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41bd094ce61c384ebfbbd04d56c5cd1, type: 3}
   m_Name: ph_0_0
   m_EditorClassIdentifier: 
-  characterName: Mind
-  textPhrase: "\u041D\u0435 \u0441\u043E\u0432\u0435\u0442\u0443\u044E \u043F\u043E\u043B\u0430\u0433\u0430\u0442\u044C\u0441\u044F
+  _characterName: Mind
+  _textPhrase: "\u041D\u0435 \u0441\u043E\u0432\u0435\u0442\u0443\u044E \u043F\u043E\u043B\u0430\u0433\u0430\u0442\u044C\u0441\u044F
     \u043D\u0430 \u0433\u0440\u0443\u0431\u0443\u044E \u0441\u0438\u043B\u0443, \u044D\u0442\u043E
     \u043C\u043E\u0436\u0435\u0442 \u043F\u043B\u043E\u0445\u043E \u043A\u043E\u043D\u0447\u0438\u0442\u0441\u044F."
-  isChoise: 0
-  choises: []
+  _isChoise: 0
+  _choises: []
+  nextPhrase: {fileID: 11400000, guid: 041d5f78ac727d0458b6c430478e04a6, type: 2}

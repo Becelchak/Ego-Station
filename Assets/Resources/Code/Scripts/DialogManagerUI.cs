@@ -1,3 +1,4 @@
+using EventBusSystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,9 +14,16 @@ public class DialogManagerUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI characterName;
 
     private CanvasGroup dialogUICanvasGroup;
+    private DialogLogic dialogLogic;
+
     void Start()
     {
         dialogUICanvasGroup = GetComponent<CanvasGroup>();
+    }
+
+    public void SetDialogLogic(DialogLogic logic)
+    {
+        dialogLogic = logic;
     }
 
     public void PrepareDialogPanel(Character character, Phrase dialogText)
@@ -29,19 +37,20 @@ public class DialogManagerUI : MonoBehaviour
         characterName.text = character.GetName();
         characterName.gameObject.SetActive(true);
 
-        if (dialogText.isChoise)
+        var f = 0;
+        while (f < choicesContainer.transform.childCount)
         {
-            var f = 0;
-            while (f < choicesContainer.transform.childCount)
-            {
-                Destroy(choicesContainer.transform.GetChild(f).gameObject);
-                f++;
-            }
+            Destroy(choicesContainer.transform.GetChild(f).gameObject);
+            f++;
+        }
 
-            dialogTextWithChoices.text = dialogText.textPhrase;
+
+        if (dialogText.IsChoise)
+        {
+            dialogTextWithChoices.text = dialogText.TextPhrase;
             dialogTextWithChoices.gameObject.SetActive(true);
             dialogTextNoChoices.gameObject.SetActive(false);
-            foreach (var choice in dialogText.choises)
+            foreach (var choice in dialogText.Choises)
             {
                 var newCell = Instantiate(choiseCell);
                 newCell.name = choice.name;
@@ -49,22 +58,42 @@ public class DialogManagerUI : MonoBehaviour
                 newCell.transform.SetParent(choicesContainer.transform);
 
                 var cellText = newCell.GetComponentInChildren<TextMeshProUGUI>();
-                cellText.text = choice.text;
+                cellText.text = choice.Text;
 
                 var cellButton = newCell.GetComponent<Button>();
                 var localChoice = choice;
-                cellButton.onClick.AddListener(localChoice.ChoiceAttributeCheck);
-                cellButton.onClick.AddListener(localChoice.RiseDialogEvent);
+                //cellButton.onClick.AddListener(dialogLogic.GoToNextPhrase);
+                ////cellButton.onClick.AddListener(localChoice.ChoiceAttributeCheck);
+                //cellButton.onClick.AddListener(localChoice.RiseDialogEvent);
+
+                // Подписываемся на событие нажатия кнопки
+                cellButton.onClick.AddListener(() => OnChoiceSelectedUI(localChoice));
             }
             
         }
         else
         {
-            dialogTextNoChoices.text = dialogText.textPhrase;
+            dialogTextNoChoices.text = dialogText.TextPhrase;
             dialogTextNoChoices.gameObject.SetActive(true);
             dialogTextWithChoices.gameObject.SetActive(false);
         }
 
+    }
+
+    private void OnChoiceSelectedUI(Choice choice)
+    {
+        // Если есть DialogEvent, вызываем его
+        if (choice.DialogEventDefault != null || choice.DialogEventSuccess != null || choice.DialogEventFailed != null)
+        {
+            choice.ChoiceAttributeCheck();
+            choice.RaiseDialogEvent();
+        }
+
+        // Если DialogEvent отсутствует, переходим к следующей фразе
+        if (dialogLogic != null)
+        {
+            dialogLogic.OnChoiceSelected(choice);
+        }
     }
 
     public void EndDialog()

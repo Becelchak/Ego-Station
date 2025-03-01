@@ -15,3 +15,4 @@ MonoBehaviour:
   allPhrases:
   - {fileID: 11400000, guid: e8f80e93881680948b9de8af3fbe78f6, type: 2}
   - {fileID: 11400000, guid: 041d5f78ac727d0458b6c430478e04a6, type: 2}
+  startPhrase: {fileID: 11400000, guid: e8f80e93881680948b9de8af3fbe78f6, type: 2}

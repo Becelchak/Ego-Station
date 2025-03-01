@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41bd094ce61c384ebfbbd04d56c5cd1, type: 3}
   m_Name: ph_2_0
   m_EditorClassIdentifier: 
-  characterName: Astro-9
-  textPhrase: "\u0423\u0438\u0438\u0438\u0438\u0438, \u0438\u0445\u0440, \u0438\u0445\u0440,
+  _characterName: Astro-9
+  _textPhrase: "\u0423\u0438\u0438\u0438\u0438\u0438, \u0438\u0445\u0440, \u0438\u0445\u0440,
     \u0438\u0445\u0440"
-  isChoise: 0
-  choises: []
+  _isChoise: 0
+  _choises: []
+  nextPhrase: {fileID: 11400000, guid: b72cb93d894f3674f840ee61f7f5129d, type: 2}

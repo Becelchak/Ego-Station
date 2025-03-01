@@ -1,6 +1,17 @@
 public interface IDialog : IGlobalSubscriber
 {
-    void ChangeDialogPhrase();
+    /// <summary>
+    /// Метод, меняющий текущую фразу на следующую в списке
+    /// </summary>
+    //void ChangeDialogPhrase();
+    ///// <summary>
+    ///// Выключение триггера диалога и обнуление счетчика для последующего интерфейса
+    ///// </summary>
+    ///
+
+    void GoToNextPhrase();
+
+    void ShowCurrentPhrase();
     void Disable();
 
     void ChangeDialogData(DialogData newDialog);

@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: ch_4_0
   m_EditorClassIdentifier: 
   text: "\u041F\u0440\u0438\u0441\u0442\u0443\u043F\u0438\u0442\u044C [\u041C\u0438\u043D\u0438-\u0438\u0433\u0440\u0430]"
+  dialogEventDefault: {fileID: 11400000, guid: a4d0d3e7682d0a340b550fff572853c8, type: 2}
+  dialogEventSuccess: {fileID: 0}
+  dialogEventFailed: {fileID: 0}
   isCheckingChoice: 1
   checkAttribute: 1
   difficultCheckAttribute: 0
-  dialogEventSuccses: {fileID: 11400000, guid: a4d0d3e7682d0a340b550fff572853c8, type: 2}
-  dialogEventFailed: {fileID: 0}
+  nextPhraseDefault: {fileID: 0}
+  nextPhraseSuccess: {fileID: 0}
+  nextPhraseFailed: {fileID: 0}
