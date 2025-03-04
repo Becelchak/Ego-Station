@@ -15,4 +15,9 @@ public class Character : ScriptableObject
     {
         return nameCharacter;
     }
+
+    public AudioClip GetSpeachSound()
+    {
+        return speachSound;
+    }
 }

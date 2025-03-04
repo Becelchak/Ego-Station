@@ -8,8 +8,6 @@ public class Choice : ScriptableObject
     [SerializeField] private string text;
     public string Text => text;
 
-    
-    //public Phrase nextPhrase;
 
     [Header("Events")]
     [SerializeField] protected DialogEvent dialogEventDefault;
@@ -23,6 +21,8 @@ public class Choice : ScriptableObject
     [SerializeField] private bool isCheckingChoice;
     [SerializeField] private PlayerAttributes checkAttribute;
     [SerializeField] private int difficultCheckAttribute;
+    [Range(0, 1)]
+    [SerializeField] private double rewardAttribute = 0;
     private bool resultCheckAttribute;
 
     [Header("Next Phrase")]
@@ -55,6 +55,10 @@ public class Choice : ScriptableObject
         EventBus.RaiseEvent<IPlayerSubscriber>(h =>
         {
             resultCheckAttribute = h.CheckAttribute(checkAttribute, difficultCheckAttribute);
+
+            if (rewardAttribute > 0)
+                EventBus.RaiseEvent<IPlayerSubscriber>(h => h.AttributeUp(checkAttribute, rewardAttribute));
+
             Debug.Log($"Проверка{checkAttribute} выдала {resultCheckAttribute}");
         });
     }

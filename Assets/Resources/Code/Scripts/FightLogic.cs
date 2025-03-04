@@ -41,6 +41,7 @@ public class FightLogic : MonoBehaviour
             enemy = enemies[0];
             enemiIsAlive = true;
         }
+
         if (isWaitingForInput && Input.anyKeyDown)
         {
             if (Input.GetKeyDown(targetKey))
@@ -100,15 +101,16 @@ public class FightLogic : MonoBehaviour
         return keys[Random.Range(0, keys.Length)];
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "Player")
+        Debug.Log("Fight trigger");
+        if (other.tag == "Player")
             player = other.gameObject;
         else if (other.tag == "NPC" && !enemies.Contains(other.gameObject))
             enemies.Add(other.gameObject);
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "NPC" && !enemies.Contains(other.gameObject))
             enemies.Add(other.gameObject);

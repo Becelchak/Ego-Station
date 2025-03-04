@@ -20,6 +20,7 @@ public class DialogLogic : MonoBehaviour, IDialog
 
     private Phrase currentPhrase;
     private Queue<Phrase> dialogStack = new Queue<Phrase>();
+    private AudioSource audioSource;
     public bool IsContinuesDialog { get; private set; }
     protected bool isAdminAccsessEnable;
 
@@ -41,7 +42,7 @@ public class DialogLogic : MonoBehaviour, IDialog
         adminAccsessAction = InputSystem.actions.FindAction("ToggleAdminAccess");
         previousDialogStates = InputSystem.actions.FindAction("PreviousDialogStates");
         nextDialogStates = InputSystem.actions.FindAction("NextDialogStates");
-        dialogUI.SetDialogLogic(this);
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void StartDialog()
@@ -53,6 +54,7 @@ public class DialogLogic : MonoBehaviour, IDialog
             return;
         }
         EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.Freeze());
+        dialogUI.SetDialogLogic(this);
         currentPhrase = dialog.startPhrase;
         IsContinuesDialog = true;
         ShowCurrentPhrase();
@@ -71,11 +73,12 @@ public class DialogLogic : MonoBehaviour, IDialog
 
         var character = characters[currentPhrase.CharacterName];
         dialogUI.PrepareDialogPanel(character, currentPhrase);
+        audioSource.Stop();
+        audioSource.clip = character.GetSpeachSound();
 
-        //if (currentPhrase.IsChoise && currentPhrase.Choises != null && currentPhrase.Choises.Count > 0)
-        //{
-        //    dialogStack.Push(currentPhrase);
-        //}
+        if(audioSource.clip != null)
+            audioSource.Play();
+
         dialogStack.Enqueue(currentPhrase);
     }
 
@@ -94,6 +97,11 @@ public class DialogLogic : MonoBehaviour, IDialog
         {
             currentPhrase = currentPhrase.NextPhrase;
             ShowCurrentPhrase();
+        }
+        else if(currentPhrase.DialogEvent != null)
+        {
+            currentPhrase.DialogEvent.Raise();
+            EndDialog();
         }
         else
         {
@@ -128,24 +136,7 @@ public class DialogLogic : MonoBehaviour, IDialog
         }
     }
 
-
-    //public void ChangeDialogPhrase()
-    //{
-    //    phrases = dialog.GetPhrases();
-    //    if(phraseCounter < phrases.Count)
-    //    {
-    //        var character = characters[phrases[phraseCounter].CharacterName];
-    //        dialogUI.PrepareDialogPanel(character, phrases[phraseCounter]);
-    //    }
-    //    else
-    //    {
-    //        EndDialog();
-
-    //    }
-
-    //}
-
-    private void EndDialog()
+    public void EndDialog()
     {
         dialogUI.EndDialog();
         Disable();
@@ -163,7 +154,6 @@ public class DialogLogic : MonoBehaviour, IDialog
     {
         dialog = newDialog;
         dialogUI.EndDialog();
-        //ChangeDialogPhrase();
     }
 
     void OnTriggerEnter2D(Collider2D other)

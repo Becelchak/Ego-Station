@@ -87,6 +87,7 @@ public class DialogManagerUI : MonoBehaviour
         {
             choice.ChoiceAttributeCheck();
             choice.RaiseDialogEvent();
+            dialogLogic.EndDialog();
         }
 
         // Если DialogEvent отсутствует, переходим к следующей фразе

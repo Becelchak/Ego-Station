@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: ch_3
   m_EditorClassIdentifier: 
   text: "\u0423\u0439\u0442\u0438"
-  dialogEventDefault: {fileID: 11400000, guid: 5a0a880af2524654ca18496ff576944e, type: 2}
+  dialogEventDefault: {fileID: 11400000, guid: fb5f024a9651f684d83f7ff9a8609376, type: 2}
+  dialogEventSuccess: {fileID: 0}
+  dialogEventFailed: {fileID: 0}
   isCheckingChoice: 0
   checkAttribute: 0
   difficultCheckAttribute: 0
-  dialogEventSuccses: {fileID: 0}
-  dialogEventFailed: {fileID: 0}
+  nextPhraseDefault: {fileID: 0}
+  nextPhraseSuccess: {fileID: 0}
+  nextPhraseFailed: {fileID: 0}

@@ -16,3 +16,5 @@ MonoBehaviour:
   _textPhrase: "\u0413\u0440-\u0440-\u0445\u0440-\u0445\u0440!"
   _isChoise: 0
   _choises: []
+  nextPhrase: {fileID: 0}
+  _dialogEvent: {fileID: 11400000, guid: f3e1009d4e471b64d9ff40955b5b55b6, type: 2}

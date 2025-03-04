@@ -31,9 +31,36 @@ namespace Player
 
             moveNow = horizontalMove;
             interact = InputSystem.actions.FindAction("Interact");
+
+            // Подписываемся на события нажатия и отпускания
+            moveNow.performed += OnMovePerformed;
+            moveNow.canceled += OnMoveCanceled;
         }
 
-        private void OnEnable()
+        private void OnDestroy()
+        {
+            // Отписываемся от событий при уничтожении объекта
+            moveNow.performed -= OnMovePerformed;
+            moveNow.canceled -= OnMoveCanceled;
+        }
+
+        private void OnMovePerformed(InputAction.CallbackContext context)
+        {
+            if (!isFreezed)
+            {
+                animator.SetBool("IsMoving", true);
+                animator.Play("Move", -1, 0f);
+            }
+            
+        }
+
+        private void OnMoveCanceled(InputAction.CallbackContext context)
+        {
+            animator.SetBool("IsMoving", false);
+            animator.Play("Idle", -1, 0f);
+        }
+
+            private void OnEnable()
         {
             Debug.Log("MoveController: Subscribing to EventBus");
             EventBus.Subscribe(this);
@@ -69,6 +96,7 @@ namespace Player
             if (isFreezed)
                 return;
             moveDirection = moveNow.ReadValue<Vector3>();
+
             rb.linearVelocity = speed * Time.fixedDeltaTime * moveDirection;
             
         }

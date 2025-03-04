@@ -70,6 +70,24 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber
         Health -= damagePoints;
     }
 
+    public void AttributeUp(PlayerAttributes nameAttribute, double rewardCount)
+    {
+        switch (nameAttribute)
+        {
+            case PlayerAttributes.Body:
+                bodyAttribute += rewardCount;
+                break;
+            case PlayerAttributes.Mind:
+                mindAttribute += rewardCount;
+                break;
+            case PlayerAttributes.Feels:
+                feelsAttribute += rewardCount;
+                break;
+            default:
+                break;
+        }
+    }
+
     public enum PlayerAttributes
     {
         Body,

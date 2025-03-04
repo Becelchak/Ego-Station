@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameCharacter: "\u0420\u0430\u0437\u0443\u043C"
   characterImage: {fileID: -1308628547731187942, guid: 2125c3082abafcd4d995e2cb5067d6a0, type: 3}
-  speachSound: {fileID: 0}
+  speachSound: {fileID: 8300000, guid: c04a28b4bf378eb40b5cf1cde8900d8c, type: 3}

@@ -8,10 +8,12 @@ public class Phrase : ScriptableObject
     [SerializeField] private bool _isChoise;
     [SerializeField] private List<Choice> _choises;
     [SerializeField] private Phrase nextPhrase;
+    [SerializeField] private DialogEvent _dialogEvent;
 
     public string CharacterName => _characterName;
     public string TextPhrase => _textPhrase;
     public bool IsChoise => _isChoise;
     public List<Choice> Choises => _choises;
     public Phrase NextPhrase => nextPhrase;
+    public DialogEvent DialogEvent => _dialogEvent;
 }

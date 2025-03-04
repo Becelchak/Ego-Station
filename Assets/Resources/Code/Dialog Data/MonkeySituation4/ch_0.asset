@@ -22,6 +22,7 @@ MonoBehaviour:
   isCheckingChoice: 1
   checkAttribute: 0
   difficultCheckAttribute: 3
+  rewardAttribute: 0.1
   nextPhraseDefault: {fileID: 0}
   nextPhraseSuccess: {fileID: 0}
   nextPhraseFailed: {fileID: 11400000, guid: e8f80e93881680948b9de8af3fbe78f6, type: 2}
