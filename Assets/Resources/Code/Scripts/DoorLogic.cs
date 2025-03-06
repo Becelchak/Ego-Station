@@ -35,7 +35,8 @@ public class DoorLogic : MonoBehaviour, IDoor
 
     public void Interact()
     {
-        StartCoroutine(OpenAndTeleport());
+        if(connetedDoor != null)
+            StartCoroutine(OpenAndTeleport());
     }
 
     private IEnumerator OpenAndTeleport()
