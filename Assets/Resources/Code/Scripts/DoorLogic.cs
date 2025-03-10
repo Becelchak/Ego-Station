@@ -6,9 +6,15 @@ using System.Collections;
 public class DoorLogic : MonoBehaviour, IDoor
 {
     [SerializeField] private DoorLogic connetedDoor;
-    //[SerializeField] private MoveController.CordinateSide side;
     private Collider2D playerCollider;
     private Animator animator;
+    [SerializeField] private bool _isBlockInteract;
+
+    public bool isBlockInteract
+    {
+        get { return _isBlockInteract; }
+        set { _isBlockInteract = value; }
+    }
 
     void Start()
     {
@@ -26,16 +32,31 @@ public class DoorLogic : MonoBehaviour, IDoor
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag != "Player")
+        if (other.gameObject.tag != "Player" || other.gameObject.name != "Player")
+            return;
+        EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(this));
+        playerCollider = other;
+
+    }
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag != "Player" || other.gameObject.name != "Player" || isBlockInteract)
             return;
         EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(this));
         playerCollider = other;
 
     }
 
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag != "Player" || other.gameObject.name != "Player")
+            return;
+        EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(null));
+    }
+
     public void Interact()
     {
-        if(connetedDoor != null)
+        if(connetedDoor != null && !isBlockInteract)
             StartCoroutine(OpenAndTeleport());
     }
 
@@ -67,5 +88,10 @@ public class DoorLogic : MonoBehaviour, IDoor
         animator.SetTrigger("Close");
 
         StopCoroutine(OpenAfterTeleport());
+    }
+
+    public void BlockInteraction()
+    {
+        _isBlockInteract = true;
     }
 }

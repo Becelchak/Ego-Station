@@ -14,7 +14,7 @@ public interface IDialog : IGlobalSubscriber
     void ShowCurrentPhrase();
     void Disable();
 
-    void ChangeDialogData(DialogData newDialog);
+    //void ChangeDialogData(DialogData newDialog);
 
     /// <summary>
     /// —войство, указывающее, продолжаетс€ ли диалог.

@@ -2,7 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Dialog/ DialogEvent/ FightZone")]
+[CreateAssetMenu(menuName = "Dialog Events/ FightZone")]
 public class FightZone : DialogEvent
 {
     public FightLogic fight;
@@ -16,5 +16,10 @@ public class FightZone : DialogEvent
 
         fight = GameObject.Find("Fight").GetComponent<FightLogic>();
         fight.enabled = true;
+    }
+
+    public override void SetDialogLogic(DialogLogic logic)
+    {
+
     }
 }

@@ -1,5 +1,6 @@
 using AYellowpaper.SerializedCollections;
 using EventBusSystem;
+using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -15,8 +16,6 @@ public class DialogLogic : MonoBehaviour, IDialog
     private InputAction adminAccsessAction;
     private InputAction previousDialogStates;
     private InputAction nextDialogStates;
-    //private int phraseCounter = 0;
-    //private List<Phrase> phrases = new List<Phrase>();
 
     private Phrase currentPhrase;
     private Queue<Phrase> dialogStack = new Queue<Phrase>();
@@ -100,6 +99,11 @@ public class DialogLogic : MonoBehaviour, IDialog
         }
         else if(currentPhrase.DialogEvent != null)
         {
+            // Set DialogLogic for FindInTable Event
+            if (currentPhrase.DialogEvent is DialogEvent Event)
+            {
+                Event.SetDialogLogic(this);
+            }
             currentPhrase.DialogEvent.Raise();
             EndDialog();
         }
@@ -109,9 +113,28 @@ public class DialogLogic : MonoBehaviour, IDialog
         }
     }
 
+    public void SetCurrentPhrase(Phrase currentPhrase)
+    {
+        if (currentPhrase == null)
+        {
+            EndDialog();
+            return;
+        }
+
+        dialog.startPhrase = currentPhrase;
+        StartDialog();
+    }
+
     public void OnChoiceSelected(Choice choice)
     {
         var choiceNextPhrase = choice.GetNextPhrase();
+
+        //// Set DialogLogic for FindInTable Event
+        //if (choice.DialogEventDefault is DialogEvent Event)
+        //{
+        //    Event.SetDialogLogic(this);
+        //}
+
         if (choiceNextPhrase != null)
         {
             currentPhrase = choiceNextPhrase;
@@ -120,6 +143,15 @@ public class DialogLogic : MonoBehaviour, IDialog
         else
         {
             EndDialog();
+        }
+    }
+
+    public void SetLogicForEvent(Choice choice)
+    {
+        // Set DialogLogic for FindInTable Event
+        if (choice.DialogEventDefault is DialogEvent Event)
+        {
+            Event.SetDialogLogic(this);
         }
     }
 
@@ -148,12 +180,6 @@ public class DialogLogic : MonoBehaviour, IDialog
         GetComponent<Collider2D>().enabled = false;
         IsContinuesDialog = false;
         dialogStack.Clear();
-    }
-
-    public void ChangeDialogData(DialogData newDialog)
-    {
-        dialog = newDialog;
-        dialogUI.EndDialog();
     }
 
     void OnTriggerEnter2D(Collider2D other)

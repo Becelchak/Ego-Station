@@ -1,7 +1,7 @@
 using EventBusSystem;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Dialog/ DialogEvent/ DialogEnd")]
+[CreateAssetMenu(menuName = "Dialog Events/ DialogEnd")]
 public class DialogEnd : DialogEvent
 {
     public override void Raise()
@@ -14,5 +14,10 @@ public class DialogEnd : DialogEvent
             if (h.IsContinuesDialog)
                 h.Disable();
         });
+    }
+
+    public override void SetDialogLogic(DialogLogic logic)
+    {
+
     }
 }

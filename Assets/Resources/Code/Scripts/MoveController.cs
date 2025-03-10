@@ -32,14 +32,12 @@ namespace Player
             moveNow = horizontalMove;
             interact = InputSystem.actions.FindAction("Interact");
 
-            // Подписываемся на события нажатия и отпускания
             moveNow.performed += OnMovePerformed;
             moveNow.canceled += OnMoveCanceled;
         }
 
         private void OnDestroy()
         {
-            // Отписываемся от событий при уничтожении объекта
             moveNow.performed -= OnMovePerformed;
             moveNow.canceled -= OnMoveCanceled;
         }
@@ -85,6 +83,8 @@ namespace Player
             {
                 ChangeLookDiraction(LookDirection.Left);
             }
+
+            //Debug.Log($"{interactiveObject}");
             if (interact.WasPressedThisFrame() && interactiveObject != null)
             {
                 interactiveObject.Interact();

@@ -8,7 +8,14 @@ public class LadderLogic : MonoBehaviour, ILadder
     private GameObject pointDownPosition;
     private bool isUsing = false;
     private GameObject player;
+    /// Решить проблему с этим
+    private bool _isBlockInteract;
 
+    public bool isBlockInteract
+    {
+        get { return _isBlockInteract; }
+        set { _isBlockInteract = value; }
+    }
     void Start()
     {
         upBoxCollider = transform.GetChild(0).GetComponent<BoxCollider2D>();
@@ -18,7 +25,7 @@ public class LadderLogic : MonoBehaviour, ILadder
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag != "Player")
+        if (other.gameObject.tag != "Player" || other.gameObject.name != "Player")
             return;
         print("Ladder trigger");
         EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(this));
@@ -26,9 +33,18 @@ public class LadderLogic : MonoBehaviour, ILadder
 
     }
 
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag != "Player" || other.gameObject.name != "Player")
+            return;
+        print("Ladder trigger stay");
+        EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(this));
+        player = other.transform.gameObject;
+    }
+
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag != "Player")
+        if (other.gameObject.tag != "Player" || other.gameObject.name != "Player")
             return;
         print("Exit ladder trigger");
         EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(null));
@@ -38,6 +54,9 @@ public class LadderLogic : MonoBehaviour, ILadder
     }
     public void Interact()
     {
+        if(isBlockInteract)
+            return;
+
         if(!isUsing)
         {
             upBoxCollider.enabled = false;
@@ -50,5 +69,10 @@ public class LadderLogic : MonoBehaviour, ILadder
             player.gameObject.transform.position = pointDownPosition.transform.position;
             isUsing = false;
         }
+    }
+
+    public void BlockInteraction()
+    {
+        _isBlockInteract = true;
     }
 }

@@ -34,6 +34,8 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber
         private set { health = Math.Max(0, value); }
     }
 
+    private UIEffectEvent nowEffect;
+
     private void OnEnable()
     {
         EventBus.Subscribe(this);
@@ -86,6 +88,18 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber
             default:
                 break;
         }
+    }
+
+    public void SetNewUIEffect(UIEffectEvent newEffect)
+    {
+        if(newEffect != null)
+            nowEffect = newEffect;
+    }
+
+    public void RemoveUIEffect()
+    {
+        nowEffect.StopEffect();
+        nowEffect = null;
     }
 
     public enum PlayerAttributes

@@ -85,6 +85,7 @@ public class DialogManagerUI : MonoBehaviour
         // Если есть DialogEvent, вызываем его
         if (choice.DialogEventDefault != null || choice.DialogEventSuccess != null || choice.DialogEventFailed != null)
         {
+            dialogLogic.SetLogicForEvent(choice);
             choice.ChoiceAttributeCheck();
             choice.RaiseDialogEvent();
             dialogLogic.EndDialog();
