@@ -129,12 +129,6 @@ public class DialogLogic : MonoBehaviour, IDialog
     {
         var choiceNextPhrase = choice.GetNextPhrase();
 
-        //// Set DialogLogic for FindInTable Event
-        //if (choice.DialogEventDefault is DialogEvent Event)
-        //{
-        //    Event.SetDialogLogic(this);
-        //}
-
         if (choiceNextPhrase != null)
         {
             currentPhrase = choiceNextPhrase;

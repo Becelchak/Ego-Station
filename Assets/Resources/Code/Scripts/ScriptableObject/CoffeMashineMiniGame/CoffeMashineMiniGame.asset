@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44e31a1b7cd0d5748b6715b0226e461f, type: 3}
-  m_Name: PotionUIEffectEvent
+  m_Script: {fileID: 11500000, guid: c2848bd0c31f8ec418acc6794164e8ff, type: 3}
+  m_Name: CoffeMashineMiniGame
   m_EditorClassIdentifier: 
-  uiEffectPrefab: {fileID: 1978712487296142490, guid: 9654f19cabb69f84a83bdaffa5852feb, type: 3}
-  effectDuration: 10
-  destroyAfterDuration: 1

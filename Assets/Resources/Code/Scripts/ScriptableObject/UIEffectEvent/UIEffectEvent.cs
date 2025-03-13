@@ -1,3 +1,4 @@
+using EventBusSystem;
 using System.Collections;
 using UnityEngine;
 
@@ -13,7 +14,6 @@ public class UIEffectEvent : DialogEvent
 
     public override void Raise()
     {
-        Debug.Log($"{dialogLogic}");
 
         if (uiEffectPrefab == null)
         {
@@ -24,10 +24,10 @@ public class UIEffectEvent : DialogEvent
         currentEffectInstance = Instantiate(uiEffectPrefab);
         currentEffectInstance.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
 
-        // Запускаем корутину для управления длительностью эффекта
         if (dialogLogic != null)
         {
             dialogLogic.StartCoroutine(HandleEffect());
+            EventBus.RaiseEvent<IPlayerSubscriber>(h => h.SetNewUIEffect(this));
         }
         else
         {
@@ -48,16 +48,13 @@ public class UIEffectEvent : DialogEvent
     /// </summary>
     private IEnumerator HandleEffect()
     {
-        // Ждем указанное время
         yield return new WaitForSeconds(effectDuration);
 
-        // Уничтожаем эффект, если нужно
         if (destroyAfterDuration && currentEffectInstance != null)
         {
             StopEffect();         
         }
 
-        // Продолжаем диалог
         if (dialogLogic != null)
         {
             dialogLogic.GoToNextPhrase();
@@ -74,5 +71,12 @@ public class UIEffectEvent : DialogEvent
             Destroy(currentEffectInstance);
             dialogLogic.StopCoroutine(HandleEffect());
         }
+    }
+
+    public void AddEffectDuration(float addedTime)
+    {
+        Debug.Log($"Эффект длился {effectDuration} секунд");
+        effectDuration += addedTime;
+        Debug.Log($"Тепреь будет длиться {effectDuration} секунд");
     }
 }

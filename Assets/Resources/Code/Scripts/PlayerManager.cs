@@ -102,6 +102,12 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber
         nowEffect = null;
     }
 
+    public void UpdateUIEffect(float time)
+    {
+        if(nowEffect != null)
+            nowEffect.AddEffectDuration(time);
+    }
+
     public enum PlayerAttributes
     {
         Body,
