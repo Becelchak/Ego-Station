@@ -1,4 +1,5 @@
 using EventBusSystem;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class GatewayLogic : MonoBehaviour, IGateway
     private GameObject player;
     private Animator animator;
     [SerializeField] private bool _isBlockInteract;
+
+    public event Action OnInteract;
 
     public bool isBlockInteract
     {
@@ -23,6 +26,7 @@ public class GatewayLogic : MonoBehaviour, IGateway
     }
     public void Interact()
     {
+        OnInteract?.Invoke();
         if (_isBlockInteract && wireMiniGame != null)
         {
             wireMiniGame.gameObject.SetActive(true);
@@ -30,7 +34,7 @@ public class GatewayLogic : MonoBehaviour, IGateway
         }
         if (_isBlockInteract) return;
         
-        StartCoroutine(OpenGateway());
+        StartCoroutine(OpenGateway());  
     }
 
     private void OnMiniGameComplete(bool success)
@@ -48,6 +52,7 @@ public class GatewayLogic : MonoBehaviour, IGateway
         }
 
         wireMiniGame.gameObject.SetActive(false);
+        wireMiniGame = null;
     }
 
     void OnTriggerEnter2D(Collider2D other)

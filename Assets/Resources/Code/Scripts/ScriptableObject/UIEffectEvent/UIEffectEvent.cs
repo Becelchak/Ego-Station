@@ -11,10 +11,11 @@ public class UIEffectEvent : DialogEvent
 
     private GameObject currentEffectInstance;
     private DialogLogic dialogLogic;
+    private Coroutine effectCoroutine;
+    private float remainingTime;
 
     public override void Raise()
     {
-
         if (uiEffectPrefab == null)
         {
             Debug.LogError("UI Effect Prefab не назначен!");
@@ -26,7 +27,7 @@ public class UIEffectEvent : DialogEvent
 
         if (dialogLogic != null)
         {
-            dialogLogic.StartCoroutine(HandleEffect());
+            effectCoroutine = dialogLogic.StartCoroutine(HandleEffect());
             EventBus.RaiseEvent<IPlayerSubscriber>(h => h.SetNewUIEffect(this));
         }
         else
@@ -48,11 +49,18 @@ public class UIEffectEvent : DialogEvent
     /// </summary>
     private IEnumerator HandleEffect()
     {
-        yield return new WaitForSeconds(effectDuration);
+        remainingTime = effectDuration;
+
+        while (remainingTime > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            remainingTime -= 1f;
+            Debug.Log($"Оставшееся время эффекта: {remainingTime} секунд");
+        }
 
         if (destroyAfterDuration && currentEffectInstance != null)
         {
-            StopEffect();         
+            StopEffect();
         }
 
         if (dialogLogic != null)
@@ -69,14 +77,28 @@ public class UIEffectEvent : DialogEvent
         if (currentEffectInstance != null)
         {
             Destroy(currentEffectInstance);
-            dialogLogic.StopCoroutine(HandleEffect());
+            if (effectCoroutine != null)
+            {
+                dialogLogic.StopCoroutine(effectCoroutine);
+            }
         }
     }
 
+    /// <summary>
+    /// Увеличивает длительность эффекта.
+    /// </summary>
     public void AddEffectDuration(float addedTime)
     {
-        Debug.Log($"Эффект длился {effectDuration} секунд");
         effectDuration += addedTime;
-        Debug.Log($"Тепреь будет длиться {effectDuration} секунд");
+        remainingTime += addedTime;
+        Debug.Log($"Длительность эффекта увеличена на {addedTime} секунд. Теперь осталось: {remainingTime} секунд");
+    }
+
+    /// <summary>
+    /// Возвращает оставшееся время эффекта.
+    /// </summary>
+    public float GetRemainingTime()
+    {
+        return remainingTime;
     }
 }

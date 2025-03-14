@@ -1,4 +1,5 @@
 using EventBusSystem;
+using System;
 using UnityEngine;
 
 public class CrushItemLogic : MonoBehaviour, IInteractive
@@ -7,9 +8,12 @@ public class CrushItemLogic : MonoBehaviour, IInteractive
     [SerializeField] private Texture backgroundPrefab;
     [SerializeField] private GameObject visualPrefab;
     [SerializeField] private CrushMiniGame crushMiniGame;
+    [SerializeField] private bool needDestroyThisItem;
     private Collider2D playerCollider;
 
     private bool _isBlockInteract;
+
+    public event Action OnInteract;
 
     public bool isBlockInteract
     {
@@ -28,6 +32,7 @@ public class CrushItemLogic : MonoBehaviour, IInteractive
 
         crushMiniGame.StartMiniGame(visualPrefab, backgroundPrefab);
         crushMiniGame.MiniGameComplete += OnMiniGameComplete;
+        OnInteract?.Invoke();
     }
 
     private void OnMiniGameComplete(bool success)
@@ -40,6 +45,8 @@ public class CrushItemLogic : MonoBehaviour, IInteractive
             intecractComponent.isBlockInteract = false;
             Debug.Log("Hack successful! Object is now active.");
             _isBlockInteract = true;
+            if(needDestroyThisItem)
+                Destroy(gameObject);
         }
         else
         {
@@ -49,7 +56,6 @@ public class CrushItemLogic : MonoBehaviour, IInteractive
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"{_isBlockInteract}");
         if (collision.gameObject.tag != "Player" || _isBlockInteract)
             return;
         EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(this));
@@ -58,7 +64,6 @@ public class CrushItemLogic : MonoBehaviour, IInteractive
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log($"{_isBlockInteract}");
         if (collision != playerCollider || _isBlockInteract)
             return;
         EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(this));
@@ -67,7 +72,6 @@ public class CrushItemLogic : MonoBehaviour, IInteractive
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log($"{_isBlockInteract}");
         if (collision.gameObject.tag != "Player" || _isBlockInteract)
             return;
         EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(null));

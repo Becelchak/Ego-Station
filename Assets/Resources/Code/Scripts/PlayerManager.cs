@@ -104,6 +104,7 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber
 
     public void UpdateUIEffect(float time)
     {
+        Debug.Log($"{nowEffect}");
         if(nowEffect != null)
             nowEffect.AddEffectDuration(time);
     }

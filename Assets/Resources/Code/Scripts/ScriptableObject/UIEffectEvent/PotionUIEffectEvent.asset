@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PotionUIEffectEvent
   m_EditorClassIdentifier: 
   uiEffectPrefab: {fileID: 1978712487296142490, guid: 9654f19cabb69f84a83bdaffa5852feb, type: 3}
-  effectDuration: 10
+  effectDuration: 60
   destroyAfterDuration: 1

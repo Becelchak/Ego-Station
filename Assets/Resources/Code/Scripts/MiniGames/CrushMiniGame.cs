@@ -64,8 +64,8 @@ public class CrushMiniGame : MonoBehaviour
     private Vector2 GetRandomPosition()
     {
         RectTransform rectTransform = crushedObjectPrefab.GetComponent<RectTransform>();
-        var x = Random.Range(-rectTransform.sizeDelta.x * 10, rectTransform.sizeDelta.x * 10);
-        var y = Random.Range(-rectTransform.sizeDelta.y * 10, rectTransform.sizeDelta.y * 10);
+        var x = Random.Range(-rectTransform.sizeDelta.x / 2, rectTransform.sizeDelta.x / 2);
+        var y = Random.Range(-rectTransform.sizeDelta.y / 2, rectTransform.sizeDelta.y / 2);
         return new Vector2(x, y);
     }
 

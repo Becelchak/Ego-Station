@@ -2,6 +2,7 @@ using EventBusSystem;
 using UnityEngine;
 using Player;
 using System.Collections;
+using System;
 
 public class DoorLogic : MonoBehaviour, IDoor
 {
@@ -9,6 +10,8 @@ public class DoorLogic : MonoBehaviour, IDoor
     private Collider2D playerCollider;
     private Animator animator;
     [SerializeField] private bool _isBlockInteract;
+
+    public event Action OnInteract;
 
     public bool isBlockInteract
     {
@@ -56,8 +59,11 @@ public class DoorLogic : MonoBehaviour, IDoor
 
     public void Interact()
     {
-        if(connetedDoor != null && !isBlockInteract)
+        if(connetedDoor != null && !isBlockInteract)   
+        {
             StartCoroutine(OpenAndTeleport());
+            OnInteract?.Invoke();
+        }
     }
 
     private IEnumerator OpenAndTeleport()

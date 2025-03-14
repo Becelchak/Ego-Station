@@ -1,4 +1,5 @@
 using EventBusSystem;
+using System;
 using UnityEngine;
 
 public class LadderLogic : MonoBehaviour, ILadder
@@ -10,6 +11,8 @@ public class LadderLogic : MonoBehaviour, ILadder
     private GameObject player;
     /// Решить проблему с этим
     private bool _isBlockInteract;
+
+    public event Action OnInteract;
 
     public bool isBlockInteract
     {
@@ -69,6 +72,8 @@ public class LadderLogic : MonoBehaviour, ILadder
             player.gameObject.transform.position = pointDownPosition.transform.position;
             isUsing = false;
         }
+
+        OnInteract?.Invoke();
     }
 
     public void BlockInteraction()

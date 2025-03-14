@@ -84,7 +84,6 @@ namespace Player
                 ChangeLookDiraction(LookDirection.Left);
             }
 
-            //Debug.Log($"{interactiveObject}");
             if (interact.WasPressedThisFrame() && interactiveObject != null)
             {
                 interactiveObject.Interact();
