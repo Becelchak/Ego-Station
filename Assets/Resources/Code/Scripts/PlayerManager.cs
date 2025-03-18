@@ -1,5 +1,6 @@
 using System;
 using EventBusSystem;
+using Player;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour, IPlayerSubscriber
@@ -31,14 +32,28 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber
     public int Health
     {
         get { return health; }
-        private set { health = Math.Max(0, value); }
+        private set
+        {
+            health = Math.Max(0, value);
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
     }
 
     private UIEffectEvent nowEffect;
+    private Animator animator;
+    private MoveController moveController;
+
+    [Header("Death UI")]
+    [SerializeField] private GameObject deathUIPrefab; // Префаб UI-меню смерти
+    [SerializeField] private GameObject playerUI;
 
     private void OnEnable()
     {
         EventBus.Subscribe(this);
+        moveController = GetComponent<MoveController>();
     }
 
     private void OnDisable()
@@ -70,6 +85,7 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber
     public void GetDamage(int damagePoints)
     {
         Health -= damagePoints;
+        Debug.Log($"{health}");
     }
 
     public void AttributeUp(PlayerAttributes nameAttribute, double rewardCount)
@@ -107,6 +123,34 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber
         Debug.Log($"{nowEffect}");
         if(nowEffect != null)
             nowEffect.AddEffectDuration(time);
+    }
+
+    private void Die()
+    {
+        Debug.Log("Death");
+        if (animator != null)
+        {
+            animator.SetTrigger("Die");
+        }
+
+        if (moveController != null)
+        {
+            moveController.Freeze();
+        }
+
+        // Показываем UI-меню смерти
+        if (deathUIPrefab != null)
+        {
+            var newDeathPanel = Instantiate(deathUIPrefab);
+            newDeathPanel.transform.SetParent(playerUI.transform, false);
+        }
+        else
+        {
+            Debug.LogWarning("Death UI Prefab is not assigned in PlayerManager.");
+        }
+
+        // Дополнительные действия при смерти (например, остановка времени)
+        Time.timeScale = 0f;
     }
 
     public enum PlayerAttributes

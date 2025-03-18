@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Feels
   m_EditorClassIdentifier: 
   nameCharacter: "\u0427\u0443\u0432\u0441\u0442\u0432\u0430"
-  characterImage: {fileID: -5517130990939976220, guid: f4fabf3e6983a1f40a17643363197d59, type: 3}
+  characterImage: {fileID: 21300000, guid: f4fabf3e6983a1f40a17643363197d59, type: 3}
   speachSound: {fileID: 8300000, guid: f2ee49e23fc2936499bb8ad91a38b561, type: 3}

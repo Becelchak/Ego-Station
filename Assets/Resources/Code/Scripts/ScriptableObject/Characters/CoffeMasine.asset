@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CoffeMasine
   m_EditorClassIdentifier: 
   nameCharacter: "\u041A\u043E\u0444\u0435\u043C\u0430\u0448\u0438\u043D\u0430"
-  characterImage: {fileID: -286608712317324914, guid: 2b1c0d2cb746aa74a9c916a8382fb527, type: 3}
+  characterImage: {fileID: 21300000, guid: 2b1c0d2cb746aa74a9c916a8382fb527, type: 3}
   speachSound: {fileID: 0}

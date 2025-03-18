@@ -1,12 +1,20 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using EventBusSystem;
-using System;
+using Debug = UnityEngine.Debug;
 
 namespace Player
 {
     public class MoveController : MonoBehaviour, IMoveControllerSubscriber
     {
+        [SerializeField] private Transform feetTrigger;
+        //[SerializeField] private LayerMask groundLayer;   // Слой для проверки пола
+        //private float maxStepHeight = 0.5f; // Максимальная высота подъема
+        //private float stepDuration = 0.2f;  // Время подъема
+        //private float stepTimer = 0f;       // Таймер подъема
+        //private bool isStepping = false;    // Флаг подъема
+        //private float stepTargetY;          // Целевая высота подъема
+
         [SerializeField] private float speed;
         Animator animator;
         Rigidbody2D rb;
@@ -58,7 +66,7 @@ namespace Player
             animator.Play("Idle", -1, 0f);
         }
 
-            private void OnEnable()
+        private void OnEnable()
         {
             Debug.Log("MoveController: Subscribing to EventBus");
             EventBus.Subscribe(this);
@@ -94,12 +102,80 @@ namespace Player
         {
             if (isFreezed)
                 return;
-            moveDirection = moveNow.ReadValue<Vector3>();
 
-            rb.linearVelocity = speed * Time.fixedDeltaTime * moveDirection;
-            
+            moveDirection = moveNow.ReadValue<Vector3>();
+            rb.linearVelocity = new Vector2(moveDirection.x * speed * Time.fixedDeltaTime, rb.linearVelocity.y);
+
+            // Проверка на перепады высот
+            if (Mathf.Abs(moveDirection.x) > 0)
+            {
+                CheckForStep(moveDirection.x);
+            }
         }
 
+        private void CheckForStep(float direction)
+        {
+            //// Начальная точка Raycast (глобальные координаты триггера ног)
+            //Vector2 rayOrigin = feetTrigger.position;
+            //Vector2 rayDirection = Vector2.right * direction;
+
+            //// Длина Raycast
+            //float rayLength = 1f;
+
+            //// Отладочная визуализация
+            //Debug.DrawRay(rayOrigin, rayDirection * rayLength, Color.red, 1f);
+
+            //// Выполняем Raycast
+            //RaycastHit2D hit = Physics2D.Raycast(rayOrigin, rayDirection, rayLength, groundLayer);
+
+            //if (hit.collider != null)
+            //{
+            //    // Если игрок упирается в препятствие, начинаем подъем
+            //    if (!isStepping)
+            //    {
+            //        StartStep(hit.point.y);
+            //    }
+            //}
+            //else
+            //{
+            //    // Если препятствий нет, сбрасываем подъем
+            //    isStepping = false;
+            //}
+
+            //// Если игрок поднимается, обновляем его позицию
+            //if (isStepping)
+            //{
+            //    UpdateStep();
+            //}
+        }
+
+        private void StartStep(float targetY)
+        {
+            //// Начинаем подъем
+            //isStepping = true;
+            //stepTimer = 0f;
+
+            //// Ограничиваем максимальную высоту подъема
+            //stepTargetY = Mathf.Min(targetY, transform.position.y + maxStepHeight);
+        }
+
+        private void UpdateStep()
+        {
+            //// Увеличиваем таймер
+            //stepTimer += Time.deltaTime;
+
+            //// Если время подъема истекло, завершаем подъем
+            //if (stepTimer >= stepDuration)
+            //{
+            //    isStepping = false;
+            //    rb.linearVelocity = new Vector2(rb.linearVelocityX, 0); // Сбрасываем скорость по Y
+            //    return;
+            //}
+
+            //// Вычисляем целевую скорость для подъема
+            //float targetVelocity = (stepTargetY - transform.position.y) / (stepDuration - stepTimer);
+            //rb.linearVelocity = new Vector2(rb.linearVelocityX, targetVelocity);
+        }
 
         public enum CordinateSide
         {
@@ -121,13 +197,11 @@ namespace Player
             if (lookDirection == LookDirection.Left)
             {
                 transform.localScale = new Vector3(1,1,1);
-                //sprite.flipX = !isFliped;
 
             }
             else if (lookDirection == LookDirection.Right)
             {
                 transform.localScale = new Vector3(-1, 1, 1);
-                //sprite.flipX = !isFliped;
             }
         }
 

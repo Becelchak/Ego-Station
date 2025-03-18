@@ -21,7 +21,7 @@ public class Choice : ScriptableObject
     [SerializeField] private bool isCheckingChoice;
     [SerializeField] private PlayerAttributes checkAttribute;
     [SerializeField] private int difficultCheckAttribute;
-    [Range(0, 1)]
+    [Range(0, 20)]
     [SerializeField] private double rewardAttribute = 0;
     private bool resultCheckAttribute;
 

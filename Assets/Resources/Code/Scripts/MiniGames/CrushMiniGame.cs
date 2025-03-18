@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.UIElements;
 
-public class CrushMiniGame : MonoBehaviour
+public class CrushMiniGame : MiniGame
 {
     [SerializeField] private GameObject activePointPrefab;
     [SerializeField] private int pointsToComplete = 3; 
@@ -24,7 +23,7 @@ public class CrushMiniGame : MonoBehaviour
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
-    public void StartMiniGame(GameObject objectPrefab, Texture backgroundPrefab)
+    public void StartMiniGame(GameObject objectPrefab, Texture backgroundPrefab, int points, float timeToClick, float spawnDelay)
     {
         if (isGameActive) return;
         if (objectPrefab == null)
@@ -36,6 +35,11 @@ public class CrushMiniGame : MonoBehaviour
         crushedObjectPrefab = Instantiate(objectPrefab, transform);
         crushedObjectPrefab.transform.localPosition = Vector3.zero;
         backgroundUI.texture = backgroundPrefab;
+        pointsToComplete = points;
+        this.timeToClick = timeToClick;
+        this.spawnDelay = spawnDelay;
+
+
         isGameActive = true;
         pointsClicked = 0;
 

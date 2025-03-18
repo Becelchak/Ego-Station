@@ -34,7 +34,10 @@ public class DialogManagerUI : MonoBehaviour
 
 
         characterImage.sprite = character.GetSprite();
-        characterName.text = character.GetName();
+        if(character.GetName() != "")
+            characterName.text = $"</font=\"proxima-nova-light SDF\">[</font>{character.GetName()}</font=\"proxima-nova-light SDF\">]</font>";
+        else
+            characterName.text = "";
         characterName.gameObject.SetActive(true);
 
         var f = 0;
@@ -44,7 +47,7 @@ public class DialogManagerUI : MonoBehaviour
             f++;
         }
 
-
+        //TO DO: Убрать код текста при выборах
         if (dialogText.IsChoise)
         {
             dialogTextWithChoices.text = dialogText.TextPhrase;
@@ -62,9 +65,6 @@ public class DialogManagerUI : MonoBehaviour
 
                 var cellButton = newCell.GetComponent<Button>();
                 var localChoice = choice;
-                //cellButton.onClick.AddListener(dialogLogic.GoToNextPhrase);
-                ////cellButton.onClick.AddListener(localChoice.ChoiceAttributeCheck);
-                //cellButton.onClick.AddListener(localChoice.RiseDialogEvent);
 
                 // Подписываемся на событие нажатия кнопки
                 cellButton.onClick.AddListener(() => OnChoiceSelectedUI(localChoice));
@@ -88,7 +88,8 @@ public class DialogManagerUI : MonoBehaviour
             dialogLogic.SetLogicForEvent(choice);
             choice.ChoiceAttributeCheck();
             choice.RaiseDialogEvent();
-            dialogLogic.EndDialog();
+            if(choice.DialogEventDefault == null &&  choice.DialogEventSuccess == null && choice.DialogEventFailed == null)
+                dialogLogic.EndDialog();
         }
 
         // Если DialogEvent отсутствует, переходим к следующей фразе

@@ -1,11 +1,7 @@
-using AYellowpaper.SerializedCollections;
 using EventBusSystem;
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
 public class DialogLogic : MonoBehaviour, IDialog
 {
@@ -99,7 +95,7 @@ public class DialogLogic : MonoBehaviour, IDialog
         }
         else if(currentPhrase.DialogEvent != null)
         {
-            // Set DialogLogic for FindInTable Event
+            // Set DialogLogic for FindInTableMiniGame Event
             if (currentPhrase.DialogEvent is DialogEvent Event)
             {
                 Event.SetDialogLogic(this);
@@ -142,7 +138,7 @@ public class DialogLogic : MonoBehaviour, IDialog
 
     public void SetLogicForEvent(Choice choice)
     {
-        // Set DialogLogic for FindInTable Event
+        // Set DialogLogic for FindInTableMiniGame Event
         if (choice.DialogEventDefault is DialogEvent Event)
         {
             Event.SetDialogLogic(this);

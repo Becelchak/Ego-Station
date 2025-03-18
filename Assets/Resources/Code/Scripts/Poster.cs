@@ -1,5 +1,6 @@
 using EventBusSystem;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Poster : MonoBehaviour, IInteractive
@@ -7,6 +8,8 @@ public class Poster : MonoBehaviour, IInteractive
     [SerializeField] private SpriteRenderer posterSprite;
     [SerializeField] private GameObject hiddenObject;
     [SerializeField] private AudioClip soundInteract;
+    [SerializeField] private DialogLogic dialogLogic;
+    [SerializeField] private List<Phrase> randomLines;
     private AudioSource AudioSource;
     private IInteractive interactiveObject;
 
@@ -44,6 +47,7 @@ public class Poster : MonoBehaviour, IInteractive
         AudioSource.clip = soundInteract;
         AudioSource.Play();
         posterSprite.enabled = false;
+        //PlayRandomLine();
 
         if (interactiveObject != null)
         {
@@ -57,6 +61,21 @@ public class Poster : MonoBehaviour, IInteractive
     {
         _isBlockInteract = true;
     }
+
+    //private void PlayRandomLine()
+    //{
+    //    if (randomLines.Count > 0 && dialogLogic != null)
+    //    {
+    //        int randomIndex = UnityEngine.Random.Range(0, randomLines.Count);
+    //        var randomPhrase = randomLines[randomIndex];
+
+    //        dialogLogic.SetCurrentPhrase(randomPhrase);
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("Невозможно воспроизвести реплику: список реплик пуст или DialogLogic не назначен!");
+    //    }
+    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

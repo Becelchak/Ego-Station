@@ -50,15 +50,13 @@ MonoBehaviour:
     _serializedList:
     - Key: Astro-9
       Value: {fileID: 11400000, guid: 3a0e406fc5884f448ba8dde551cb1dba, type: 2}
-    - Key: Monkey
-      Value: {fileID: 11400000, guid: 3cd86265c42b62141a44ec425cc297b3, type: 2}
     - Key: Body
       Value: {fileID: 11400000, guid: ef5f57fa184e2304d808c0d716450eee, type: 2}
     - Key: Feels
       Value: {fileID: 11400000, guid: 1ccbfaed6f8dd3d49ac805e7a7cb2015, type: 2}
     - Key: Mind
       Value: {fileID: 11400000, guid: 713e305741139e44e81110dbe6b49c9c, type: 2}
-  dialog: {fileID: 11400000, guid: 34616d797d0c70a4ba703407c805cc20, type: 2}
+  dialog: {fileID: 0}
 --- !u!61 &801821096195877046
 BoxCollider2D:
   m_ObjectHideFlags: 0

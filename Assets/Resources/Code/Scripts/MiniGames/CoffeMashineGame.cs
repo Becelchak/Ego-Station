@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoffeMashineGame : MonoBehaviour
+public class CoffeMashineGame : MiniGame
 {
     [SerializeField] PlayerManager playerManager;
     private Stack<Ingredient> ingredientStuck = new Stack<Ingredient>();

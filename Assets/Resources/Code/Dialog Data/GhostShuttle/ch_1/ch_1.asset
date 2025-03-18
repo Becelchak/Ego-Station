@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd4df49660e41004b806c42cec1d95a6, type: 3}
+  m_Name: ch_1
+  m_EditorClassIdentifier: 
+  text: "\u041F\u043E\u043F\u044B\u0442\u0430\u0442\u044C\u0441\u044F \u043F\u043E\u0447\u0438\u043D\u0438\u0442\u044C
+    \u0441\u0438\u0441\u0442\u0435\u043C\u044B \u0448\u0430\u0442\u0442\u043B\u0430"
+  dialogEventDefault: {fileID: 0}
+  dialogEventSuccess: {fileID: 0}
+  dialogEventFailed: {fileID: 0}
+  isCheckingChoice: 1
+  checkAttribute: 1
+  difficultCheckAttribute: 1
+  rewardAttribute: 2
+  nextPhraseDefault: {fileID: 0}
+  nextPhraseSuccess: {fileID: 11400000, guid: 7942470e8071c2d4cb8771d89a176520, type: 2}
+  nextPhraseFailed: {fileID: 0}

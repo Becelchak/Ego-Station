@@ -9,7 +9,6 @@ public class LadderLogic : MonoBehaviour, ILadder
     private GameObject pointDownPosition;
     private bool isUsing = false;
     private GameObject player;
-    /// Решить проблему с этим
     private bool _isBlockInteract;
 
     public event Action OnInteract;
@@ -30,7 +29,6 @@ public class LadderLogic : MonoBehaviour, ILadder
     {
         if (other.gameObject.tag != "Player" || other.gameObject.name != "Player")
             return;
-        print("Ladder trigger");
         EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(this));
         player = other.transform.gameObject;
 
@@ -40,7 +38,6 @@ public class LadderLogic : MonoBehaviour, ILadder
     {
         if (other.gameObject.tag != "Player" || other.gameObject.name != "Player")
             return;
-        print("Ladder trigger stay");
         EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(this));
         player = other.transform.gameObject;
     }
@@ -49,7 +46,6 @@ public class LadderLogic : MonoBehaviour, ILadder
     {
         if (other.gameObject.tag != "Player" || other.gameObject.name != "Player")
             return;
-        print("Exit ladder trigger");
         EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(null));
         upBoxCollider.enabled = true;
         isUsing = false;

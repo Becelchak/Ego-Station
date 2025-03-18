@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
-public class WireMiniGame : MonoBehaviour
+public class WireMiniGame : MiniGame
 {
     [SerializeField] private GameObject wirePrefab;
     [SerializeField] private Transform wireContainer;
