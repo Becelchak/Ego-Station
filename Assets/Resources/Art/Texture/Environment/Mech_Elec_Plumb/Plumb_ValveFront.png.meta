@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Plumb_ValveFront_0: 3799510668230834683
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

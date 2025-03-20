@@ -1222,7 +1222,51 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LaserDoorSprite_0: -2403974666552286957
+      LaserDoorSprite_1: -1418586986377231723
+      LaserDoorSprite_10: -2537853222783120058
+      LaserDoorSprite_11: -8662697212021304252
+      LaserDoorSprite_12: 5545471068299962766
+      LaserDoorSprite_13: 5678481056910680821
+      LaserDoorSprite_14: 1729200650221937289
+      LaserDoorSprite_15: 4432889494243088412
+      LaserDoorSprite_16: 8626052980531995837
+      LaserDoorSprite_17: 8493658580515321613
+      LaserDoorSprite_18: -3358562215928064856
+      LaserDoorSprite_19: -2148695505507581763
+      LaserDoorSprite_2: -6281640382913363693
+      LaserDoorSprite_20: 1455128931404014116
+      LaserDoorSprite_21: -342508015606562175
+      LaserDoorSprite_22: -1614227713178377353
+      LaserDoorSprite_23: 5581108696824861973
+      LaserDoorSprite_24: -5364814454822041122
+      LaserDoorSprite_25: -2444385482255326899
+      LaserDoorSprite_26: 4038297436802249953
+      LaserDoorSprite_27: -2750434608459227120
+      LaserDoorSprite_28: -9077229454587951630
+      LaserDoorSprite_29: 3627871899181019567
+      LaserDoorSprite_3: 8261552604958906020
+      LaserDoorSprite_30: -2094851500716876639
+      LaserDoorSprite_31: -8825482671038233611
+      LaserDoorSprite_32: 3334411850512454941
+      LaserDoorSprite_33: 4044912137355527157
+      LaserDoorSprite_34: 6888405094163695223
+      LaserDoorSprite_35: -5241306999867377188
+      LaserDoorSprite_36: 148181178163581123
+      LaserDoorSprite_37: 3699456093687394753
+      LaserDoorSprite_38: -3877859302513471295
+      LaserDoorSprite_39: 8040778071773912538
+      LaserDoorSprite_4: 7600346777609076580
+      LaserDoorSprite_40: 6933615182348426042
+      LaserDoorSprite_41: 5418249605932906888
+      LaserDoorSprite_42: -8551263370156461763
+      LaserDoorSprite_43: 7238027326173624406
+      LaserDoorSprite_5: -2434089908614914483
+      LaserDoorSprite_6: -8770253412004780609
+      LaserDoorSprite_7: -8737011015114253144
+      LaserDoorSprite_8: -4346950049806208208
+      LaserDoorSprite_9: -838073447469039024
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

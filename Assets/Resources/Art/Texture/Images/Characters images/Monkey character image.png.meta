@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Monkey character image_0: 2000352891576187052
+      Monkey character image_1: -3605354785036539316
+      Monkey character image_2: 8711378103671541160
+      Monkey character image_3: -8835965672210790440
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

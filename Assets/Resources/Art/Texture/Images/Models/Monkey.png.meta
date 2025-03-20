@@ -272,7 +272,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Monkey_0: 973301482186294925
+      Monkey_1: 380556255581113798
+      Monkey_2: -3126637007553212853
+      Monkey_3: 1312512685093574040
+      Monkey_4: -3417608640951087975
+      Monkey_5: 8310447215468986465
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Mech_HVAC_Blank_0: -7420988512103836768
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
