@@ -19,8 +19,8 @@ MonoBehaviour:
   dialogEventFailed: {fileID: 0}
   isCheckingChoice: 1
   checkAttribute: 2
-  difficultCheckAttribute: 1
+  difficultCheckAttribute: 4
   rewardAttribute: 2
   nextPhraseDefault: {fileID: 0}
-  nextPhraseSuccess: {fileID: 0}
+  nextPhraseSuccess: {fileID: 11400000, guid: fead416329d685843a91b6eba6199b6e, type: 2}
   nextPhraseFailed: {fileID: 0}

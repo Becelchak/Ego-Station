@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class DialogData : ScriptableObject
 {
+    public List<DialogRequirement> requirements; // Требования для начала диалога
     /// <summary>
     /// Список всех фраз, относящихся к данному диалогу.
     /// </summary>

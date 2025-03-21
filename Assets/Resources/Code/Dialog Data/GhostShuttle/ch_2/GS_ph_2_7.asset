@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d41bd094ce61c384ebfbbd04d56c5cd1, type: 3}
-  m_Name: ph_0
+  m_Name: GS_ph_2_7
   m_EditorClassIdentifier: 
-  _characterName: Shuttle
-  _textPhrase: "\u0421\u0438\u0441\u0442\u0435\u043C\u044B \u043F\u043E\u0432\u0440\u0435\u0436\u0434\u0435\u043D\u044B.
-    \u0422\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044F \u0440\u0435\u043C\u043E\u043D\u0442."
+  _characterName: Astro-9
+  _textPhrase: "\u041C\u043E\u0436\u0435\u0442, \u043D\u0438\u043A\u043E\u0433\u043E
+    \u043D\u0435\u0442?"
   _isChoise: 0
   _choises: []
-  nextPhrase: {fileID: 11400000, guid: ac738f47695c7ff4f9983c60135403d6, type: 2}
+  nextPhrase: {fileID: 11400000, guid: f219425f27da40848913435ac3f16436, type: 2}
   _dialogEvent: {fileID: 0}

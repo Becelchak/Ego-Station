@@ -28,6 +28,7 @@ public class WireMiniGameLogic : Logic, IInteractive
             wireMiniGame.gameObject.SetActive(true);
         }
         if (_isBlockInteract) return;
+        OnInteract?.Invoke();
     }
 
     void OnTriggerEnter2D(Collider2D other)

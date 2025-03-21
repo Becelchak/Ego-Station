@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class LadderLogic : MonoBehaviour, ILadder
 {
-    private BoxCollider2D upBoxCollider;
-    private GameObject pointUpPosition;
-    private GameObject pointDownPosition;
-    private bool isUsing = false;
-    private GameObject player;
-    private bool _isBlockInteract;
+    [SerializeField] private Collider2D upBoxCollider;
+    [SerializeField] private Collider2D downBoxCollider;
+    [SerializeField] private Transform topPoint;
+    [SerializeField] private Transform bottomPoint;
+
+    private bool isPlayerOnLadder;
+    private Transform player;
+    private Transform pointToTeleportPlayer;
+    private Collider2D ladderGateWayCollider;
+    [SerializeField] private bool _isBlockInteract;
 
     public event Action OnInteract;
 
@@ -18,62 +22,79 @@ public class LadderLogic : MonoBehaviour, ILadder
         get { return _isBlockInteract; }
         set { _isBlockInteract = value; }
     }
-    void Start()
+
+    private void OnEnable()
     {
-        upBoxCollider = transform.GetChild(0).GetComponent<BoxCollider2D>();
-        pointUpPosition = transform.GetChild(1).gameObject;
-        pointDownPosition = transform.GetChild(2).gameObject;
+        ladderGateWayCollider = transform.GetChild(0).GetComponent<Collider2D>();
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(this));
+            player = other.transform.parent;
+        }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (other.gameObject.tag != "Player" || other.gameObject.name != "Player")
-            return;
-        EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(this));
-        player = other.transform.gameObject;
-
+        if (collision.CompareTag("Player"))
+        {
+            Debug.Log($"{isPlayerOnLadder}");
+            if (collision.IsTouching(upBoxCollider))
+            {
+                //Debug.Log("Игрок вошел в верхний триггер лестницы.");
+                pointToTeleportPlayer = topPoint;
+            }
+            else if (collision.IsTouching(downBoxCollider))
+            {
+                //Debug.Log("Игрок вошел в нижний триггер лестницы.");
+                pointToTeleportPlayer = bottomPoint;
+            }
+        }
     }
 
-    void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag != "Player" || other.gameObject.name != "Player")
-            return;
-        EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(this));
-        player = other.transform.gameObject;
+        if (other.CompareTag("Player"))
+        {
+            EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(null));
+            EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.EndClimbing());
+            ladderGateWayCollider.gameObject.SetActive(true);
+
+            isPlayerOnLadder = false;
+            player = null;
+        }
     }
 
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.tag != "Player" || other.gameObject.name != "Player")
-            return;
-        EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(null));
-        upBoxCollider.enabled = true;
-        isUsing = false;
-
-    }
     public void Interact()
     {
-        if(isBlockInteract)
+        if (_isBlockInteract)
             return;
 
-        if(!isUsing)
+        if (isPlayerOnLadder)
         {
-            upBoxCollider.enabled = false;
-            player.gameObject.transform.position = pointUpPosition.transform.position;
-            isUsing = true;
+            player.position = pointToTeleportPlayer.position;
+            EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.EndClimbing());
+            ladderGateWayCollider.gameObject.SetActive(true);
+            isPlayerOnLadder = false;
         }
         else
         {
-            upBoxCollider.enabled = true;
-            player.gameObject.transform.position = pointDownPosition.transform.position;
-            isUsing = false;
+            isPlayerOnLadder = true;
+            EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.StartClimbing());
+            ladderGateWayCollider.gameObject.SetActive(false);
+            OnInteract?.Invoke();
         }
-
-        OnInteract?.Invoke();
     }
 
     public void BlockInteraction()
     {
         _isBlockInteract = true;
     }
+
+    public bool IsPlayerOnLadder() => isPlayerOnLadder;
+
+    public Transform GetTopPoint() => topPoint;
+    public Transform GetBottomPoint() => bottomPoint;
 }

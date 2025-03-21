@@ -19,6 +19,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: acf0e5b8b529d2e46969682510a8a34c, type: 2}
   - {fileID: 11400000, guid: 6ed617d3342af5c44b86d6413e72c402, type: 2}
   - {fileID: 11400000, guid: dc17ef59ba3dd3345abe5c2b6cf0e262, type: 2}
-  - {fileID: 11400000, guid: 15da1add2719131468b5cd29510cfa07, type: 2}
   nextPhrase: {fileID: 0}
   _dialogEvent: {fileID: 0}

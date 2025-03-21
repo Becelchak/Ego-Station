@@ -15,6 +15,17 @@ MonoBehaviour:
   uiTable: {fileID: 0}
   onToggleMiniGamePhrase:
   - {fileID: 11400000, guid: 8a8d23ed62e8cd2488e76d0085162fd2, type: 2}
-  itemPrefabs: []
-  clutterPrefabs: []
-  background: {fileID: 0}
+  itemPrefabs:
+  - {fileID: 23834284235797690, guid: 373074b4244d72a4780fe07d72aa3e95, type: 3}
+  - {fileID: 23834284235797690, guid: 373074b4244d72a4780fe07d72aa3e95, type: 3}
+  - {fileID: 23834284235797690, guid: 373074b4244d72a4780fe07d72aa3e95, type: 3}
+  clutterPrefabs:
+  - {fileID: 7383218137955683172, guid: 598c169f8a6a4e3458b1b658480376e9, type: 3}
+  - {fileID: 5555776642151264359, guid: 6e996cc0162c69947a6d578883ce347a, type: 3}
+  - {fileID: 5907305088425065567, guid: 0fe206787770545498247a1a2ae35030, type: 3}
+  - {fileID: 7413709445618357905, guid: ec8a0b162cda8d94ab93cf274dffb09a, type: 3}
+  - {fileID: 3337163053358833160, guid: fab4a9c59b930af40a4fa40fb0150070, type: 3}
+  background: {fileID: 495489416072402144, guid: 82750a0402558c84fa1d1cd28228d25a, type: 3}
+  rewardItemId: Fuse
+  rewardQuantity: 3
+  isMiniGameInitialized: 0

@@ -1,7 +1,6 @@
 using EventBusSystem;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 
 public class FindItemLogic : MonoBehaviour, IInteractive
@@ -13,6 +12,7 @@ public class FindItemLogic : MonoBehaviour, IInteractive
     [SerializeField] private GameObject backgroundPrefab;
 
     private bool _isBlockInteract;
+    private bool isPlayerInZone = false;
 
     public event Action OnInteract;
 
@@ -20,15 +20,6 @@ public class FindItemLogic : MonoBehaviour, IInteractive
     {
         get { return _isBlockInteract; }
         set { _isBlockInteract = value; }
-    }
-
-    private void Start()
-    {
-        //// Назначаем UI мини-игры
-        //if (miniGame != null)
-        //{
-        //    miniGame.SetDialogLogic(FindObjectOfType<DialogLogic>());
-        //}
     }
 
     public void StartMiniGame()
@@ -39,10 +30,12 @@ public class FindItemLogic : MonoBehaviour, IInteractive
             return;
         }
 
-        // Передаем параметры в мини-игру
         miniGame.SetUI(uiTable);
         miniGame.SetItems(itemPrefabs, clutterPrefabs);
         miniGame.SetBackground(backgroundPrefab);
+
+        isPlayerInZone = true;
+        miniGame.SetPlayerInZone(isPlayerInZone);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -54,27 +47,25 @@ public class FindItemLogic : MonoBehaviour, IInteractive
         }
     }
 
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag != "Player" || other.gameObject.name != "Player")
+            return;
+
+        isPlayerInZone = false;
+        miniGame.SetPlayerInZone(isPlayerInZone);
+
+        EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(null));
+    }
+
     public void Interact()
     {
         miniGame.Raise();
+        OnInteract?.Invoke();
     }
 
     public void BlockInteraction()
     {
         _isBlockInteract = true;
-    }
-
-    //void OnTriggerStay2D(Collider2D other)
-    //{
-    //    if (other.gameObject.tag != "Player" || other.gameObject.name != "Player")
-    //        return;
-    //    EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(this));
-    //}
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.tag != "Player" || other.gameObject.name != "Player")
-            return;
-        EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(null));
     }
 }

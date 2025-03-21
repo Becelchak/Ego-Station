@@ -48,11 +48,48 @@ public class DialogLogic : MonoBehaviour, IDialog
             EndDialog();
             return;
         }
+
+        // Проверяем требования для начала диалога
+        if (!CheckRequirements())
+        {
+            Debug.Log("Требования для начала диалога не выполнены.");
+            return;
+        }
+
         EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.Freeze());
         dialogUI.SetDialogLogic(this);
         currentPhrase = dialog.startPhrase;
         IsContinuesDialog = true;
         ShowCurrentPhrase();
+    }
+
+    /// <summary>
+    /// Проверяет, удовлетворяет ли игрок требованиям для начала диалога.
+    /// </summary>
+    private bool CheckRequirements()
+    {
+        if (dialog.requirements == null || dialog.requirements.Count == 0)
+        {
+            return true; // Если требований нет, диалог можно начать
+        }
+
+        PlayerData playerData = GameManager.Instance.playerData;
+        if (playerData == null)
+        {
+            Debug.LogError("PlayerData не найден!");
+            return false;
+        }
+
+        foreach (var requirement in dialog.requirements)
+        {
+            if (playerData.GetItemQuantity(requirement.itemId) < requirement.requiredQuantity)
+            {
+                Debug.Log($"Не хватает предмета {requirement.itemId}. Требуется: {requirement.requiredQuantity}, есть: {playerData.GetItemQuantity(requirement.itemId)}");
+                return false;
+            }
+        }
+
+        return true; // Все требования выполнены
     }
 
     /// <summary>
@@ -71,7 +108,7 @@ public class DialogLogic : MonoBehaviour, IDialog
         audioSource.Stop();
         audioSource.clip = character.GetSpeachSound();
 
-        if(audioSource.clip != null)
+        if (audioSource.clip != null)
             audioSource.Play();
 
         dialogStack.Enqueue(currentPhrase);
@@ -93,7 +130,7 @@ public class DialogLogic : MonoBehaviour, IDialog
             currentPhrase = currentPhrase.NextPhrase;
             ShowCurrentPhrase();
         }
-        else if(currentPhrase.DialogEvent != null)
+        else if (currentPhrase.DialogEvent != null)
         {
             // Set DialogLogic for FindInTableMiniGame Event
             if (currentPhrase.DialogEvent is DialogEvent Event)
@@ -109,16 +146,33 @@ public class DialogLogic : MonoBehaviour, IDialog
         }
     }
 
-    public void SetCurrentPhrase(Phrase currentPhrase)
+    /// <summary>
+    /// Устанавливает текущую фразу и продолжает диалог с этой фразы.
+    /// </summary>
+    /// <param name="currentPhrase">Фраза, с которой нужно продолжить диалог.</param>
+    public void SetCurrentPhrase(Phrase newPhrase)
     {
-        if (currentPhrase == null)
+        if (newPhrase == null)
         {
+            Debug.LogError("Переданная фраза равна null!");
             EndDialog();
             return;
         }
 
-        dialog.startPhrase = currentPhrase;
-        StartDialog();
+        // Обновляем текущую фразу
+        currentPhrase = newPhrase;
+
+        // Очищаем стек диалога, чтобы избежать путаницы при возврате к предыдущим состояниям
+        dialogStack.Clear();
+
+        // Продолжаем диалог с новой фразы
+        IsContinuesDialog = true;
+        ShowCurrentPhrase();
+    }
+
+    public void SetDialogData(DialogData data)
+    {
+        dialog = data;
     }
 
     public void OnChoiceSelected(Choice choice)
@@ -180,7 +234,6 @@ public class DialogLogic : MonoBehaviour, IDialog
             IsContinuesDialog = true;
             StartDialog();
         }
-            
     }
 
     void Update()
@@ -198,7 +251,7 @@ public class DialogLogic : MonoBehaviour, IDialog
             Debug.Log($"Admin accsess {isAdminAccsessEnable}");
         }
 
-        if(isAdminAccsessEnable && IsContinuesDialog && previousDialogStates.WasPressedThisFrame())
+        if (isAdminAccsessEnable && IsContinuesDialog && previousDialogStates.WasPressedThisFrame())
         {
             Debug.Log($"Предыдущий граф диалога");
             ReturnToPreviousState();
@@ -208,6 +261,5 @@ public class DialogLogic : MonoBehaviour, IDialog
             Debug.Log($"Следующий граф диалога");
             GoToNextPhrase();
         }
-
     }
 }

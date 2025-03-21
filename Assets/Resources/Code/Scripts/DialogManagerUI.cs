@@ -2,7 +2,6 @@ using EventBusSystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class DialogManagerUI : MonoBehaviour
 {

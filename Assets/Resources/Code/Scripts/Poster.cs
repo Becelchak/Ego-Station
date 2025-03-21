@@ -55,6 +55,7 @@ public class Poster : MonoBehaviour, IInteractive
         }
 
         _isBlockInteract = true;
+        OnInteract?.Invoke();
     }
 
     public void BlockInteraction( )

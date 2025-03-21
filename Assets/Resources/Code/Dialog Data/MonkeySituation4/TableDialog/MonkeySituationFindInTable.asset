@@ -18,3 +18,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d0dc677b023a8f34b94510cfb6fd31fe, type: 2}
   - {fileID: 11400000, guid: 9fb95c5595db1c24780850279d9b9455, type: 2}
   - {fileID: 11400000, guid: 12f3be103e41dd74f9c419e51407bb34, type: 2}
+  itemPrefabs: []
+  clutterPrefabs: []
+  background: {fileID: 8857160485867814256, guid: 58663b858f9e69d41b6aa4e8dd1976fa, type: 3}
+  rewardItemId: Flamethrower
+  rewardQuantity: 1
+  isMiniGameInitialized: 0
