@@ -7,7 +7,8 @@ public class WireMiniGameLogic : Logic, IInteractive
     [SerializeField] private WireMiniGame wireMiniGame;
 
     [SerializeField] private bool _isBlockInteract;
-
+    [SerializeField] private string interactionText = "Взаимодействовать";
+    public string InteractionText => interactionText;
     public event Action OnInteract;
 
     public bool isBlockInteract

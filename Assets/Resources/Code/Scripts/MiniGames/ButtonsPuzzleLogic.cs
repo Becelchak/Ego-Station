@@ -13,16 +13,13 @@ public class ButtonsPuzzle : DialogEvent
 
     public override void Raise()
     {
-        // Создаем UI мини-игры
         var puzzleUIObject = Instantiate(puzzleUIPrefab);
         currentPuzzleUI = puzzleUIObject.GetComponent<ButtonsPuzzleUI>();
 
-        // Настраиваем коллбеки
         currentPuzzleUI.PuzzleCompleted += OnPuzzleCompleted;
         currentPuzzleUI.PuzzleFailed += OnPuzzleFailed;
 
         Debug.Log("Игра создана");
-        // Инициализируем мини-игру
         currentPuzzleUI.Initialize();
     }
 

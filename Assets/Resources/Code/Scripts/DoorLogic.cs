@@ -1,6 +1,5 @@
 using EventBusSystem;
 using UnityEngine;
-using Player;
 using System.Collections;
 using System;
 
@@ -9,6 +8,8 @@ public class DoorLogic : MonoBehaviour, IDoor
     [SerializeField] private DoorLogic connetedDoor;
     private Collider2D playerCollider;
     private Animator animator;
+    [SerializeField] private string interactionText = "Открыть";
+    public string InteractionText => interactionText;
     [SerializeField] private bool _isBlockInteract;
 
     public event Action OnInteract;

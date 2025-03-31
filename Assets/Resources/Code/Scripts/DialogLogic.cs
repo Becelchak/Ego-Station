@@ -49,7 +49,6 @@ public class DialogLogic : MonoBehaviour, IDialog
             return;
         }
 
-        // Проверяем требования для начала диалога
         if (!CheckRequirements())
         {
             Debug.Log("Требования для начала диалога не выполнены.");
@@ -89,7 +88,7 @@ public class DialogLogic : MonoBehaviour, IDialog
             }
         }
 
-        return true; // Все требования выполнены
+        return true;
     }
 
     /// <summary>

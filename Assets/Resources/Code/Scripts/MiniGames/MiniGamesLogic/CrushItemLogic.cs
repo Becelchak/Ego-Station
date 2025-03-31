@@ -14,6 +14,8 @@ public class CrushItemLogic : Logic, IInteractive
     [SerializeField] private float spawnTime = 1;
     [SerializeField] private bool havePunished = false;
     [SerializeField] private int punishedVelocity = 0;
+    [SerializeField] private string interactionText = "Сломать";
+    public string InteractionText => interactionText;
     [Header("Dialogs")]
     [SerializeField] private DialogLogic dialogAfterSuccess;
     [SerializeField] private DialogLogic dialogAfterFailed;

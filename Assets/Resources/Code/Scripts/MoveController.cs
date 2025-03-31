@@ -16,7 +16,7 @@ namespace Player
         Vector3 moveDirection;
         LookDirection lookDirection = LookDirection.Left;
         IInteractive interactiveObject;
-
+        [SerializeField] private InteractionLabelController labelController;
 
         InputAction moveNow = new InputAction();
         InputAction horizontalMove;
@@ -145,7 +145,20 @@ namespace Player
 
         public void SetNewInteractiveObject(IInteractive newInteractive)
         {
+            if (interactiveObject == newInteractive)
+                return;
+
+            if (interactiveObject != null && labelController != null)
+            {
+                labelController.HideLabel();
+            }
+
             interactiveObject = newInteractive;
+
+            if (interactiveObject != null && labelController != null)
+            {
+                labelController.ShowLabel(interactiveObject, transform.position);
+            }
         }
 
         public void StartClimbing()

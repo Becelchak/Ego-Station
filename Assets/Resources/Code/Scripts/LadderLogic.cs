@@ -8,7 +8,8 @@ public class LadderLogic : MonoBehaviour, ILadder
     [SerializeField] private Collider2D downBoxCollider;
     [SerializeField] private Transform topPoint;
     [SerializeField] private Transform bottomPoint;
-
+    [SerializeField] private string interactionText = "Ползти";
+    public string InteractionText => interactionText;
     private bool isPlayerOnLadder;
     private Transform player;
     private Transform pointToTeleportPlayer;
@@ -29,10 +30,10 @@ public class LadderLogic : MonoBehaviour, ILadder
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && other.name == "Player")
         {
             EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(this));
-            player = other.transform.parent;
+            player = other.transform;
         }
     }
 
@@ -40,17 +41,16 @@ public class LadderLogic : MonoBehaviour, ILadder
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log($"{isPlayerOnLadder}");
             if (collision.IsTouching(upBoxCollider))
             {
-                //Debug.Log("Игрок вошел в верхний триггер лестницы.");
                 pointToTeleportPlayer = topPoint;
             }
             else if (collision.IsTouching(downBoxCollider))
             {
-                //Debug.Log("Игрок вошел в нижний триггер лестницы.");
                 pointToTeleportPlayer = bottomPoint;
             }
+            else
+                pointToTeleportPlayer = null;
         }
     }
 
@@ -72,7 +72,7 @@ public class LadderLogic : MonoBehaviour, ILadder
         if (_isBlockInteract)
             return;
 
-        if (isPlayerOnLadder)
+        if (isPlayerOnLadder && pointToTeleportPlayer != null)
         {
             player.position = pointToTeleportPlayer.position;
             EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.EndClimbing());

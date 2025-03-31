@@ -7,7 +7,8 @@ public class Lever : MonoBehaviour, ILever
     [SerializeField] private bool _isBlockInteract;
     [SerializeField] private bool _isActive;
     [SerializeField] private LeverTarget targetInteractive;
-
+    [SerializeField] private string interactionText = "Повернуть";
+    public string InteractionText => interactionText;
     public event Action OnInteract;
 
     public void Awake()

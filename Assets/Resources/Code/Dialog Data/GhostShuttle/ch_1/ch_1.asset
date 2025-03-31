@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: "\u041F\u043E\u043F\u044B\u0442\u0430\u0442\u044C\u0441\u044F \u043F\u043E\u0447\u0438\u043D\u0438\u0442\u044C
     \u0441\u0438\u0441\u0442\u0435\u043C\u044B \u0448\u0430\u0442\u0442\u043B\u0430"
-  dialogEventDefault: {fileID: 0}
+  dialogEventDefault: {fileID: 11400000, guid: c73a196e293131f469b2db423bb4b553, type: 2}
   dialogEventSuccess: {fileID: 0}
   dialogEventFailed: {fileID: 0}
   isCheckingChoice: 1

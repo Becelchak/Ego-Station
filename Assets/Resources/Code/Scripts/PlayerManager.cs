@@ -1,7 +1,9 @@
 using System;
 using EventBusSystem;
 using Player;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour, IPlayerSubscriber
 {
@@ -47,13 +49,27 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber
     private MoveController moveController;
 
     [Header("Death UI")]
-    [SerializeField] private GameObject deathUIPrefab; // Префаб UI-меню смерти
+    [SerializeField] private GameObject deathUIPrefab;
     [SerializeField] private GameObject playerUI;
+    [Header("Player Manager UI")]
+    [SerializeField] private GameObject playerManagerCanvas;
+    private Image healbarImage;
+    private TextMeshProUGUI bodyTextUI;
+    private TextMeshProUGUI mindTextUI;
+    private TextMeshProUGUI feelsTextUI;
 
     private void OnEnable()
     {
         EventBus.Subscribe(this);
         moveController = GetComponent<MoveController>();
+        healbarImage = playerManagerCanvas.transform.GetChild(1).GetChild(1).GetComponent<Image>();
+        bodyTextUI = playerManagerCanvas.transform.GetChild(2).GetComponentInChildren<TextMeshProUGUI>();
+        mindTextUI = playerManagerCanvas.transform.GetChild(3).GetComponentInChildren<TextMeshProUGUI>();
+        feelsTextUI = playerManagerCanvas.transform.GetChild(4).GetComponentInChildren<TextMeshProUGUI>();
+
+        bodyTextUI.text = $"{BodyAttribute}";
+        mindTextUI.text = $"{MindAttribute}";
+        feelsTextUI.text = $"{FeelsAttribute}";
     }
 
     private void OnDisable()
@@ -85,6 +101,7 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber
     public void GetDamage(int damagePoints)
     {
         Health -= damagePoints;
+        healbarImage.fillAmount = Mathf.Clamp01(Health / 100f);
         Debug.Log($"{health}");
     }
 
@@ -94,12 +111,15 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber
         {
             case PlayerAttributes.Body:
                 bodyAttribute += rewardCount;
+                bodyTextUI.text = $"{BodyAttribute}";
                 break;
             case PlayerAttributes.Mind:
                 mindAttribute += rewardCount;
+                mindTextUI.text = $"{MindAttribute}";
                 break;
             case PlayerAttributes.Feels:
                 feelsAttribute += rewardCount;
+                feelsTextUI.text = $"{FeelsAttribute}";
                 break;
             default:
                 break;
@@ -138,7 +158,6 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber
             moveController.Freeze();
         }
 
-        // Показываем UI-меню смерти
         if (deathUIPrefab != null)
         {
             var newDeathPanel = Instantiate(deathUIPrefab);

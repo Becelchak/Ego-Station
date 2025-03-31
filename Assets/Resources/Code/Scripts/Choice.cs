@@ -8,7 +8,6 @@ public class Choice : ScriptableObject
     [SerializeField] private string text;
     public string Text => text;
 
-
     [Header("Events")]
     [SerializeField] protected DialogEvent dialogEventDefault;
     public DialogEvent DialogEventDefault => dialogEventDefault;
@@ -20,6 +19,7 @@ public class Choice : ScriptableObject
     [Header("Attributes")]
     [SerializeField] private bool isCheckingChoice;
     [SerializeField] private PlayerAttributes checkAttribute;
+    public PlayerAttributes CheckAttribute => checkAttribute;
     [SerializeField] private int difficultCheckAttribute;
     [Range(0, 20)]
     [SerializeField] private double rewardAttribute = 0;
@@ -76,6 +76,24 @@ public class Choice : ScriptableObject
 
         if (dialogEventDefault != null)
             dialogEventDefault.Raise();
+    }
+
+    public string CheckAttributeText()
+    {
+        string nameAttribute = "";
+        switch (checkAttribute)
+        {
+            case PlayerAttributes.Body:
+                nameAttribute = "Тело";
+                break;
+            case PlayerAttributes.Mind:
+                nameAttribute = "Разум";
+                break;
+            case PlayerAttributes.Feels:
+                nameAttribute = "Чувства";
+                break;
+        }
+        return $"({nameAttribute} - {difficultCheckAttribute})";
     }
 
 }

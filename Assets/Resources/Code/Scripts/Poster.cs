@@ -12,7 +12,8 @@ public class Poster : MonoBehaviour, IInteractive
     [SerializeField] private List<Phrase> randomLines;
     private AudioSource AudioSource;
     private IInteractive interactiveObject;
-
+    [SerializeField] private string interactionText = "Сорвать";
+    public string InteractionText => interactionText;
     private bool _isBlockInteract = false;
 
     public event Action OnInteract;

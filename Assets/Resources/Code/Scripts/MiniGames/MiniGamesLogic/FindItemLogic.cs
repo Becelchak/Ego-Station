@@ -10,7 +10,8 @@ public class FindItemLogic : MonoBehaviour, IInteractive
     [SerializeField] private List<GameObject> itemPrefabs;
     [SerializeField] private List<GameObject> clutterPrefabs;
     [SerializeField] private GameObject backgroundPrefab;
-
+    [SerializeField] private string interactionText = "Взаимодействовать";
+    public string InteractionText => interactionText;
     private bool _isBlockInteract;
     private bool isPlayerInZone = false;
 
@@ -33,6 +34,7 @@ public class FindItemLogic : MonoBehaviour, IInteractive
         miniGame.SetUI(uiTable);
         miniGame.SetItems(itemPrefabs, clutterPrefabs);
         miniGame.SetBackground(backgroundPrefab);
+        miniGame.SetDialogLogic(this);
 
         isPlayerInZone = true;
         miniGame.SetPlayerInZone(isPlayerInZone);

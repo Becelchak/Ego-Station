@@ -11,7 +11,8 @@ public class GatewayLogic : MonoBehaviour, IGateway
     private GameObject player;
     private Animator animator;
     [SerializeField] private bool _isBlockInteract;
-
+    [SerializeField] private string interactionText = "Взаимодействовать";
+    public string InteractionText => interactionText;
     public event Action OnInteract;
 
     public bool isBlockInteract

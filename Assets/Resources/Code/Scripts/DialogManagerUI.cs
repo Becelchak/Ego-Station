@@ -2,6 +2,7 @@ using EventBusSystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static PlayerManager;
 
 public class DialogManagerUI : MonoBehaviour
 {
@@ -60,12 +61,29 @@ public class DialogManagerUI : MonoBehaviour
                 newCell.transform.SetParent(choicesContainer.transform);
 
                 var cellText = newCell.GetComponentInChildren<TextMeshProUGUI>();
-                cellText.text = choice.Text;
+
+                string attributeText = choice.CheckAttributeText();
+
+                string colorHex = "#FFFFFF";
+                switch (choice.CheckAttribute)
+                {
+                    case PlayerAttributes.Body:
+                        colorHex = "#FF0000";
+                        break;
+                    case PlayerAttributes.Mind:
+                        colorHex = "#ADD8E6";
+                        break;
+                    case PlayerAttributes.Feels:
+                        colorHex = "#800080"; 
+                        break;
+                }
+
+                string coloredAttribute = $"<color={colorHex}>{attributeText}</color>";
+                cellText.text = $"{coloredAttribute} {choice.Text}";
 
                 var cellButton = newCell.GetComponent<Button>();
                 var localChoice = choice;
 
-                // Подписываемся на событие нажатия кнопки
                 cellButton.onClick.AddListener(() => OnChoiceSelectedUI(localChoice));
             }
             
@@ -85,7 +103,7 @@ public class DialogManagerUI : MonoBehaviour
         if (choice.DialogEventDefault != null || choice.DialogEventSuccess != null || choice.DialogEventFailed != null)
         {
             dialogLogic.SetLogicForEvent(choice);
-            choice.ChoiceAttributeCheck();
+            //choice.ChoiceAttributeCheck();
             choice.RaiseDialogEvent();
             if(choice.DialogEventDefault == null &&  choice.DialogEventSuccess == null && choice.DialogEventFailed == null)
                 dialogLogic.EndDialog();

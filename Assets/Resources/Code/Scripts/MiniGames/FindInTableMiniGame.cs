@@ -12,27 +12,27 @@ public class FindInTableMiniGame : DialogEvent
     [SerializeField] private List<GameObject> clutterPrefabs;
     [SerializeField] private GameObject background;
 
-    [SerializeField] private string rewardItemId; // ID предмета, который получит игрок
-    [SerializeField] private int rewardQuantity = 1; // Количество предметов
+    [SerializeField] private string rewardItemId;
+    [SerializeField] private int rewardQuantity = 1;
 
     private int counter;
     private int totalItems;
     private bool isMiniGameActive = false;
     [SerializeField] private bool isMiniGameInitialized = false;
-    private bool isPlayerInZone = false; // Флаг нахождения игрока в зоне
-    private bool isCompleted = false; // Флаг завершения мини-игры
+    private bool isPlayerInZone = false;
+    private bool isCompleted = false;
     private InputAction toggleMiniGameAction;
     private DialogLogic dialogLogic;
+    private FindItemLogic findItemLogic;
 
-    // Состояние мини-игры
-    private List<Vector3> itemPositions = new(); // Позиции искомых предметов
-    private List<Vector3> clutterPositions = new(); // Позиции посторонних предметов
-    private List<GameObject> spawnedItems = new(); // Созданные искомые предметы
-    private List<GameObject> spawnedClutter = new(); // Созданные посторонние предметы
+    private List<Vector3> itemPositions = new();
+    private List<Vector3> clutterPositions = new();
+    private List<GameObject> spawnedItems = new();
+    private List<GameObject> spawnedClutter = new();
 
     public override void Raise()
     {
-        if (!isCompleted) // Проверяем, не завершена ли мини-игра
+        if (!isCompleted)
         {
             InitializeMiniGame();
         }
@@ -160,7 +160,7 @@ public class FindInTableMiniGame : DialogEvent
         }
         else
         {
-            if (isPlayerInZone && !isCompleted) // Проверяем, не завершена ли мини-игра
+            if (isPlayerInZone && !isCompleted)
             {
                 InitializeMiniGame();
             }
@@ -183,11 +183,10 @@ public class FindInTableMiniGame : DialogEvent
 
             OnDisable();
             Debug.Log("Вы собрали все предметы!");
-
-            // Выдача награды игроку
+            findItemLogic.BlockInteraction();
             RewardPlayer();
 
-            // Блокировка взаимодействия с объектом
+            
             isCompleted = true;
         }
     }
@@ -246,5 +245,10 @@ public class FindInTableMiniGame : DialogEvent
     public void SetPlayerInZone(bool inZone)
     {
         isPlayerInZone = inZone;
+    }
+
+    public void SetDialogLogic(FindItemLogic logic)
+    {
+        findItemLogic = logic;
     }
 }
