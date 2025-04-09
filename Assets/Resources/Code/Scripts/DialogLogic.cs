@@ -57,9 +57,28 @@ public class DialogLogic : MonoBehaviour, IDialog
 
         EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.Freeze());
         dialogUI.SetDialogLogic(this);
+        // Сбрасываем доступность всех выборов при начале диалога
+        ResetAllChoicesAvailability(dialog.startPhrase);
+
         currentPhrase = dialog.startPhrase;
         IsContinuesDialog = true;
         ShowCurrentPhrase();
+    }
+
+    private void ResetAllChoicesAvailability(Phrase phrase)
+    {
+        if (phrase == null) return;
+
+        if (phrase.IsChoise)
+        {
+            foreach (var choice in phrase.Choises)
+            {
+                choice.ResetAvailability();
+            }
+        }
+
+        // Рекурсивно сбрасываем для всех следующих фраз
+        ResetAllChoicesAvailability(phrase.NextPhrase);
     }
 
     /// <summary>

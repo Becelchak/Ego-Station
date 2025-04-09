@@ -168,6 +168,8 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber
             Debug.LogWarning("Death UI Prefab is not assigned in PlayerManager.");
         }
 
+        // ќповещаем систему о смерти игрока
+        EventBus.RaiseEvent<IPlayerDeathSubscriber>(s => s.OnPlayerDeath());
         // ƒополнительные действи€ при смерти (например, остановка времени)
         Time.timeScale = 0f;
     }

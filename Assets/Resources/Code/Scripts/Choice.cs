@@ -18,6 +18,7 @@ public class Choice : ScriptableObject
 
     [Header("Attributes")]
     [SerializeField] private bool isCheckingChoice;
+    public bool IsCheckingChoice => isCheckingChoice;
     [SerializeField] private PlayerAttributes checkAttribute;
     public PlayerAttributes CheckAttribute => checkAttribute;
     [SerializeField] private int difficultCheckAttribute;
@@ -29,6 +30,14 @@ public class Choice : ScriptableObject
     [SerializeField] private Phrase nextPhraseDefault;
     [SerializeField] private Phrase nextPhraseSuccess;
     [SerializeField] private Phrase nextPhraseFailed;
+
+    private bool _isAvailable = true;
+
+    public bool IsAvailable
+    {
+        get => _isAvailable;
+        set => _isAvailable = value;
+    }
 
     /// <summary>
     /// Проверяет атрибут, если это необходимо, и возвращает следующую фразу.
@@ -63,6 +72,24 @@ public class Choice : ScriptableObject
         });
     }
 
+    /// <summary>
+    /// Проверяет атрибут и возвращает результат проверки
+    /// </summary>
+    public bool CheckAttributeBool ()
+    {
+        if (!isCheckingChoice) return true;
+
+        EventBus.RaiseEvent<IPlayerSubscriber>(h =>
+        {
+            resultCheckAttribute = h.CheckAttribute(checkAttribute, difficultCheckAttribute);
+
+            if (rewardAttribute > 0 && resultCheckAttribute)
+                h.AttributeUp(checkAttribute, rewardAttribute);
+        });
+
+        return resultCheckAttribute;
+    }
+
     public void RaiseDialogEvent()
     {
         if (isCheckingChoice)
@@ -76,6 +103,11 @@ public class Choice : ScriptableObject
 
         if (dialogEventDefault != null)
             dialogEventDefault.Raise();
+    }
+
+    public void ResetAvailability()
+    {
+        _isAvailable = true;
     }
 
     public string CheckAttributeText()

@@ -15,6 +15,7 @@ public class DialogManagerUI : MonoBehaviour
 
     private CanvasGroup dialogUICanvasGroup;
     private DialogLogic dialogLogic;
+    private Phrase _lastChoicePhrase;
 
     void Start()
     {
@@ -50,43 +51,34 @@ public class DialogManagerUI : MonoBehaviour
         //TO DO: Убрать код текста при выборах
         if (dialogText.IsChoise)
         {
+            _lastChoicePhrase = dialogText; // Запоминаем фразу с выбором
             dialogTextWithChoices.text = dialogText.TextPhrase;
             dialogTextWithChoices.gameObject.SetActive(true);
             dialogTextNoChoices.gameObject.SetActive(false);
+
             foreach (var choice in dialogText.Choises)
             {
                 var newCell = Instantiate(choiseCell);
                 newCell.name = choice.name;
-                newCell.SetActive(true);
-                newCell.transform.SetParent(choicesContainer.transform);
+                newCell.SetActive(choice.IsAvailable); // Активируем только доступные выборы
+                newCell.transform.SetParent(choicesContainer.transform, false);
 
                 var cellText = newCell.GetComponentInChildren<TextMeshProUGUI>();
-
                 string attributeText = choice.CheckAttributeText();
 
-                string colorHex = "#FFFFFF";
-                switch (choice.CheckAttribute)
-                {
-                    case PlayerAttributes.Body:
-                        colorHex = "#FF0000";
-                        break;
-                    case PlayerAttributes.Mind:
-                        colorHex = "#ADD8E6";
-                        break;
-                    case PlayerAttributes.Feels:
-                        colorHex = "#800080"; 
-                        break;
-                }
-
+                // Настраиваем цвет и стиль в зависимости от доступности
+                string styleTag = choice.IsAvailable ? "" : "<alpha=#55>";
+                string colorHex = GetAttributeColor(choice.CheckAttribute);
                 string coloredAttribute = $"<color={colorHex}>{attributeText}</color>";
-                cellText.text = $"{coloredAttribute} {choice.Text}";
+
+                cellText.text = $"{styleTag}{coloredAttribute} {choice.Text}";
 
                 var cellButton = newCell.GetComponent<Button>();
-                var localChoice = choice;
+                cellButton.interactable = choice.IsAvailable; // Делаем кнопку неактивной
 
+                var localChoice = choice;
                 cellButton.onClick.AddListener(() => OnChoiceSelectedUI(localChoice));
             }
-            
         }
         else
         {
@@ -97,13 +89,40 @@ public class DialogManagerUI : MonoBehaviour
 
     }
 
+    private string GetAttributeColor(PlayerAttributes attribute)
+    {
+        return attribute switch
+        {
+            PlayerAttributes.Body => "#FF0000",
+            PlayerAttributes.Mind => "#ADD8E6",
+            PlayerAttributes.Feels => "#800080",
+            _ => "#FFFFFF"
+        };
+    }
+
     private void OnChoiceSelectedUI(Choice choice)
     {
+
+        //if (choice.IsCheckingChoice)
+        //{
+        //    bool checkResult = choice.CheckAttributeBool();
+        //    choice.IsAvailable = checkResult; // Обновляем доступность выбора
+
+        //    if (!checkResult)
+        //    {
+        //        // При провале проверки возвращаем к последнему выбору
+        //        if (_lastChoicePhrase != null)
+        //        {
+        //            dialogLogic.SetCurrentPhrase(_lastChoicePhrase);
+        //        }
+        //        return;
+        //    }
+        //}
+
         // Если есть DialogEvent, вызываем его
         if (choice.DialogEventDefault != null || choice.DialogEventSuccess != null || choice.DialogEventFailed != null)
         {
             dialogLogic.SetLogicForEvent(choice);
-            //choice.ChoiceAttributeCheck();
             choice.RaiseDialogEvent();
             if(choice.DialogEventDefault == null &&  choice.DialogEventSuccess == null && choice.DialogEventFailed == null)
                 dialogLogic.EndDialog();

@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using EventBusSystem;
 using Debug = UnityEngine.Debug;
-using UnityEngine.EventSystems;
 
 namespace Player
 {
@@ -36,9 +35,12 @@ namespace Player
             moveNow = horizontalMove;
             interact = InputSystem.actions.FindAction("Interact");
 
-            moveNow.performed += OnMovePerformed;
-            moveNow.canceled += OnMoveCanceled;
-            //interact.performed += OnInteractPerformed;
+            horizontalMove.performed += OnMovePerformed;
+            horizontalMove.canceled += OnMoveCanceled;
+            ladderMove.performed += OnMovePerformed;
+            ladderMove.canceled += OnMoveCanceled;
+
+            moveNow = horizontalMove;
         }
 
         private void OnDestroy()
@@ -53,13 +55,18 @@ namespace Player
             if (!isFreezed)
             {
                 animator.SetBool("IsMoving", true);
+                Debug.Log($"Performed {isOnLadder}");
                 if (isOnLadder)
                 {
                     animator.SetBool("IsClimbing", true);
-                    animator.Play("Climb", -1, 0f);
+                    animator.CrossFade("Climb", 0.25f, -1, 0f, 0.5f);
                 }
                 else
+                {
+                    animator.SetBool("IsClimbing", false);
                     animator.Play("Move", -1, 0f);
+                }    
+                    
             }
 
         }
@@ -68,6 +75,7 @@ namespace Player
         {
             animator.SetBool("IsMoving", false);
             //animator.SetBool("IsClimbing", false);
+            Debug.Log($"Canceled {isOnLadder}");
             if (isOnLadder)
             {
                 animator.Play("ClimbIdle", -1, 0f);
