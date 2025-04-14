@@ -25,14 +25,14 @@ namespace Player
         bool isGrounded;
         bool isFreezed;
         private bool isOnLadder;
+
+        private AudioSource playerAudioSource;
         void Start()
         {
             animator = GetComponent<Animator>();
             rb = GetComponent<Rigidbody2D>();
             horizontalMove = InputSystem.actions.FindAction("MoveZBack");
             ladderMove = InputSystem.actions.FindAction("LadderMove");
-
-            moveNow = horizontalMove;
             interact = InputSystem.actions.FindAction("Interact");
 
             horizontalMove.performed += OnMovePerformed;
@@ -41,21 +41,21 @@ namespace Player
             ladderMove.canceled += OnMoveCanceled;
 
             moveNow = horizontalMove;
+            playerAudioSource = GetComponent<AudioSource>();
         }
 
         private void OnDestroy()
         {
             moveNow.performed -= OnMovePerformed;
             moveNow.canceled -= OnMoveCanceled;
-            //interact.performed -= OnInteractPerformed;
         }
 
         private void OnMovePerformed(InputAction.CallbackContext context)
         {
             if (!isFreezed)
             {
+                playerAudioSource.Play();
                 animator.SetBool("IsMoving", true);
-                Debug.Log($"Performed {isOnLadder}");
                 if (isOnLadder)
                 {
                     animator.SetBool("IsClimbing", true);
@@ -74,8 +74,8 @@ namespace Player
         private void OnMoveCanceled(InputAction.CallbackContext context)
         {
             animator.SetBool("IsMoving", false);
+            playerAudioSource.Stop();
             //animator.SetBool("IsClimbing", false);
-            Debug.Log($"Canceled {isOnLadder}");
             if (isOnLadder)
             {
                 animator.Play("ClimbIdle", -1, 0f);
@@ -174,6 +174,10 @@ namespace Player
             isOnLadder = true;
             moveNow = ladderMove;
             rb.gravityScale = 0;
+            var audioClip = Resources.Load<AudioClip>("Audio/Sound/SFX/Metalic_ladder_move");
+            playerAudioSource.clip = audioClip;
+
+            animator.SetBool("IsClimbing", true);
         }
 
         public void EndClimbing()
@@ -181,6 +185,9 @@ namespace Player
             isOnLadder = false;
             moveNow = horizontalMove;
             rb.gravityScale = 1;
+            playerAudioSource.clip = null;
+
+            animator.SetBool("IsClimbing", false);
         }
 
         public bool OnGround()

@@ -11,11 +11,12 @@ public class DialogManagerUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogTextWithChoices;
     [SerializeField] private GameObject choicesContainer;
     [SerializeField] private GameObject choiseCell;
+    [SerializeField] private GameObject canvasChoices;
     [SerializeField] private TextMeshProUGUI characterName;
 
     private CanvasGroup dialogUICanvasGroup;
     private DialogLogic dialogLogic;
-    private Phrase _lastChoicePhrase;
+    //private Phrase _lastChoicePhrase;
 
     void Start()
     {
@@ -47,20 +48,20 @@ public class DialogManagerUI : MonoBehaviour
             Destroy(choicesContainer.transform.GetChild(f).gameObject);
             f++;
         }
-
-        //TO DO: Убрать код текста при выборах
         if (dialogText.IsChoise)
         {
-            _lastChoicePhrase = dialogText; // Запоминаем фразу с выбором
+            //_lastChoicePhrase = dialogText; // Запоминаем фразу с выбором
             dialogTextWithChoices.text = dialogText.TextPhrase;
             dialogTextWithChoices.gameObject.SetActive(true);
             dialogTextNoChoices.gameObject.SetActive(false);
+            characterName.gameObject.SetActive(false);
+            canvasChoices.gameObject.SetActive(true);
 
             foreach (var choice in dialogText.Choises)
             {
                 var newCell = Instantiate(choiseCell);
                 newCell.name = choice.name;
-                newCell.SetActive(choice.IsAvailable); // Активируем только доступные выборы
+                newCell.SetActive(choice.IsAvailable);
                 newCell.transform.SetParent(choicesContainer.transform, false);
 
                 var cellText = newCell.GetComponentInChildren<TextMeshProUGUI>();
@@ -74,7 +75,7 @@ public class DialogManagerUI : MonoBehaviour
                 cellText.text = $"{styleTag}{coloredAttribute} {choice.Text}";
 
                 var cellButton = newCell.GetComponent<Button>();
-                cellButton.interactable = choice.IsAvailable; // Делаем кнопку неактивной
+                cellButton.interactable = choice.IsAvailable;
 
                 var localChoice = choice;
                 cellButton.onClick.AddListener(() => OnChoiceSelectedUI(localChoice));
@@ -85,6 +86,7 @@ public class DialogManagerUI : MonoBehaviour
             dialogTextNoChoices.text = dialogText.TextPhrase;
             dialogTextNoChoices.gameObject.SetActive(true);
             dialogTextWithChoices.gameObject.SetActive(false);
+            canvasChoices.gameObject.SetActive(false);
         }
 
     }
@@ -102,22 +104,14 @@ public class DialogManagerUI : MonoBehaviour
 
     private void OnChoiceSelectedUI(Choice choice)
     {
-
-        //if (choice.IsCheckingChoice)
-        //{
-        //    bool checkResult = choice.CheckAttributeBool();
-        //    choice.IsAvailable = checkResult; // Обновляем доступность выбора
-
-        //    if (!checkResult)
-        //    {
-        //        // При провале проверки возвращаем к последнему выбору
-        //        if (_lastChoicePhrase != null)
-        //        {
-        //            dialogLogic.SetCurrentPhrase(_lastChoicePhrase);
-        //        }
-        //        return;
-        //    }
-        //}
+        if (choice.IsCheckingChoice)
+        {
+            bool checkResult = choice.ChoiceAttributeCheck();
+            choice.IsAvailable = checkResult;
+            if(dialogLogic.IsAdminAccsessEnable)
+                choice.IsAvailable = true;
+            Debug.Log($"{choice.IsAvailable}");
+        }
 
         // Если есть DialogEvent, вызываем его
         if (choice.DialogEventDefault != null || choice.DialogEventSuccess != null || choice.DialogEventFailed != null)
@@ -133,6 +127,7 @@ public class DialogManagerUI : MonoBehaviour
         {
             dialogLogic.OnChoiceSelected(choice);
         }
+
     }
 
     public void EndDialog()

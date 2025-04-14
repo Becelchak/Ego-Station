@@ -1,12 +1,49 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using EventBusSystem;
 using Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerManager : MonoBehaviour, IPlayerSubscriber
+public class PlayerManager : MonoBehaviour, IPlayerSubscriber, IFeedbackSubscriber
 {
+    [System.Serializable]
+    public class AttributeFeedback
+    {
+        public Sprite icon;
+        public AudioClip sound;
+        public Color textColor = Color.white;
+    }
+
+    [System.Serializable]
+    public class AttributeIcons
+    {
+        public AttributeFeedback bodySuccess;
+        public AttributeFeedback bodyFail;
+        public AttributeFeedback mindSuccess;
+        public AttributeFeedback mindFail;
+        public AttributeFeedback feelsSuccess;
+        public AttributeFeedback feelsFail;
+        public AttributeFeedback attributeUpBody;
+        public AttributeFeedback attributeUpMind;
+        public AttributeFeedback attributeUpFeels;
+    }
+
+    [Header("Feedback Settings")]
+    [SerializeField] private AttributeIcons attributeFeedback;
+    [SerializeField] private GameObject iconDefaultPrefab;
+    [SerializeField] private GameObject iconPrefabUp;
+    [SerializeField] private GameObject iconPrefabCheck;
+    [SerializeField] private Transform iconSpawnPoint;
+    [SerializeField] private float fadeDuration = 0.5f;
+    [SerializeField] private float displayTime = 1.5f;
+    [SerializeField] private AudioSource feedbackAudioSource;
+    private Queue<FeedbackData> feedbackQueue = new Queue<FeedbackData>();
+    private bool isProcessingFeedback = false;
+    private FeedbackData currentFeedback;
+
     [Header("Attribute")]
     [SerializeField] private double bodyAttribute = 1;
     [SerializeField] private double mindAttribute = 1;
@@ -76,26 +113,34 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber
     {
         EventBus.Unsubscribe(this);
     }
-    public bool CheckAttribute(PlayerAttributes nameAttribute, int dificult)
+
+    private void OnDestroy()
     {
-        var minPoint = 1;
-        switch (nameAttribute)
+        EventBus.Unsubscribe(this);
+    }
+
+    public bool CheckAttribute(PlayerAttributes attribute, int difficulty)
+    {
+        AttributeFeedback feedback = GetCheckResultFeedback(attribute, difficulty, out bool result);
+
+        if (feedback != null)
         {
-            case PlayerAttributes.Body:
-                minPoint = (int)Math.Ceiling(Math.Max(minPoint, bodyAttribute));
-                break;
-            case PlayerAttributes.Mind:
-                minPoint = (int)Math.Ceiling(Math.Max(minPoint, mindAttribute));
-                break;
-            case PlayerAttributes.Feels:
-                minPoint = (int)Math.Ceiling(Math.Max(minPoint, feelsAttribute));
-                break;
-            default:
-                break;
+            EventBus.RaiseEvent<IFeedbackSubscriber>(s => s.EnqueueFeedback(
+                new FeedbackData
+                {
+                    Icon = feedback.icon,
+                    Sound = feedback.sound,
+                    TextColor = feedback.textColor,
+                    Text = "",
+                    Prefab = iconPrefabCheck,
+                    Callback = () => {
+                        UpdateAttributeUI();
+                    }
+                }
+            ));
         }
-        var rndNumber = UnityEngine.Random.Range(minPoint, 20);
-        Debug.Log($"{rndNumber}");
-        return rndNumber >= dificult;
+
+        return result;
     }
 
     public void GetDamage(int damagePoints)
@@ -105,25 +150,44 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber
         Debug.Log($"{health}");
     }
 
-    public void AttributeUp(PlayerAttributes nameAttribute, double rewardCount)
+    public void AttributeUp(PlayerAttributes attribute, double rewardCount)
     {
-        switch (nameAttribute)
+        if (rewardCount <= 0) return;
+
+        AttributeFeedback feedback = GetAttributeUpFeedback(attribute);
+        string text = $"[      +{rewardCount}]";
+
+        switch (attribute)
         {
             case PlayerAttributes.Body:
-                bodyAttribute += rewardCount;
-                bodyTextUI.text = $"{BodyAttribute}";
+                bodyAttribute = Math.Min(20, bodyAttribute + rewardCount);
                 break;
             case PlayerAttributes.Mind:
-                mindAttribute += rewardCount;
-                mindTextUI.text = $"{MindAttribute}";
+                mindAttribute = Math.Min(20, mindAttribute + rewardCount);
                 break;
             case PlayerAttributes.Feels:
-                feelsAttribute += rewardCount;
-                feelsTextUI.text = $"{FeelsAttribute}";
-                break;
-            default:
+                feelsAttribute = Math.Min(20, feelsAttribute + rewardCount);
                 break;
         }
+
+        EventBus.RaiseEvent<IFeedbackSubscriber>(s => s.EnqueueFeedback(
+            new FeedbackData
+            {
+                Icon = feedback.icon,
+                Sound = feedback.sound,
+                TextColor = feedback.textColor,
+                Text = text,
+                Prefab = iconPrefabUp,
+                Callback = UpdateAttributeUI
+            }
+        ));
+    }
+
+    private void UpdateAttributeUI()
+    {
+        bodyTextUI.text = $"{BodyAttribute}";
+        mindTextUI.text = $"{MindAttribute}";
+        feelsTextUI.text = $"{FeelsAttribute}";
     }
 
     public void SetNewUIEffect(UIEffectEvent newEffect)
@@ -172,6 +236,156 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber
         EventBus.RaiseEvent<IPlayerDeathSubscriber>(s => s.OnPlayerDeath());
         // Дополнительные действия при смерти (например, остановка времени)
         Time.timeScale = 0f;
+    }
+
+    public void ShowFeedback(FeedbackData feedbackData)
+    {
+        StartCoroutine(ShowSingleFeedback(feedbackData));
+    }
+
+    public void OnFeedbackCompleted()
+    {
+        try
+        {
+            var callback = currentFeedback?.Callback;
+            currentFeedback = null;
+            isProcessingFeedback = false;
+
+            callback?.Invoke();
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning($"OnFeedbackCompleted error: {e.Message}");
+        }
+    }
+
+    private AttributeFeedback GetCheckResultFeedback(PlayerAttributes attribute, int difficulty, out bool result)
+    {
+        int minPoint = GetMinAttributeValue(attribute);
+        result = UnityEngine.Random.Range(minPoint, 20) >= difficulty;
+
+        return attribute switch
+        {
+            PlayerAttributes.Body => result ? attributeFeedback.bodySuccess : attributeFeedback.bodyFail,
+            PlayerAttributes.Mind => result ? attributeFeedback.mindSuccess : attributeFeedback.mindFail,
+            PlayerAttributes.Feels => result ? attributeFeedback.feelsSuccess : attributeFeedback.feelsFail,
+            _ => null
+        };
+    }
+
+    private AttributeFeedback GetAttributeUpFeedback(PlayerAttributes attribute)
+    {
+        return attribute switch
+        {
+            PlayerAttributes.Body => attributeFeedback.attributeUpBody,
+            PlayerAttributes.Mind => attributeFeedback.attributeUpMind,
+            PlayerAttributes.Feels => attributeFeedback.attributeUpFeels,
+            _ => null
+        };
+    }
+
+    private int GetMinAttributeValue(PlayerAttributes attribute)
+    {
+        double value = attribute switch
+        {
+            PlayerAttributes.Body => bodyAttribute,
+            PlayerAttributes.Mind => mindAttribute,
+            PlayerAttributes.Feels => feelsAttribute,
+            _ => 1
+        };
+        return (int)Math.Ceiling(Math.Max(1, value));
+    }
+
+    private IEnumerator ProcessFeedbackQueue()
+    {
+        isProcessingFeedback = true;
+
+        while (feedbackQueue.Count > 0)
+        {
+            FeedbackData current = feedbackQueue.Dequeue();
+            yield return StartCoroutine(ShowSingleFeedback(current));
+
+            // Небольшая пауза между иконками
+            yield return new WaitForSeconds(fadeDuration + 0.2f);
+        }
+
+        isProcessingFeedback = false;
+    }
+
+    private IEnumerator ShowSingleFeedback(FeedbackData feedback)
+    {
+        GameObject iconInstance = Instantiate(feedback.Prefab, iconSpawnPoint);
+        Image iconImage = iconInstance.GetComponentInChildren<Image>();
+        CanvasGroup canvasGroup = iconInstance.GetComponent<CanvasGroup>();
+        TextMeshProUGUI textComponent = iconInstance.GetComponentInChildren<TextMeshProUGUI>();
+
+        // Настройка элементов
+        iconImage.sprite = feedback.Icon;
+        if (textComponent != null)
+        {
+            textComponent.text = feedback.Text;
+            textComponent.color = feedback.TextColor;
+        }
+
+        // Звук
+        if (feedbackAudioSource != null && feedback.Sound != null)
+        {
+            feedbackAudioSource.PlayOneShot(feedback.Sound);
+        }
+
+        // Fade in
+        float elapsed = 0f;
+        while (elapsed < fadeDuration)
+        {
+            if (iconInstance == null) yield break;
+            canvasGroup.alpha = Mathf.Lerp(0, 1, elapsed / fadeDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(displayTime);
+
+        // Fade out
+        elapsed = 0f;
+        while (elapsed < fadeDuration)
+        {
+            if (iconInstance == null) yield break;
+            canvasGroup.alpha = Mathf.Lerp(1, 0, elapsed / fadeDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // Вызов callback и очистка
+        feedback.Callback?.Invoke();
+        // Уничтожаем иконку перед отправкой события
+        if (iconInstance != null)
+        {
+            Destroy(iconInstance);
+        }
+
+        // Проверяем, не уничтожен ли сам PlayerManager
+        if (this != null)
+        {
+            EventBus.RaiseEvent<IFeedbackSubscriber>(s =>
+            {
+                if (s != null && s is PlayerManager manager && manager == this)
+                {
+                    manager.OnFeedbackCompleted();
+                }
+            });
+        }
+
+        yield break;
+    }
+
+    void IFeedbackSubscriber.EnqueueFeedback(FeedbackData feedback)
+    {
+        feedbackQueue.Enqueue(feedback);
+
+        if (!isProcessingFeedback)
+        {
+            StartCoroutine(ProcessFeedbackQueue());
+        }
     }
 
     public enum PlayerAttributes

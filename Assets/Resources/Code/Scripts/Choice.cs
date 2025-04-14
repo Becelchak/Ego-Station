@@ -25,6 +25,7 @@ public class Choice : ScriptableObject
     [Range(0, 20)]
     [SerializeField] private double rewardAttribute = 0;
     private bool resultCheckAttribute;
+    //public bool ResultCheckAttribute => resultCheckAttribute;
 
     [Header("Next Phrase")]
     [SerializeField] private Phrase nextPhraseDefault;
@@ -46,7 +47,6 @@ public class Choice : ScriptableObject
     {
         if (isCheckingChoice)
         {
-            ChoiceAttributeCheck();
 
             if (resultCheckAttribute && nextPhraseSuccess != null)
                 return nextPhraseSuccess;
@@ -59,23 +59,23 @@ public class Choice : ScriptableObject
     /// <summary>
     /// Осуществляет проверку атрибута, закрепленного за Choice и фиксирует результат в переменной resultCheckAttribute
     /// </summary>
-    public void ChoiceAttributeCheck()
-    {
-        EventBus.RaiseEvent<IPlayerSubscriber>(h =>
-        {
-            resultCheckAttribute = h.CheckAttribute(checkAttribute, difficultCheckAttribute);
+    //public void ChoiceAttributeCheck()
+    //{
+    //    EventBus.RaiseEvent<IPlayerSubscriber>(h =>
+    //    {
+    //        resultCheckAttribute = h.CheckAttribute(checkAttribute, difficultCheckAttribute);
 
-            if (rewardAttribute > 0)
-                EventBus.RaiseEvent<IPlayerSubscriber>(h => h.AttributeUp(checkAttribute, rewardAttribute));
+    //        if (rewardAttribute > 0)
+    //            EventBus.RaiseEvent<IPlayerSubscriber>(h => h.AttributeUp(checkAttribute, rewardAttribute));
 
-            Debug.Log($"Проверка{checkAttribute} выдала {resultCheckAttribute}");
-        });
-    }
+    //        Debug.Log($"Проверка{checkAttribute} выдала {resultCheckAttribute}");
+    //    });
+    //}
 
     /// <summary>
     /// Проверяет атрибут и возвращает результат проверки
     /// </summary>
-    public bool CheckAttributeBool ()
+    public bool ChoiceAttributeCheck()
     {
         if (!isCheckingChoice) return true;
 
@@ -87,6 +87,7 @@ public class Choice : ScriptableObject
                 h.AttributeUp(checkAttribute, rewardAttribute);
         });
 
+        Debug.Log($"Проверка{checkAttribute} выдала {resultCheckAttribute}");
         return resultCheckAttribute;
     }
 

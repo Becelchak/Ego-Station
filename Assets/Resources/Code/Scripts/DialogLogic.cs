@@ -14,10 +14,12 @@ public class DialogLogic : MonoBehaviour, IDialog
     private InputAction nextDialogStates;
 
     private Phrase currentPhrase;
-    private Queue<Phrase> dialogStack = new Queue<Phrase>();
+    private List<Phrase> dialogHistory = new List<Phrase>(); // Новый список для истории диалога
+    private int currentHistoryIndex = -1;
     private AudioSource audioSource;
     public bool IsContinuesDialog { get; private set; }
     protected bool isAdminAccsessEnable;
+    public bool IsAdminAccsessEnable => isAdminAccsessEnable;
 
     private void OnEnable()
     {
@@ -129,7 +131,18 @@ public class DialogLogic : MonoBehaviour, IDialog
         if (audioSource.clip != null)
             audioSource.Play();
 
-        dialogStack.Enqueue(currentPhrase);
+        // Добавляем фразу в историю только если это не повторный показ
+        if (currentHistoryIndex == -1 || dialogHistory[currentHistoryIndex] != currentPhrase)
+        {
+            // Если мы не в конце истории, удаляем все после текущего индекса
+            if (currentHistoryIndex < dialogHistory.Count - 1)
+            {
+                dialogHistory.RemoveRange(currentHistoryIndex + 1, dialogHistory.Count - currentHistoryIndex - 1);
+            }
+
+            dialogHistory.Add(currentPhrase);
+            currentHistoryIndex = dialogHistory.Count - 1;
+        }
     }
 
     /// <summary>
@@ -164,6 +177,22 @@ public class DialogLogic : MonoBehaviour, IDialog
         }
     }
 
+    public void GoToNextState()
+    {
+        if (currentHistoryIndex < dialogHistory.Count - 1)
+        {
+            currentHistoryIndex++;
+            currentPhrase = dialogHistory[currentHistoryIndex];
+            ShowCurrentPhrase();
+        }
+        else if (currentPhrase.NextPhrase != null)
+        {
+            currentPhrase = currentPhrase.NextPhrase;
+            ShowCurrentPhrase();
+        }
+    }
+
+
     /// <summary>
     /// Устанавливает текущую фразу и продолжает диалог с этой фразы.
     /// </summary>
@@ -181,7 +210,7 @@ public class DialogLogic : MonoBehaviour, IDialog
         currentPhrase = newPhrase;
 
         // Очищаем стек диалога, чтобы избежать путаницы при возврате к предыдущим состояниям
-        dialogStack.Clear();
+        //dialogStack.Clear();
 
         // Продолжаем диалог с новой фразы
         IsContinuesDialog = true;
@@ -219,9 +248,10 @@ public class DialogLogic : MonoBehaviour, IDialog
 
     public void ReturnToPreviousState()
     {
-        if (dialogStack.Count > 0)
+        if (dialogHistory.Count > 1 && currentHistoryIndex > 0)
         {
-            currentPhrase = dialogStack.Peek();
+            currentHistoryIndex--;
+            currentPhrase = dialogHistory[currentHistoryIndex];
             ShowCurrentPhrase();
         }
         else
@@ -241,7 +271,7 @@ public class DialogLogic : MonoBehaviour, IDialog
     {
         GetComponent<Collider2D>().enabled = false;
         IsContinuesDialog = false;
-        dialogStack.Clear();
+        //dialogStack.Clear();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -254,30 +284,32 @@ public class DialogLogic : MonoBehaviour, IDialog
         }
     }
 
-    void Update()
+       void Update()
     {
         if (dialogAction.WasPressedThisFrame() && IsContinuesDialog && !currentPhrase.IsChoise)
         {
             GoToNextPhrase();
         }
 
-        //Admin accses actions
-
+        //Admin access actions
         if (adminAccsessAction.WasPressedThisFrame() && IsContinuesDialog)
         {
             isAdminAccsessEnable = !isAdminAccsessEnable;
-            Debug.Log($"Admin accsess {isAdminAccsessEnable}");
+            Debug.Log($"Admin access {isAdminAccsessEnable}");
         }
 
-        if (isAdminAccsessEnable && IsContinuesDialog && previousDialogStates.WasPressedThisFrame())
+        if (isAdminAccsessEnable && IsContinuesDialog)
         {
-            Debug.Log($"Предыдущий граф диалога");
-            ReturnToPreviousState();
-        }
-        else if (isAdminAccsessEnable && IsContinuesDialog && nextDialogStates.WasPressedThisFrame())
-        {
-            Debug.Log($"Следующий граф диалога");
-            GoToNextPhrase();
+            if (previousDialogStates.WasPressedThisFrame())
+            {
+                Debug.Log("Предыдущий граф диалога");
+                ReturnToPreviousState();
+            }
+            else if (nextDialogStates.WasPressedThisFrame())
+            {
+                Debug.Log("Следующий граф диалога");
+                GoToNextState();
+            }
         }
     }
 }
