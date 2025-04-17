@@ -186,6 +186,8 @@ namespace Player
             moveNow = horizontalMove;
             rb.gravityScale = 1;
             playerAudioSource.clip = null;
+            var audioClip = Resources.Load<AudioClip>("Audio/Sound/SFX/Footsteps");
+            playerAudioSource.clip = audioClip;
 
             animator.SetBool("IsClimbing", false);
         }
