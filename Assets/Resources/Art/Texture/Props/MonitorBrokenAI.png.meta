@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 55b8acc3c4fb1f44d895d5899a2101fb
+guid: 610aefa7b87bb7543b7bab7e1d76f429
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2151490626426231808
-    second: MonitorMediumOn_0
+      213: -3677261771440243971
+    second: MonitorBrokenAI_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MonitorMediumOn_0
+      name: MonitorBrokenAI_0
       rect:
         serializedVersion: 2
         x: 1
-        y: 2
-        width: 510
+        y: 1
+        width: 1023
         height: 510
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0042842acae5422e0800000000000000
-      internalID: -2151490626426231808
+      spriteID: dfa3e2fd6edb7fcc0800000000000000
+      internalID: -3677261771440243971
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c5507f8a2bd05434f994c112366a2a84
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      MonitorMediumOn_0: -2151490626426231808
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

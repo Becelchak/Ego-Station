@@ -16,7 +16,7 @@ public class FightLogic : Logic
 
     private bool enemiIsAlive;
     private GameObject enemy;
-    //private InputAction attackAction;
+    private NPC enemyNPC;
 
     public TextMeshProUGUI keyDisplayText;
     public float reactionTime = 1f;
@@ -40,6 +40,9 @@ public class FightLogic : Logic
             enemies[0].transform.position = enemyPoint.position;
             enemy = enemies[0];
             enemiIsAlive = true;
+
+            enemyNPC = enemy.GetComponent<NPC>();
+            enemyNPC.isFighting = true;
         }
 
         if (isWaitingForInput && Input.anyKeyDown)
@@ -47,12 +50,20 @@ public class FightLogic : Logic
             if (Input.GetKeyDown(targetKey))
             {
                 Debug.Log("Правильно! Нажата клавиша: " + targetKey);
-                enemiIsAlive = false;
-                enemies.Remove(enemy);
-                Destroy(enemy);
-
-                StopAllCoroutines();
-
+                EventBus.RaiseEvent<INPCSubscriber>(h =>
+                {
+                    if (h.isFighting)
+                    {
+                        h.GetDamage(1);
+                    }
+                });
+                if (enemyNPC.isDead)
+                {
+                    enemiIsAlive = false;
+                    enemies.Remove(enemy);
+                    Destroy(enemy);
+                   
+                }
                 if (enemies.Count == 0)
                 {
                     panel.alpha = 0;
@@ -60,13 +71,20 @@ public class FightLogic : Logic
                     panel.blocksRaycasts = false;
                     this.enabled = false;
                 }
+                StopAllCoroutines();
                 StartCoroutine(StartQTE());
             }
             else
             {
                 StopAllCoroutines();
                 Debug.Log("Ошибка! Нужно было нажать: " + targetKey);
-                EventBus.RaiseEvent<IPlayerSubscriber>(h => h.GetDamage(15));
+                EventBus.RaiseEvent<INPCSubscriber>(h =>
+                {
+                    if(h.isFighting)
+                    {
+                        h.Attack(15);
+                    }
+                });
                 Debug.Log($"Здоровье равно {playerHP.Health}");
                 StartCoroutine(StartQTE());
             }
@@ -90,7 +108,13 @@ public class FightLogic : Logic
             if (isWaitingForInput)
             {
                 Debug.Log("Время вышло! Нужно было нажать: " + targetKey);
-                EventBus.RaiseEvent<IPlayerSubscriber>(h => h.GetDamage(15));
+                EventBus.RaiseEvent<INPCSubscriber>(h =>
+                {
+                    if (h.isFighting)
+                    {
+                        h.Attack(15);
+                    }
+                });
                 Debug.Log($"Здоровье равно {playerHP.Health}");
             }
         }

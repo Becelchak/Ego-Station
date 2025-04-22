@@ -5,6 +5,7 @@ using EventBusSystem;
 using Player;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour, IPlayerSubscriber, IFeedbackSubscriber
@@ -67,6 +68,8 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber, IFeedbackSubscrib
     }
     [Header("OtherParameters")]
     [SerializeField] private int health = 100;
+    [SerializeField] private AudioClip damageAudio;
+    private AudioSource audioSource;
 
     public int Health
     {
@@ -99,6 +102,8 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber, IFeedbackSubscrib
     {
         EventBus.Subscribe(this);
         moveController = GetComponent<MoveController>();
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         healbarImage = playerManagerCanvas.transform.GetChild(1).GetChild(1).GetComponent<Image>();
         bodyTextUI = playerManagerCanvas.transform.GetChild(2).GetComponentInChildren<TextMeshProUGUI>();
         mindTextUI = playerManagerCanvas.transform.GetChild(3).GetComponentInChildren<TextMeshProUGUI>();
@@ -145,8 +150,13 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber, IFeedbackSubscrib
 
     public void GetDamage(int damagePoints)
     {
+        animator.Play("GetDamage");
         Health -= damagePoints;
         healbarImage.fillAmount = Mathf.Clamp01(Health / 100f);
+
+        audioSource.Stop();
+        audioSource.clip = damageAudio;
+        audioSource.Play();
         Debug.Log($"{health}");
     }
 

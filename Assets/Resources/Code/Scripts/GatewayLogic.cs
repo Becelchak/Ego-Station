@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class GatewayLogic : MonoBehaviour, IGateway
+public class GatewayLogic : MonoBehaviour, IGateway, IGeneratorSubscriber
 {
     [SerializeField] private float timeToClose = 2f;
     [SerializeField] private WireMiniGame wireMiniGame;
@@ -12,6 +12,7 @@ public class GatewayLogic : MonoBehaviour, IGateway
     private Animator animator;
     [SerializeField] private bool _isBlockInteract;
     [SerializeField] private string interactionText = "Взаимодействовать";
+    [SerializeField] private bool isGeneratorSubscriber;
     public string InteractionText => interactionText;
     public event Action OnInteract;
 
@@ -24,6 +25,10 @@ public class GatewayLogic : MonoBehaviour, IGateway
     {
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
+        if (isGeneratorSubscriber) 
+        {
+            EventBus.Subscribe(this);
+        }
     }
     public void Interact()
     {
@@ -94,5 +99,10 @@ public class GatewayLogic : MonoBehaviour, IGateway
     public void BlockInteraction()
     {
         _isBlockInteract = true;
+    }
+
+    public void OnGeneratorActivated()
+    {
+        _isBlockInteract = false;
     }
 }

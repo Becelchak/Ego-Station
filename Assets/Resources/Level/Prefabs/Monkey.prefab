@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2224720373044863235}
   - component: {fileID: 2030559797133923725}
   - component: {fileID: 8296823618411028701}
+  - component: {fileID: 9044265251148617860}
   m_Layer: 0
   m_Name: Monkey
   m_TagString: NPC
@@ -130,6 +131,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &9044265251148617860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4715370867804487401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 442cd764d4cbf4b4e8aa426bf41d9487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 0
+  isDead: 0
 --- !u!1001 &5712454873459540581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,6 +156,34 @@ PrefabInstance:
     - target: {fileID: -8653719598885068355, guid: 67ac6e01c009b654eaf6cac278b83393, type: 3}
       propertyPath: m_Name
       value: Monkey
+      objectReference: {fileID: 0}
+    - target: {fileID: -7913065178444878776, guid: 67ac6e01c009b654eaf6cac278b83393, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.2754564
+      objectReference: {fileID: 0}
+    - target: {fileID: -7913065178444878776, guid: 67ac6e01c009b654eaf6cac278b83393, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0000029802322
+      objectReference: {fileID: 0}
+    - target: {fileID: -7913065178444878776, guid: 67ac6e01c009b654eaf6cac278b83393, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99828327
+      objectReference: {fileID: 0}
+    - target: {fileID: -7913065178444878776, guid: 67ac6e01c009b654eaf6cac278b83393, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7913065178444878776, guid: 67ac6e01c009b654eaf6cac278b83393, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7913065178444878776, guid: 67ac6e01c009b654eaf6cac278b83393, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.05857163
+      objectReference: {fileID: 0}
+    - target: {fileID: -7913065178444878776, guid: 67ac6e01c009b654eaf6cac278b83393, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -6.716
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 67ac6e01c009b654eaf6cac278b83393, type: 3}
       propertyPath: m_LocalPosition.x
@@ -198,6 +241,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arm_bone_1
       objectReference: {fileID: 0}
+    - target: {fileID: -1083693627282030595, guid: 67ac6e01c009b654eaf6cac278b83393, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.4165485
+      objectReference: {fileID: 0}
     - target: {fileID: 386791141387813222, guid: 67ac6e01c009b654eaf6cac278b83393, type: 3}
       propertyPath: m_Name
       value: head_bone
@@ -252,7 +299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4257508509235537429, guid: 67ac6e01c009b654eaf6cac278b83393, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.188
+      value: -1.1879997
       objectReference: {fileID: 0}
     - target: {fileID: 4257508509235537429, guid: 67ac6e01c009b654eaf6cac278b83393, type: 3}
       propertyPath: m_LocalPosition.y

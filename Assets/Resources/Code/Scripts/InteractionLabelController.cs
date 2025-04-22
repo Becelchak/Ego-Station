@@ -19,7 +19,9 @@ public class InteractionLabelController : MonoBehaviour
 
     private void Awake()
     {
-        currentLabel = Instantiate(labelPrefab, GameObject.Find("PlayerUI canvas").transform);
+        var playerUiCanvas = GameObject.Find("PlayerUI canvas");
+        currentLabel = Instantiate(labelPrefab, playerUiCanvas.transform);
+        currentLabel.transform.SetSiblingIndex(0);
         labelText = currentLabel.GetComponentInChildren<TextMeshProUGUI>();
         canvasGroup = currentLabel.GetComponent<CanvasGroup>();
         if (canvasGroup == null)

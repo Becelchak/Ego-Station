@@ -274,6 +274,11 @@ public class DialogLogic : MonoBehaviour, IDialog
         //dialogStack.Clear();
     }
 
+    public DialogData GetDialogData() 
+    {
+        return dialog;
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Dialog trigger");
@@ -284,7 +289,7 @@ public class DialogLogic : MonoBehaviour, IDialog
         }
     }
 
-       void Update()
+    void Update()
     {
         if (dialogAction.WasPressedThisFrame() && IsContinuesDialog && !currentPhrase.IsChoise)
         {

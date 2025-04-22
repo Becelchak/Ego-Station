@@ -1,5 +1,7 @@
 
 public interface INPCSubscriber : IGlobalSubscriber
 {
-    void Attack();
+    bool isFighting { get;}
+    void Attack(int damage);
+    void GetDamage(int damage);
 }
