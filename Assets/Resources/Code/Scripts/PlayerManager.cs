@@ -69,7 +69,7 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber, IFeedbackSubscrib
     [Header("OtherParameters")]
     [SerializeField] private int health = 100;
     [SerializeField] private AudioClip damageAudio;
-    private AudioSource audioSource;
+    private AudioSource otherAudioSource;
 
     public int Health
     {
@@ -103,7 +103,7 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber, IFeedbackSubscrib
         EventBus.Subscribe(this);
         moveController = GetComponent<MoveController>();
         animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
+        otherAudioSource = gameObject.transform.GetChild(0).GetComponent<AudioSource>();
         healbarImage = playerManagerCanvas.transform.GetChild(1).GetChild(1).GetComponent<Image>();
         bodyTextUI = playerManagerCanvas.transform.GetChild(2).GetComponentInChildren<TextMeshProUGUI>();
         mindTextUI = playerManagerCanvas.transform.GetChild(3).GetComponentInChildren<TextMeshProUGUI>();
@@ -154,9 +154,9 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber, IFeedbackSubscrib
         Health -= damagePoints;
         healbarImage.fillAmount = Mathf.Clamp01(Health / 100f);
 
-        audioSource.Stop();
-        audioSource.clip = damageAudio;
-        audioSource.Play();
+        otherAudioSource.Stop();
+        otherAudioSource.clip = damageAudio;
+        otherAudioSource.Play();
         Debug.Log($"{health}");
     }
 
@@ -394,6 +394,11 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber, IFeedbackSubscrib
         {
             StartCoroutine(ProcessFeedbackQueue());
         }
+    }
+
+    public void TeleportPlayer(Transform pointTeleport)
+    {
+        transform.position = pointTeleport.position;
     }
 
     public enum PlayerAttributes

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d41bd094ce61c384ebfbbd04d56c5cd1, type: 3}
+  m_Name: M_ph_4
+  m_EditorClassIdentifier: 
+  _characterName: Feels
+  _textPhrase: "\u041D\u0435 \u0431\u043E\u0439\u0441\u044F, \u044D\u0442\u043E \u0432\u0441\u0435\u0433\u043E
+    \u043B\u0438\u0448\u044C \u043C\u044B!"
+  _isChoise: 0
+  _choises: []
+  nextPhrase: {fileID: 11400000, guid: af6275067d9425349ad54b69278157fb, type: 2}
+  _dialogEvent: {fileID: 0}

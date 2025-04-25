@@ -8,11 +8,14 @@ public class UIEffectEvent : DialogEvent
     [SerializeField] private GameObject uiEffectPrefab;
     [SerializeField] private float effectDuration = 2f;
     [SerializeField] private bool destroyAfterDuration = true;
+    [SerializeField] private bool isDialogLogicOneUsed;
 
     private GameObject currentEffectInstance;
     private DialogLogic dialogLogic;
     private Coroutine effectCoroutine;
     private float remainingTime;
+
+    private PostUIEffectDialogActivate postUiEffectLogic;
 
     public override void Raise()
     {
@@ -24,15 +27,14 @@ public class UIEffectEvent : DialogEvent
 
         currentEffectInstance = Instantiate(uiEffectPrefab);
         currentEffectInstance.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+        postUiEffectLogic = currentEffectInstance.GetComponent<PostUIEffectDialogActivate>();
 
         if (dialogLogic != null)
         {
             effectCoroutine = dialogLogic.StartCoroutine(HandleEffect());
             EventBus.RaiseEvent<IPlayerSubscriber>(h => h.SetNewUIEffect(this));
-        }
-        else
-        {
-            Debug.LogError("DialogLogic не назначен!");
+            if (isDialogLogicOneUsed)
+                dialogLogic = null;
         }
     }
 
@@ -67,6 +69,11 @@ public class UIEffectEvent : DialogEvent
         {
             dialogLogic.GoToNextPhrase();
         }
+
+        if (postUiEffectLogic != null) 
+        {
+            postUiEffectLogic.RaiseLogic();
+        }
     }
 
     /// <summary>
@@ -77,7 +84,7 @@ public class UIEffectEvent : DialogEvent
         if (currentEffectInstance != null)
         {
             Destroy(currentEffectInstance);
-            if (effectCoroutine != null)
+            if (effectCoroutine != null && dialogLogic != null)
             {
                 dialogLogic.StopCoroutine(effectCoroutine);
             }

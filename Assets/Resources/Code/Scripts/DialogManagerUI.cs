@@ -67,12 +67,17 @@ public class DialogManagerUI : MonoBehaviour
                 var cellText = newCell.GetComponentInChildren<TextMeshProUGUI>();
                 string attributeText = choice.CheckAttributeText();
 
-                // Настраиваем цвет и стиль в зависимости от доступности
-                string styleTag = choice.IsAvailable ? "" : "<alpha=#55>";
-                string colorHex = GetAttributeColor(choice.CheckAttribute);
-                string coloredAttribute = $"<color={colorHex}>{attributeText}</color>";
+                if (choice.IsCheckingChoice)
+                {
+                    // Настраиваем цвет и стиль в зависимости от доступности
+                    string styleTag = choice.IsAvailable ? "" : "<alpha=#55>";
+                    string colorHex = GetAttributeColor(choice.CheckAttribute);
+                    string coloredAttribute = $"<color={colorHex}>{attributeText}</color>";
 
-                cellText.text = $"{styleTag}{coloredAttribute} {choice.Text}";
+                    cellText.text = $"{styleTag}{coloredAttribute} {choice.Text}";
+                }
+                else
+                    cellText.text = $"{choice.Text}";
 
                 var cellButton = newCell.GetComponent<Button>();
                 cellButton.interactable = choice.IsAvailable;

@@ -56,11 +56,13 @@ public class QTEMiniGameLogic : MonoBehaviour
         }
 
         Time.timeScale = 1f;
+        
 
         if (playerResponded)
         {
             successEvent?.Raise();
             Debug.Log("QTE Success!");
+            
         }
         else
         {
@@ -72,6 +74,12 @@ public class QTEMiniGameLogic : MonoBehaviour
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
         isQTEActive = false;
+        EndQTE();
+    }
+
+    public void EndQTE()
+    {
+        gameObject.SetActive(false);
     }
 
     private void Update()
@@ -80,7 +88,6 @@ public class QTEMiniGameLogic : MonoBehaviour
         {
             playerResponded = true;
             instructionText.text = "Success!";
-            fallingObject.GetComponent<SpriteRenderer>().color = Color.green;
         }
     }
 

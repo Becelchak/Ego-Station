@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requirements: []
   allPhrases: []
-  startPhrase: {fileID: 0}
+  startPhrase: {fileID: 11400000, guid: 3114fd9ba460f97408c6d158f10cc2c1, type: 2}

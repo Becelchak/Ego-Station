@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d41bd094ce61c384ebfbbd04d56c5cd1, type: 3}
+  m_Name: M_ph_5
+  m_EditorClassIdentifier: 
+  _characterName: Astro-9
+  _textPhrase: "\u0427\u0442\u043E \u0437\u0430 \u0433\u043E\u043B\u043E\u0441\u0430?
+    \u042F \u0441\u0445\u043E\u0436\u0443 \u0441 \u0443\u043C\u0430?!"
+  _isChoise: 0
+  _choises: []
+  nextPhrase: {fileID: 11400000, guid: 4678ad414dca48a4b99152f150d75a21, type: 2}
+  _dialogEvent: {fileID: 0}

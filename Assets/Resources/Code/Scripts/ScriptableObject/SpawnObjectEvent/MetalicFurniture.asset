@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e242756a4e92de643a4225a05d78eedc, type: 3}
+  m_Name: MetalicFurniture
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 6061324794957252685, guid: f64f821a64a9d8c4d8efd8d259ed5c05, type: 3}
+  spawnTarget: Point_reserve_spawn_QTE_

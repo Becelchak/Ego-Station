@@ -6,6 +6,7 @@ public class SpawnExplosion : DialogEvent
 {
     [SerializeField] private GameObject explosion;
     [SerializeField] private string spawnTarget;
+    private DialogLogic dialog;
     public override void Raise()
     {
         var newExplosion = Instantiate(explosion);
@@ -15,6 +16,6 @@ public class SpawnExplosion : DialogEvent
 
     public override void SetDialogLogic(DialogLogic logic)
     {
-
+        dialog = logic;
     }
 }

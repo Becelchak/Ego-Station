@@ -156,6 +156,15 @@ public class DialogLogic : MonoBehaviour, IDialog
             return;
         }
 
+        if (currentPhrase.DialogEvent != null && currentPhrase.NextPhrase != null)
+        {
+            if (currentPhrase.DialogEvent is DialogEvent Event)
+            {
+                Event.SetDialogLogic(this);
+            }
+            currentPhrase.DialogEvent.Raise();
+        }
+
         if (currentPhrase.NextPhrase != null)
         {
             currentPhrase = currentPhrase.NextPhrase;
@@ -163,7 +172,7 @@ public class DialogLogic : MonoBehaviour, IDialog
         }
         else if (currentPhrase.DialogEvent != null)
         {
-            // Set DialogLogic for FindInTableMiniGame Event
+            // Set DialogLogic for  DialogEvent
             if (currentPhrase.DialogEvent is DialogEvent Event)
             {
                 Event.SetDialogLogic(this);

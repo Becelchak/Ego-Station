@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 267307d1945e29d45b87b4e7fd854361
+guid: 1fc75f9f85ab4ae4b9be87cf0daab43f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -187722763005636046
-    second: Console-panel_0
+      213: -3826845409251182802
+    second: Medkit_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Console-panel_0
+      name: Medkit_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1344
-        height: 768
+        width: 729
+        height: 618
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2325bc24423156df0800000000000000
-      internalID: -187722763005636046
+      spriteID: e27bf33306054eac0800000000000000
+      internalID: -3826845409251182802
       vertices: []
       indices: 
       edges: []

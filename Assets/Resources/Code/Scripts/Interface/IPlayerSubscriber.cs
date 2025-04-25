@@ -9,4 +9,6 @@ public interface IPlayerSubscriber : IGlobalSubscriber
 
     void SetNewUIEffect(UIEffectEvent newEffect);
     void RemoveUIEffect();
+
+    void TeleportPlayer(Transform pointTeleport);
 }
