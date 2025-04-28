@@ -23,4 +23,4 @@ MonoBehaviour:
   rewardAttribute: 2
   nextPhraseDefault: {fileID: 0}
   nextPhraseSuccess: {fileID: 11400000, guid: fead416329d685843a91b6eba6199b6e, type: 2}
-  nextPhraseFailed: {fileID: 0}
+  nextPhraseFailed: {fileID: 11400000, guid: ab73b645f6b985b46be00b569d4ac0a2, type: 2}

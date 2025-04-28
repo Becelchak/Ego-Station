@@ -11,4 +11,6 @@ public interface IPlayerSubscriber : IGlobalSubscriber
     void RemoveUIEffect();
 
     void TeleportPlayer(Transform pointTeleport);
+
+    void GetHealth(int healthPoints);
 }

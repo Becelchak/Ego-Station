@@ -33,6 +33,13 @@ public class InteractionLabelController : MonoBehaviour
 
     public void ShowLabel(IInteractive interactive, Vector3 worldPosition)
     {
+
+        if (interactive == null || (interactive is MonoBehaviour mb && mb == null))
+        {
+            HideLabel();
+            return;
+        }
+
         Debug.Log($"{interactive.isBlockInteract}");
         if (interactive.isBlockInteract) return;
 
@@ -67,6 +74,13 @@ public class InteractionLabelController : MonoBehaviour
 
     private void Update()
     {
+        if (currentTarget != null && currentTarget is MonoBehaviour mb && mb == null)
+        {
+            currentTarget = null;
+            HideLabel();
+            return;
+        }
+
         // Обработка анимаций
         if (isFadingIn)
         {
@@ -98,7 +112,10 @@ public class InteractionLabelController : MonoBehaviour
         // Обновление позиции
         if (currentTarget != null && canvasGroup.alpha > 0)
         {
-            UpdatePosition(currentTarget is MonoBehaviour mb ? mb.transform.position : Vector3.zero);
+            Vector3 position = (currentTarget is MonoBehaviour behaviour) ?
+                (behaviour != null ? behaviour.transform.position : Vector3.zero) :
+                Vector3.zero;
+            UpdatePosition(position);
         }
     }
 

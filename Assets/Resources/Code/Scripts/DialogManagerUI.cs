@@ -50,7 +50,6 @@ public class DialogManagerUI : MonoBehaviour
         }
         if (dialogText.IsChoise)
         {
-            //_lastChoicePhrase = dialogText; // Запоминаем фразу с выбором
             dialogTextWithChoices.text = dialogText.TextPhrase;
             dialogTextWithChoices.gameObject.SetActive(true);
             dialogTextNoChoices.gameObject.SetActive(false);

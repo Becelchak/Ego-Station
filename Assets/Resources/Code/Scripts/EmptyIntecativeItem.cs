@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class EmptyIntecativeItem : MonoBehaviour, IInteractive
 {
-    private bool _isBlockInteractive;
+    [SerializeField] private bool _isBlockInteractive;
     public bool isBlockInteract { get => _isBlockInteractive; set => _isBlockInteractive = value; }
 
     [SerializeField] public string InteractionText => "Взаимодействие";
+    [SerializeField] public bool needBlockAfterUse;
 
     public event Action OnInteract;
 
@@ -20,6 +21,8 @@ public class EmptyIntecativeItem : MonoBehaviour, IInteractive
     {
         OnInteract?.Invoke();
         //Nothing
+        if (needBlockAfterUse)
+            BlockInteraction();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -32,7 +35,7 @@ public class EmptyIntecativeItem : MonoBehaviour, IInteractive
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && collision.name == "Player")
+        if (collision.CompareTag("Player") && collision.name == "Player" && !_isBlockInteractive)
         {
             EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(this));
         }

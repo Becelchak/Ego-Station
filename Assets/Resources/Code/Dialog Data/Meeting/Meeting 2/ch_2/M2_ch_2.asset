@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd4df49660e41004b806c42cec1d95a6, type: 3}
+  m_Name: M2_ch_2
+  m_EditorClassIdentifier: 
+  text: "\u0421\u043F\u0435\u0442\u044C \u0448\u043B\u044E\u0437\u0443 \u043F\u0435\u0441\u0435\u043D\u043A\u0443"
+  dialogEventDefault: {fileID: 0}
+  dialogEventSuccess: {fileID: 0}
+  dialogEventFailed: {fileID: 0}
+  isCheckingChoice: 1
+  checkAttribute: 2
+  difficultCheckAttribute: 4
+  rewardAttribute: 2
+  nextPhraseDefault: {fileID: 0}
+  nextPhraseSuccess: {fileID: 11400000, guid: 45a2d1c0e11a679438ef6a831647d51e, type: 2}
+  nextPhraseFailed: {fileID: 11400000, guid: 9c4144f4436e1b640be23fcf9ad49af9, type: 2}

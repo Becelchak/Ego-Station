@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d41bd094ce61c384ebfbbd04d56c5cd1, type: 3}
+  m_Name: mk_ph_1_1_1
+  m_EditorClassIdentifier: 
+  _characterName: Body
+  _textPhrase: "\u042D\u0439! \u042F \u0432\u043E\u043E\u0431\u0449\u0435-\u0442\u043E
+    \u0432\u0441\u0435 \u0441\u043B\u044B\u0448\u0443."
+  _isChoise: 0
+  _choises: []
+  nextPhrase: {fileID: 0}
+  _dialogEvent: {fileID: 11400000, guid: 0e9f6899c819d2841a94375ffd5af80b, type: 2}

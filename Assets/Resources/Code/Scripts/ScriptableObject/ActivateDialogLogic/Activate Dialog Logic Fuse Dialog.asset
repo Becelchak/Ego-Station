@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cfe3c89947f1b6409db09c774a5c01d, type: 3}
   m_Name: Activate Dialog Logic Fuse Dialog
   m_EditorClassIdentifier: 
-  dialogLogic: DialogTrigger_HaveEnoughFuse_Shuttle
+  dialogLogicName: DialogTrigger_HaveEnoughFuse_Shuttle

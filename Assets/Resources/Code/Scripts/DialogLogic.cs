@@ -293,7 +293,14 @@ public class DialogLogic : MonoBehaviour, IDialog
         Debug.Log("Dialog trigger");
         if (other.tag == "Player")
         {
-            IsContinuesDialog = true;
+            StartDialog();
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "Player" && !IsContinuesDialog)
+        {
             StartDialog();
         }
     }

@@ -81,6 +81,10 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber, IFeedbackSubscrib
             {
                 Die();
             }
+            else if (health > 100) 
+            {
+                health = 100;
+            }
         }
     }
 
@@ -157,6 +161,14 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber, IFeedbackSubscrib
         otherAudioSource.Stop();
         otherAudioSource.clip = damageAudio;
         otherAudioSource.Play();
+        Debug.Log($"{health}");
+    }
+
+    public void GetHealth(int healthPoints)
+    {
+        Health += healthPoints;
+        healbarImage.fillAmount = Mathf.Clamp01(Health / 100f);
+
         Debug.Log($"{health}");
     }
 

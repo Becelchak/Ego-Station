@@ -12,7 +12,7 @@ public class FindItemLogic : MonoBehaviour, IInteractive
     [SerializeField] private GameObject backgroundPrefab;
     [SerializeField] private string interactionText = "Взаимодействовать";
     public string InteractionText => interactionText;
-    private bool _isBlockInteract;
+    [SerializeField] private bool _isBlockInteract;
     private bool isPlayerInZone = false;
 
     public event Action OnInteract;
@@ -42,7 +42,7 @@ public class FindItemLogic : MonoBehaviour, IInteractive
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && other.gameObject.name == "Player")
+        if (other.CompareTag("Player") && other.gameObject.name == "Player" && !_isBlockInteract)
         {
             EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(this));
             StartMiniGame();
