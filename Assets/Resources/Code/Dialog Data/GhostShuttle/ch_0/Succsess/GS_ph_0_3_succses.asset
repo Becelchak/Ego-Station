@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d41bd094ce61c384ebfbbd04d56c5cd1, type: 3}
+  m_Name: GS_ph_0_3_succses
+  m_EditorClassIdentifier: 
+  _characterName: Astro-9
+  _textPhrase: 
+  _isChoise: 1
+  _choises:
+  - {fileID: 11400000, guid: a4f368d270342434782b57803728ec06, type: 2}
+  - {fileID: 11400000, guid: 01952e23565a016419b3ddca45cb4d67, type: 2}
+  nextPhrase: {fileID: 0}
+  _dialogEvent: {fileID: 0}

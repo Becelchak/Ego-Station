@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ch_1
   m_EditorClassIdentifier: 
   text: "\u041F\u0440\u043E\u0439\u0442\u0438 \u043C\u0438\u043C\u043E"
-  dialogEventDefault: {fileID: 11400000, guid: fb5f024a9651f684d83f7ff9a8609376, type: 2}
+  dialogEventDefault: {fileID: 0}
   dialogEventSuccess: {fileID: 0}
   dialogEventFailed: {fileID: 0}
   isCheckingChoice: 0

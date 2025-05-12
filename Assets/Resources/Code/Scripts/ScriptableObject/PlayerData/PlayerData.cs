@@ -45,7 +45,6 @@ public class PlayerData : ScriptableObject
         itemQuantities.Clear();
     }
 
-    // Метод для отображения предметов в инспекторе
     public void DisplayItems()
     {
         foreach (var item in itemQuantities)

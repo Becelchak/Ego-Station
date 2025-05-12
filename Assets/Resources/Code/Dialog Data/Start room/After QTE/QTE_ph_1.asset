@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterName: Nobody
   _textPhrase: "<\u0421\u043A\u0440\u0438\u043F>"
+  _hintText: 
   _isChoise: 0
   _choises: []
   nextPhrase: {fileID: 0}
-  _dialogEvent: {fileID: 0}
+  _dialogEvent: {fileID: 11400000, guid: 7f6b5e2594f35504593905d4a981857a, type: 2}

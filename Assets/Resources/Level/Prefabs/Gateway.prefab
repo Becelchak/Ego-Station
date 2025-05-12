@@ -105,6 +105,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToClose: 2
+  wireMiniGame: {fileID: 0}
+  _isBlockInteract: 0
+  interactionText: "\u0412\u0437\u0430\u0438\u043C\u043E\u0434\u0435\u0439\u0441\u0442\u0432\u043E\u0432\u0430\u0442\u044C"
+  isGeneratorSubscriber: 0
 --- !u!61 &2659023774037111153
 BoxCollider2D:
   m_ObjectHideFlags: 0

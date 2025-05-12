@@ -2,8 +2,11 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using TMPro;
+using EventBusSystem;
+using NUnit.Framework;
+using System.Collections.Generic;
 
-public class QTEMiniGameLogic : MonoBehaviour
+public class QTEMiniGameLogic : MonoBehaviour, IQTEFinishSubscriber
 {
     [SerializeField] private float reactionTime = 1.5f;
     [SerializeField] private GameObject QTECanvas;
@@ -15,11 +18,21 @@ public class QTEMiniGameLogic : MonoBehaviour
     private GameObject fallingObject;
 
     [Header("Events")]
-    [SerializeField] private DialogEvent successEvent;
+    [SerializeField] private List<DialogEvent> successEvents;
     [SerializeField] private DialogEvent failEvent;
 
     private bool isQTEActive = false;
     private bool playerResponded = false;
+
+    private void OnEnable()
+    {
+        EventBus.Subscribe(this);
+    }
+
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe(this);
+    }
 
     public void Initialize()
     {
@@ -55,30 +68,26 @@ public class QTEMiniGameLogic : MonoBehaviour
             yield return null;
         }
 
-        Time.timeScale = 1f;
-        
-
         if (playerResponded)
         {
-            successEvent?.Raise();
+            foreach (var Event in successEvents)
+            {
+                Event?.Raise();
+            }
             Debug.Log("QTE Success!");
-            
+            OnQTEFinished(true);
         }
         else
         {
             failEvent?.Raise();
             Debug.Log("QTE Failed!");
+            EndQTE();
         }
-
-        canvasGroup.alpha = 0.0f;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-        isQTEActive = false;
-        EndQTE();
     }
 
     public void EndQTE()
     {
+        Time.timeScale = 1f;
         gameObject.SetActive(false);
     }
 
@@ -97,5 +106,17 @@ public class QTEMiniGameLogic : MonoBehaviour
         {
             Initialize();
         }
+    }
+
+    public void OnQTEFinished(bool success)
+    {
+
+        var canvasGroup = QTECanvas.GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0.0f;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        isQTEActive = false;
+
+        EndQTE();
     }
 }

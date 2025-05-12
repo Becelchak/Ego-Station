@@ -8,29 +8,33 @@ namespace Player
     public class MoveController : MonoBehaviour, IMoveControllerSubscriber
     {
         [SerializeField] private Transform feetTrigger;
-
         [SerializeField] private float speed;
+        [SerializeField] private InteractionLabelController labelController;
+        [SerializeField] private AudioClip walkingSound;
+        [SerializeField] private AudioClip ladderSound;
+
+        InputAction moveNow = new InputAction();
+        InputAction horizontalMove;
+        InputAction ladderMove;
         Animator animator;
         Rigidbody2D rb;
         Vector3 moveDirection;
         LookDirection lookDirection = LookDirection.Left;
         IInteractive interactiveObject;
-        [SerializeField] private InteractionLabelController labelController;
-
-        InputAction moveNow = new InputAction();
-        InputAction horizontalMove;
-        InputAction ladderMove;
 
         InputAction interact;
-        bool isGrounded;
+        //bool isGrounded;
         bool isFreezed;
         private bool isOnLadder;
-
         private AudioSource playerAudioSource;
+        private bool wasMoving;
+
+        
         void Start()
         {
             animator = GetComponent<Animator>();
             rb = GetComponent<Rigidbody2D>();
+            playerAudioSource = GetComponent<AudioSource>();
             horizontalMove = InputSystem.actions.FindAction("MoveZBack");
             ladderMove = InputSystem.actions.FindAction("LadderMove");
             interact = InputSystem.actions.FindAction("Interact");
@@ -41,47 +45,63 @@ namespace Player
             ladderMove.canceled += OnMoveCanceled;
 
             moveNow = horizontalMove;
-            playerAudioSource = GetComponent<AudioSource>();
+
+            if (walkingSound == null)
+                walkingSound = Resources.Load<AudioClip>("Audio/Sound/SFX/Footsteps");
+            if (ladderSound == null)
+                ladderSound = Resources.Load<AudioClip>("Audio/Sound/SFX/Metalic_ladder_move");
         }
 
         private void OnDestroy()
         {
             moveNow.performed -= OnMovePerformed;
             moveNow.canceled -= OnMoveCanceled;
+            ladderMove.performed -= OnMovePerformed;
+            ladderMove.canceled -= OnMoveCanceled;
         }
 
         private void OnMovePerformed(InputAction.CallbackContext context)
         {
-            if (!isFreezed)
+            if (isFreezed) return;
+
+            animator.SetBool("IsMoving", true);
+            if (isOnLadder)
             {
-                playerAudioSource.Play();
-                animator.SetBool("IsMoving", true);
-                if (isOnLadder)
-                {
-                    animator.SetBool("IsClimbing", true);
-                    animator.CrossFade("Climb", 0.25f, -1, 0f, 0.5f);
-                }
-                else
-                {
-                    animator.SetBool("IsClimbing", false);
-                    animator.Play("Move", -1, 0f);
-                }    
-                    
+                animator.SetBool("IsClimbing", true);
+                animator.CrossFade("Climb", 0.25f, -1, 0f, 0.5f);
+                PlayMovementSound(ladderSound);
+            }
+            else
+            {
+                animator.SetBool("IsClimbing", false);
+                animator.Play("Move", -1, 0f);
+                PlayMovementSound(walkingSound);
             }
 
+        }
+
+        private void PlayMovementSound(AudioClip clip)
+        {
+            if (playerAudioSource.isPlaying && playerAudioSource.clip == clip)
+                return;
+
+            playerAudioSource.clip = clip;
+            playerAudioSource.Play();
         }
 
         private void OnMoveCanceled(InputAction.CallbackContext context)
         {
             animator.SetBool("IsMoving", false);
             playerAudioSource.Stop();
-            //animator.SetBool("IsClimbing", false);
+
             if (isOnLadder)
             {
                 animator.Play("ClimbIdle", -1, 0f);
             }
             else
+            {
                 animator.Play("Idle", -1, 0f);
+            }
         }
 
         private void OnEnable()
@@ -174,9 +194,8 @@ namespace Player
             isOnLadder = true;
             moveNow = ladderMove;
             rb.gravityScale = 0;
-            var audioClip = Resources.Load<AudioClip>("Audio/Sound/SFX/Metalic_ladder_move");
-            playerAudioSource.clip = audioClip;
-
+            playerAudioSource.Stop();
+            PlayMovementSound(ladderSound);
             animator.SetBool("IsClimbing", true);
         }
 
@@ -185,10 +204,8 @@ namespace Player
             isOnLadder = false;
             moveNow = horizontalMove;
             rb.gravityScale = 1;
-            playerAudioSource.clip = null;
-            var audioClip = Resources.Load<AudioClip>("Audio/Sound/SFX/Footsteps");
-            playerAudioSource.clip = audioClip;
-
+            playerAudioSource.Stop();
+            PlayMovementSound(walkingSound);
             animator.SetBool("IsClimbing", false);
         }
 

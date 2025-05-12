@@ -12,13 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41bd094ce61c384ebfbbd04d56c5cd1, type: 3}
   m_Name: CofM_ph_0_0
   m_EditorClassIdentifier: 
-  _characterName: Feels
-  _textPhrase: "\u041D\u0430\u0441 \u043E\u0442\u0440\u0430\u0432\u0438\u043B\u0438!
-    \u041D\u0443\u0436\u043D\u043E \u0441\u0440\u043E\u0447\u043D\u043E \u0447\u0442\u043E-\u0442\u043E
-    \u0434\u0435\u043B\u0430\u0442\u044C, \u0441\u043A\u043E\u0440\u0435\u0435! \u0414\u0430\u0432\u0430\u0439,
-    \u043C\u043E\u0436\u0435\u0442 \u044D\u0442\u0430 \u043C\u0430\u0448\u0438\u043D\u0430
-    \u0441\u043C\u043E\u0436\u0435\u0442 \u0434\u0430\u0442\u044C \u043D\u0430\u043C
-    \u043F\u0440\u043E\u0442\u0438\u0432\u043E\u044F\u0434\u0438\u0435?"
+  _characterName: Body
+  _textPhrase: "\u0427\u0442\u043E \u044D\u0442\u043E \u0431\u044B\u043B\u043E?!
+    \u041D\u0430\u043C \u043F\u043B\u043E\u0445\u043E!"
   _isChoise: 0
   _choises: []
   nextPhrase: {fileID: 11400000, guid: ac86eb77e8d04f64780f93a2c7f9e065, type: 2}

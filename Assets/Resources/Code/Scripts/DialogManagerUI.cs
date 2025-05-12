@@ -13,6 +13,9 @@ public class DialogManagerUI : MonoBehaviour
     [SerializeField] private GameObject choiseCell;
     [SerializeField] private GameObject canvasChoices;
     [SerializeField] private TextMeshProUGUI characterName;
+    [SerializeField] private GameObject hintPanel;
+    [SerializeField] private TextMeshProUGUI hintText;
+    [SerializeField] private float hintDisplayTime = 3f;
 
     private CanvasGroup dialogUICanvasGroup;
     private DialogLogic dialogLogic;
@@ -33,7 +36,6 @@ public class DialogManagerUI : MonoBehaviour
         dialogUICanvasGroup.alpha = 1;
         dialogUICanvasGroup.interactable = true;
         dialogUICanvasGroup.blocksRaycasts = true;
-
 
         characterImage.sprite = character.GetSprite();
         if(character.GetName() != "")
@@ -93,6 +95,18 @@ public class DialogManagerUI : MonoBehaviour
             canvasChoices.gameObject.SetActive(false);
         }
 
+    }
+    public void ShowHint(string hint)
+    {
+        if (string.IsNullOrEmpty(hint)) return;
+
+        hintText.text = hint;
+        hintPanel.SetActive(true);
+    }
+
+    public void HideHint()
+    {
+        hintPanel.SetActive(false);
     }
 
     private string GetAttributeColor(PlayerAttributes attribute)

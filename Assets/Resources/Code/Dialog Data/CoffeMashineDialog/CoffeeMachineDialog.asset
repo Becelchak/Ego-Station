@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e0dee45bfbd7a46bf1e01beeef7722, type: 3}
   m_Name: CoffeeMachineDialog
   m_EditorClassIdentifier: 
+  requirements: []
   allPhrases: []
-  startPhrase: {fileID: 11400000, guid: abc78c1fc3e5e33488128961e761d082, type: 2}
+  startPhrase: {fileID: 11400000, guid: be8cb39373166714e97f1f4e2f97aca9, type: 2}

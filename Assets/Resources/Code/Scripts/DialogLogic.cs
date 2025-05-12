@@ -14,12 +14,13 @@ public class DialogLogic : MonoBehaviour, IDialog
     private InputAction nextDialogStates;
 
     private Phrase currentPhrase;
-    private List<Phrase> dialogHistory = new List<Phrase>(); // Новый список для истории диалога
+    private List<Phrase> dialogHistory = new List<Phrase>();
     private int currentHistoryIndex = -1;
     private AudioSource audioSource;
     public bool IsContinuesDialog { get; private set; }
     protected bool isAdminAccsessEnable;
     public bool IsAdminAccsessEnable => isAdminAccsessEnable;
+    private bool hintDisplayed = false;
 
     private void OnEnable()
     {
@@ -123,6 +124,15 @@ public class DialogLogic : MonoBehaviour, IDialog
             return;
         }
 
+        if (currentPhrase.HasHint)
+            ShowHint();
+        else
+        {
+            dialogUI.HideHint();
+            hintDisplayed = false;
+        }
+            
+
         var character = characters[currentPhrase.CharacterName];
         dialogUI.PrepareDialogPanel(character, currentPhrase);
         audioSource.Stop();
@@ -150,6 +160,7 @@ public class DialogLogic : MonoBehaviour, IDialog
     /// </summary>
     public void GoToNextPhrase()
     {
+        hintDisplayed = false;
         if (currentPhrase == null)
         {
             EndDialog();
@@ -218,9 +229,6 @@ public class DialogLogic : MonoBehaviour, IDialog
         // Обновляем текущую фразу
         currentPhrase = newPhrase;
 
-        // Очищаем стек диалога, чтобы избежать путаницы при возврате к предыдущим состояниям
-        //dialogStack.Clear();
-
         // Продолжаем диалог с новой фразы
         IsContinuesDialog = true;
         ShowCurrentPhrase();
@@ -286,6 +294,17 @@ public class DialogLogic : MonoBehaviour, IDialog
     public DialogData GetDialogData() 
     {
         return dialog;
+    }
+
+    private void ShowHint()
+    {
+        if (currentPhrase.HintText == null) return;
+
+        dialogUI.ShowHint(currentPhrase.HintText);
+        hintDisplayed = true;
+
+        // Можно добавить звук или анимацию
+        Debug.Log($"Показана подсказка: {currentPhrase.HintText}");
     }
 
     void OnTriggerEnter2D(Collider2D other)

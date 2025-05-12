@@ -20,9 +20,9 @@ MonoBehaviour:
   clutterPrefabs:
   - {fileID: 6695074887938709235, guid: 3095b0a09e85d084ca26bfaf4c824cdc, type: 3}
   - {fileID: 7342680224609133931, guid: d0d106fca04878e409b63dea71b4ba22, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7721656985751938046, guid: 390ebecb7f6445647972abb4aa056701, type: 3}
+  - {fileID: 7383218137955683172, guid: 598c169f8a6a4e3458b1b658480376e9, type: 3}
+  - {fileID: 5555776642151264359, guid: 6e996cc0162c69947a6d578883ce347a, type: 3}
   - {fileID: 0}
   background: {fileID: 2340153062136258802, guid: b02d22559cc88964b9652abb405bdb65, type: 3}
   rewardItemId: MedkitCabinetKey

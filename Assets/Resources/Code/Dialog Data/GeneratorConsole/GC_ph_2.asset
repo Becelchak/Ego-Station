@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: GC_ph_2
   m_EditorClassIdentifier: 
   _characterName: Astro-9
-  _textPhrase: "\u0410\u0419! \u041A\u0442\u043E designs \u044D\u0442\u0438 \u0438\u043D\u0442\u0435\u0440\u0444\u0435\u0439\u0441\u044B?!"
+  _textPhrase: "\u0410\u0419! \u041A\u0442\u043E \u043F\u0440\u043E\u0435\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043B
+    \u044D\u0442\u0438 \u0438\u043D\u0442\u0435\u0440\u0444\u0435\u0439\u0441\u044B?!"
+  _hintText: 
   _isChoise: 0
   _choises: []
   nextPhrase: {fileID: 0}

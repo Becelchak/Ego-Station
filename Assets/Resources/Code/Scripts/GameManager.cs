@@ -54,18 +54,16 @@ public class GameManager : MonoBehaviour
 
     public void EndingInitialization(PlayerManager playerManager)
     {
-        // Инициализируем переменные для хранения максимального значения и имени атрибута
+
         var maxAttribute = PlayerAttributes.Body;
         double maxValue = playerManager.BodyAttribute;
 
-        // Сравниваем с MindAttribute
         if (playerManager.MindAttribute > maxValue)
         {
             maxValue = playerManager.MindAttribute;
             maxAttribute = PlayerAttributes.Mind;
         }
 
-        // Сравниваем с FeelsAttribute
         if (playerManager.FeelsAttribute > maxValue)
         {
             maxValue = playerManager.FeelsAttribute;

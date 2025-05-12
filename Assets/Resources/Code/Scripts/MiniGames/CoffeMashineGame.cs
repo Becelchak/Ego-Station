@@ -1,9 +1,17 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CoffeMashineGame : MiniGame
 {
     [SerializeField] PlayerManager playerManager;
+    [SerializeField] private Phrase succsessPhrase;
+    [SerializeField] private Phrase failPhrase;
+    [SerializeField] private DialogLogic dialog;
+
+    [Header("UI Settings")]
+    [SerializeField] private TMP_Text selectionStatusText;
+    [SerializeField] private string selectionFormat = "Выбрано: {0}/3";
     private Stack<Ingredient> ingredientStuck = new Stack<Ingredient>();
 
     public delegate void OnUIEffectEnd(bool success);
@@ -19,6 +27,7 @@ public class CoffeMashineGame : MiniGame
 
         Debug.Log("Ингредиент добавлен!");
         ingredientStuck.Push(ingredient);
+        UpdateUI();
     }
 
     public void RemoveItemFromStuck()
@@ -26,10 +35,17 @@ public class CoffeMashineGame : MiniGame
         if (ingredientStuck.Count > 0)
             ingredientStuck.Pop();
         Debug.Log($"Всего ингредиентов {ingredientStuck.Count}");
+        UpdateUI();
     }
 
+    public void UpdateUI()
+    {
+        selectionStatusText.text = string.Format(selectionFormat, ingredientStuck.Count);
+    }
     public void CheckRightCombination()
     {
+        var canvasGroup = GetComponent<CanvasGroup>();
+
         if (ingredientStuck.Contains(Ingredient.Bone) &&
             ingredientStuck.Contains(Ingredient.Shrimp) &&
             ingredientStuck.Contains(Ingredient.Granat))
@@ -38,18 +54,25 @@ public class CoffeMashineGame : MiniGame
             UIEffectEnd?.Invoke(true);
             Debug.Log("Успешно сварено кофе!");
             
-            var canvasGroup = GetComponent<CanvasGroup>();
-            canvasGroup.alpha = 0.0f;
-            canvasGroup.interactable = false;
-            canvasGroup.blocksRaycasts = false;
+
+            dialog.SetCurrentPhrase(succsessPhrase);
+            dialog.ShowCurrentPhrase();
         }
         else
         {
             playerManager.UpdateUIEffect(10);
             Debug.Log("Успешно сварена отрава!");
+            dialog.SetCurrentPhrase(failPhrase);
+            dialog.ShowCurrentPhrase();
+            
         }
 
+        canvasGroup.alpha = 0.0f;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
         ingredientStuck.Clear();
+
+        UpdateUI();
     }
 
     public void OnBoneButtonClicked()

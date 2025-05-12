@@ -42,7 +42,7 @@ public class FindItemLogic : MonoBehaviour, IInteractive
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && other.gameObject.name == "Player" && !_isBlockInteract)
+        if (other.CompareTag("Player") && other.gameObject.name == "Player")
         {
             EventBus.RaiseEvent<IMoveControllerSubscriber>(h => h.SetNewInteractiveObject(this));
             StartMiniGame();

@@ -334,10 +334,11 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber, IFeedbackSubscrib
 
     private IEnumerator ShowSingleFeedback(FeedbackData feedback)
     {
-        GameObject iconInstance = Instantiate(feedback.Prefab, iconSpawnPoint);
-        Image iconImage = iconInstance.GetComponentInChildren<Image>();
-        CanvasGroup canvasGroup = iconInstance.GetComponent<CanvasGroup>();
-        TextMeshProUGUI textComponent = iconInstance.GetComponentInChildren<TextMeshProUGUI>();
+        var iconInstance = Instantiate(feedback.Prefab, iconSpawnPoint);
+        var iconImage = iconInstance.GetComponentInChildren<Image>();
+        var canvasGroup = iconInstance.GetComponent<CanvasGroup>();
+        var textComponent = iconInstance.GetComponentInChildren<TextMeshProUGUI>();
+        feedbackAudioSource = iconInstance.GetComponentInChildren<AudioSource>();
 
         // Настройка элементов
         iconImage.sprite = feedback.Icon;

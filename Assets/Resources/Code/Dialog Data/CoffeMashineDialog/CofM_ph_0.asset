@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41bd094ce61c384ebfbbd04d56c5cd1, type: 3}
   m_Name: CofM_ph_0
   m_EditorClassIdentifier: 
-  _characterName: CoffeMashine
-  _textPhrase: "\u041A\u043E\u0444\u0435-\u0441\u044E\u0440\u043F\u0440\u0438\u0437!"
+  _characterName: Astro-9
+  _textPhrase: "\u041E... \u044D\u0442\u043E \u0441\u0442\u043E\u043B\u043E\u0432\u0430\u044F?
+    \u041F\u043E\u0447\u0435\u043C\u0443 \u0442\u0443\u0442 \u043F\u0430\u0445\u043D\u0435\u0442
+    \u0433\u043E\u0440\u0435\u043B\u043E\u0439 \u043F\u0440\u043E\u0432\u043E\u0434\u043A\u043E\u0439?
+    \u0418 \u0442\u0443\u0442 \u0435\u0441\u0442\u044C \u043A\u043E\u0444\u0435\u043C\u0430\u0448\u0438\u043D\u0430!"
   _isChoise: 0
   _choises: []
-  nextPhrase: {fileID: 11400000, guid: 480cd428e84c74a4cbd3413656648417, type: 2}
+  nextPhrase: {fileID: 11400000, guid: a283c02c4ce93024ba503ad183bcb9cc, type: 2}
   _dialogEvent: {fileID: 0}

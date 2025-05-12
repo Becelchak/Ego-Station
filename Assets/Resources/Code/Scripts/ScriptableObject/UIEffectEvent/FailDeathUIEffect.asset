@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: FailDeathUIEffect
   m_EditorClassIdentifier: 
   uiEffectPrefab: {fileID: 1851541709538720603, guid: 0e9f0676d46129740a5e6b3adf7217ba, type: 3}
-  effectDuration: 5
+  effectDuration: 1.3
   destroyAfterDuration: 1
   isDialogLogicOneUsed: 1

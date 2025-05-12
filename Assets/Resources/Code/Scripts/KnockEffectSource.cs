@@ -10,15 +10,27 @@ public class KnockEffectSource : MonoBehaviour
     {
         gameObject.layer = 8;
         var dialog = GameObject.Find(dialogName);
-        uiEffect.SetDialogLogic(dialog.GetComponent<DialogLogic>());
-        uiEffect.Raise();
+
+        if (dialog != null && uiEffect != null)
+        {
+            uiEffect.SetDialogLogic(dialog.GetComponent<DialogLogic>());
+            uiEffect.Raise();
+        }
+
         EventBus.RaiseEvent<IPlayerSubscriber>(h => h.GetDamage(80));
-        GetComponent<AudioSource>().Play();
+        EventBus.RaiseEvent<IQTEFinishSubscriber>(h => h.OnQTEFinished(false));
+
+        if (TryGetComponent<AudioSource>(out var audioSource))
+        {
+            audioSource.Play();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player" && collision.gameObject.name == "Player")
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.name == "Player")
+        {
             ActivateEffect();
+        }
     }
 }

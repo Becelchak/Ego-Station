@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41bd094ce61c384ebfbbd04d56c5cd1, type: 3}
   m_Name: CofM_ph_0_1
   m_EditorClassIdentifier: 
-  _characterName: Nobody
-  _textPhrase: 
-  _isChoise: 1
-  _choises:
-  - {fileID: 11400000, guid: bf7ce43107989a0428da7c11eac301b2, type: 2}
-  - {fileID: 11400000, guid: d1cbf8cd674157846b3fb8adb1570c00, type: 2}
-  nextPhrase: {fileID: 0}
+  _characterName: Mind
+  _textPhrase: "\u041A\u0430\u0436\u0435\u0442\u0441\u044F, \u044D\u0442\u043E \u0431\u044B\u043B
+    \u043D\u0435 \u044D\u043D\u0435\u0440\u0433\u0435\u0442\u0438\u043A, \u0430 \u0433\u0430\u043B\u043B\u044E\u0446\u0438\u043D\u043E\u0433\u0435\u043D."
+  _isChoise: 0
+  _choises: []
+  nextPhrase: {fileID: 11400000, guid: 6c06206f9badae045a030f8e7aabd8ad, type: 2}
   _dialogEvent: {fileID: 0}

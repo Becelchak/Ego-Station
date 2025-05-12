@@ -6,10 +6,13 @@ public class CoffeeMachineDialogEvent : DialogEvent
     private CanvasGroup miniGameCanvas;
     public override void Raise()
     {
-        miniGameCanvas = GameObject.Find("CoffeeMachineGame canvas").GetComponent<CanvasGroup>();
+        var coffeMashineCanvas = GameObject.Find("CoffeeMachineGame canvas");
+        miniGameCanvas = coffeMashineCanvas.GetComponent<CanvasGroup>();
         miniGameCanvas.alpha = 1.0f;
         miniGameCanvas.blocksRaycasts = true;
         miniGameCanvas.interactable = true;
+
+        coffeMashineCanvas.GetComponent<CoffeMashineGame>().UpdateUI();
     }
 
     public override void SetDialogLogic(DialogLogic logic)
