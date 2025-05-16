@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37955e19fb9cae14b9572d55a30b0535, type: 3}
+  m_Name: Gravity Chaos MorseQTEEvent
+  m_EditorClassIdentifier: 
+  morsePrefab: {fileID: 5769824336320530700, guid: 5be054fe8d77c5e4a898da4d0eeb99b4, type: 3}
+  prefabParentName: PlayerUI canvas

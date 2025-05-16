@@ -69,6 +69,7 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber, IFeedbackSubscrib
     [Header("OtherParameters")]
     [SerializeField] private int health = 100;
     [SerializeField] private AudioClip damageAudio;
+    private Coroutine rotationCoroutine;
     private AudioSource otherAudioSource;
 
     public int Health
@@ -340,7 +341,6 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber, IFeedbackSubscrib
         var textComponent = iconInstance.GetComponentInChildren<TextMeshProUGUI>();
         feedbackAudioSource = iconInstance.GetComponentInChildren<AudioSource>();
 
-        // Настройка элементов
         iconImage.sprite = feedback.Icon;
         if (textComponent != null)
         {
@@ -348,13 +348,11 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber, IFeedbackSubscrib
             textComponent.color = feedback.TextColor;
         }
 
-        // Звук
         if (feedbackAudioSource != null && feedback.Sound != null)
         {
             feedbackAudioSource.PlayOneShot(feedback.Sound);
         }
 
-        // Fade in
         float elapsed = 0f;
         while (elapsed < fadeDuration)
         {
@@ -366,7 +364,6 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber, IFeedbackSubscrib
 
         yield return new WaitForSeconds(displayTime);
 
-        // Fade out
         elapsed = 0f;
         while (elapsed < fadeDuration)
         {
@@ -376,15 +373,13 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber, IFeedbackSubscrib
             yield return null;
         }
 
-        // Вызов callback и очистка
         feedback.Callback?.Invoke();
-        // Уничтожаем иконку перед отправкой события
+
         if (iconInstance != null)
         {
             Destroy(iconInstance);
         }
 
-        // Проверяем, не уничтожен ли сам PlayerManager
         if (this != null)
         {
             EventBus.RaiseEvent<IFeedbackSubscriber>(s =>
@@ -413,7 +408,6 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber, IFeedbackSubscrib
     {
         transform.position = pointTeleport.position;
     }
-
     public enum PlayerAttributes
     {
         Body,

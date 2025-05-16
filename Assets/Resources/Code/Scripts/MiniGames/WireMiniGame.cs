@@ -17,13 +17,24 @@ public class WireMiniGame : MiniGame
 
     private void OnDisable()
     {
-        Debug.Log("All clear");
+        ClearWires();
+    }
+
+    private void ClearWires()
+    {
         foreach (var wire in wires)
         {
-            Destroy(wire.gameObject);
-            connectedWires = 0;
+            if (wire != null && wire.gameObject != null)
+                Destroy(wire.gameObject);
         }
-        wires.Clear(); 
+        wires.Clear();
+        connectedWires = 0;
+    }
+
+    public void ChangeParameteres(int count, float distance)
+    {
+        wireCount = count;
+        wireSnapDistance = distance;
     }
     private void OnEnable()
     {
@@ -31,6 +42,7 @@ public class WireMiniGame : MiniGame
     }
     private void GenerateWires()
     {
+        ClearWires();
         for (int i = 0; i < wireCount; i++)
         {
             var wireObj = Instantiate(wirePrefab, wireContainer);

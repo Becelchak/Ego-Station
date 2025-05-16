@@ -6,13 +6,17 @@ using UnityEngine;
 public class GatewayLogic : MonoBehaviour, IGateway, IGeneratorSubscriber
 {
     [SerializeField] private float timeToClose = 2f;
-    [SerializeField] private WireMiniGame wireMiniGame;
+    
     private BoxCollider2D boxCollider;
     private GameObject player;
     private Animator animator;
     [SerializeField] private bool _isBlockInteract;
     [SerializeField] private string interactionText = "Взаимодействовать";
     [SerializeField] private bool isGeneratorSubscriber;
+    [Header("Wire parameter")]
+    [SerializeField] private WireMiniGame wireMiniGame;
+    [SerializeField] private int wirecount = 4;
+    [SerializeField] private float wireDistance = 50;
     public string InteractionText => interactionText;
     public event Action OnInteract;
 
@@ -35,6 +39,7 @@ public class GatewayLogic : MonoBehaviour, IGateway, IGeneratorSubscriber
         OnInteract?.Invoke();
         if (_isBlockInteract && wireMiniGame != null)
         {
+            wireMiniGame.ChangeParameteres(wirecount, wireDistance);
             wireMiniGame.gameObject.SetActive(true);
             wireMiniGame.MiniGameComplete += OnMiniGameComplete;
         }

@@ -8,4 +8,6 @@ public interface IMoveControllerSubscriber : IGlobalSubscriber
     void Unfreeze();
     void StartClimbing();
     void EndClimbing();
+    void OnEnterZeroGravity(NoGravityZone zone);
+    void OnExitZeroGravity();
 }

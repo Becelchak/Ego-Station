@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d41bd094ce61c384ebfbbd04d56c5cd1, type: 3}
+  m_Name: Backpack_ph_1
+  m_EditorClassIdentifier: 
+  _characterName: Feels
+  _textPhrase: "\u041A\u043E\u043D\u0444\u0435\u0442\u043A\u0430!"
+  _hintText: 
+  _isChoise: 0
+  _choises: []
+  nextPhrase: {fileID: 11400000, guid: 202e8b68d0bbb8b429bf2e25e235e148, type: 2}
+  _dialogEvent: {fileID: 0}
