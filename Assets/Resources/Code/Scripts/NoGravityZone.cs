@@ -19,6 +19,7 @@ public class NoGravityZone : MonoBehaviour
         if (!isActive || !other.CompareTag("Player")) return;
 
         EventBus.RaiseEvent<IMoveControllerSubscriber>(s => s.OnEnterZeroGravity(this));
+        EventBus.RaiseEvent<IZeroGravityController>(s => s.EnableZeroGravityMode());
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -33,6 +34,7 @@ public class NoGravityZone : MonoBehaviour
         }
 
         EventBus.RaiseEvent<IMoveControllerSubscriber>(s => s.OnExitZeroGravity());
+        EventBus.RaiseEvent<IZeroGravityController>(s => s.DisableZeroGravityMode());
     }
 
     private void UpdateColliderState()

@@ -46,11 +46,9 @@ namespace Player
         IInteractive interactiveObject;
 
         InputAction interact;
-        //bool isGrounded;
         bool isFreezed;
         private bool isOnLadder;
         private AudioSource playerAudioSource;
-        //private bool wasMoving;
 
         
         void Start()
@@ -214,12 +212,6 @@ namespace Player
             rb.linearDamping = zeroGravityDrag;
             animator.enabled = false;
             moveNow = noGravityMove;
-
-            spriteSkins = modelWithSkins.GetComponentsInChildren<SpriteSkin>().ToList();
-            foreach (var spriteSkin in spriteSkins) 
-            {
-                //if (spriteSkin != null) spriteSkin.enabled = true;
-            }
             
         }
 
@@ -238,10 +230,6 @@ namespace Player
             }
 
             rotationCoroutine = StartCoroutine(SmoothRotationToDefault());
-            foreach (var spriteSkin in spriteSkins)
-            {
-                //if (spriteSkin != null) spriteSkin.enabled = false;
-            }
         }
 
         private IEnumerator SmoothRotationToDefault()

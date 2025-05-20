@@ -17,6 +17,8 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private float arrowXOffset = -40f;
     [SerializeField] private float arrowYOffset = 0f;
 
+    private LoadingScreen loadingScreen;
+
     private void Start()
     {
         if (selectionArrow == null)
@@ -31,6 +33,7 @@ public class MainMenuController : MonoBehaviour
         InitializeButton(exitButton, ExitGame);
 
         selectionArrow.gameObject.SetActive(false);
+        loadingScreen = GetComponent<LoadingScreen>();
     }
 
     private void InitializeButton(Button button, UnityEngine.Events.UnityAction action)
@@ -81,7 +84,7 @@ public class MainMenuController : MonoBehaviour
 
     private void StartGame()
     {
-        SceneManager.LoadScene("Main game");
+        loadingScreen.ShowLoadingScreen("Main game");
     }
 
     private void ContinueGame()
