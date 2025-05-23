@@ -22,7 +22,7 @@ public class LoadingScreen : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         textCanvasGroup = loadingText.GetComponent<CanvasGroup>();
     }
 
@@ -34,41 +34,87 @@ public class LoadingScreen : MonoBehaviour
 
     private IEnumerator LoadSceneAsync(string sceneName)
     {
-        // Начинаем анимацию
+        // Активируем экран загрузки
         StartCoroutine(AnimateHelmet());
         StartCoroutine(AnimateText());
         backgroundImage.interactable = true;
         backgroundImage.blocksRaycasts = true;
 
-        while (backgroundImage.alpha < 1)
+        // Плавное появление фона
+        float fadeDuration = 0.5f;
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
         {
-            backgroundImage.alpha  += Time.deltaTime;
+            backgroundImage.alpha = Mathf.Lerp(0, 1, elapsedTime / fadeDuration);
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
+        backgroundImage.alpha = 1;
 
-        // Загрузка сцены в фоне
-        loadingOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-        loadingOperation.allowSceneActivation = false;
-        #if UNITY_WEBGL
+        // Настройка загрузки
+#if UNITY_WEBGL
             Application.backgroundLoadingPriority = ThreadPriority.Low;
-        #endif
+#endif
+        loadingOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+        loadingOperation.allowSceneActivation = false;
 
-        // Ждем завершения загрузки
         while (!loadingOperation.isDone)
         {
-            Debug.Log($"{loadingOperation.progress}");
-            // Дожидаемся 90% загрузки
             if (loadingOperation.progress >= 0.9f)
             {
                 loadingOperation.allowSceneActivation = true;
+                yield return StartCoroutine(UnloadMenuScene());
             }
-
             yield return null;
         }
+
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
         loadingPanel.SetActive(false);
-        Destroy(gameObject);
-        // Скрываем экран загрузки
-        yield return new WaitForSeconds(1f); // Искусственная задержка для плавности
+
+        //// Финализация
+        //SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
+        //yield return new WaitForSeconds(0.5f); // Дополнительная задержка
+        //loadingPanel.SetActive(false);
+    }
+
+    private IEnumerator UnloadMenuScene()
+    {
+        Scene menuScene = SceneManager.GetSceneByName("Main menu");
+
+        if (!menuScene.IsValid())
+        {
+            Debug.LogWarning("MainMenu scene not found by name, trying index search");
+            for (int i = 0; i < SceneManager.sceneCount; i++)
+            {
+                Scene scene = SceneManager.GetSceneAt(i);
+                if (scene.name.Contains("Menu"))
+                {
+                    menuScene = scene;
+                    break;
+                }
+            }
+        }
+
+        if (menuScene.IsValid() && menuScene.isLoaded)
+        {
+            AsyncOperation unloadOp = SceneManager.UnloadSceneAsync(menuScene);
+
+            if (unloadOp == null)
+            {
+                gameObject.SetActive(false);
+                yield return null;
+            }
+            else
+            {
+                yield return unloadOp;
+            }
+
+            yield return Resources.UnloadUnusedAssets();
+        }
+        else
+        {
+            Debug.LogWarning("Menu scene already unloaded or invalid");
+        }
     }
 
     private IEnumerator AnimateHelmet()

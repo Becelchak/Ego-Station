@@ -70,6 +70,11 @@ public class GameManager : MonoBehaviour
             maxAttribute = PlayerAttributes.Feels;
         }
 
+        if(playerManager.BodyAttribute == playerManager.MindAttribute && playerManager.BodyAttribute == playerManager.FeelsAttribute)
+        {
+            maxAttribute = PlayerAttributes.None;
+        }
+
         switch (maxAttribute)
         {
             case PlayerManager.PlayerAttributes.Body:
@@ -85,6 +90,11 @@ public class GameManager : MonoBehaviour
                 var feelsDialogData = Resources.Load<DialogData>("Code/Dialog Data/Ending/Feels/FeelsEnding");
                 endGameDialogLogic.SetDialogData(feelsDialogData);
                 break;
+            case PlayerAttributes.None:
+                var balanceDialogData = Resources.Load<DialogData>("Code/Dialog Data/Ending/Balance/BalanceEnding");
+                endGameDialogLogic.SetDialogData(balanceDialogData);
+                break;
+
         }
 
         endGameDialogLogic.gameObject.SetActive(true);

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 40818b6851579b3459532da40ab6b866
+guid: 8d55439c1d64b184ab46d87519303a2a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2744700536971391046
-    second: Vector 34_0
+      213: 4565726399804622227
+    second: Green Core_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Vector 34_0
+      name: Green Core_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 8
         y: 0
-        width: 2237
-        height: 851
+        width: 481
+        height: 494
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 640f009a892271620800000000000000
-      internalID: 2744700536971391046
+      spriteID: 3954af968f7bc5f30800000000000000
+      internalID: 4565726399804622227
       vertices: []
       indices: 
       edges: []

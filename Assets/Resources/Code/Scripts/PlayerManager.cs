@@ -412,6 +412,7 @@ public class PlayerManager : MonoBehaviour, IPlayerSubscriber, IFeedbackSubscrib
     {
         Body,
         Mind,
-        Feels
+        Feels,
+        None
     }
 }
