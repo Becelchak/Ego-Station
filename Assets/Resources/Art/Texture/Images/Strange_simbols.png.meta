@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 687e55e85968ae04882c3ec6f720ebe0
+guid: 241f1763a05883f4fa5efcbcaab2c950
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8743225772218010912
-    second: MetalCan_0_0
+      213: 3774957345929185824
+    second: Strange_simbols_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MetalCan_0_0
+      name: Strange_simbols_0
       rect:
         serializedVersion: 2
-        x: 6
+        x: 0
         y: 0
-        width: 541
-        height: 267
+        width: 332
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0e2b7e7db72d9a680800000000000000
-      internalID: -8743225772218010912
+      spriteID: 02a4c5e94b7536430800000000000000
+      internalID: 3774957345929185824
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MetalCan_0_0: -8743225772218010912
+      Strange_simbols_0: 3774957345929185824
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

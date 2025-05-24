@@ -26,4 +26,4 @@ MonoBehaviour:
   _isChoise: 0
   _choises: []
   nextPhrase: {fileID: 0}
-  _dialogEvent: {fileID: 11400000, guid: 5a0a880af2524654ca18496ff576944e, type: 2}
+  _dialogEvent: {fileID: 11400000, guid: b268d6b614f13ec419561019319f0219, type: 2}

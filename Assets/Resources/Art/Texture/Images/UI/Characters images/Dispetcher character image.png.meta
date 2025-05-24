@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Dispetcher character image_0: -4664522828645236271
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

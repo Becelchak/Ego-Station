@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Sci-fi-backpack_0: -9025602698843750783
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
